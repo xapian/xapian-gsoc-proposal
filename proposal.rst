@@ -90,51 +90,51 @@ Background Information
 .. much experience, but it's a problem if we aren't aware of that and propose
 .. an overly ambitious project.
 
-Have you taken part in GSoC and/or GCI (https://codein.withgoogle.com/) and/or
+**Have you taken part in GSoC and/or GCI (https://codein.withgoogle.com/) and/or
 similar programmes before?  If so, tell us about how it went, and any areas you
-would have liked more help with.
+would have liked more help with.**
 
 FILLME
 
-Please tell us about any previous experience you have with Xapian, or other
-systems for indexed text search.
+**Please tell us about any previous experience you have with Xapian, or other
+systems for indexed text search.**
 
 FILLME
 
-Do you have previous experience with Free Software and Open Source other than
-Xapian?
+**Do you have previous experience with Free Software and Open Source other than
+Xapian?**
 
 FILLME
 
-What other relevant prior experience do you have (courses taken at college,
-hobbies, holiday jobs, etc)?
+**What other relevant prior experience do you have (courses taken at college,
+hobbies, holiday jobs, etc)?**
 
 FILLME
 
-What development platforms, tools and methods do you prefer to use?
+**What development platforms, tools and methods do you prefer to use?**
 
 FILLME
 
-Have you previously worked on a project of a similar scope?  If so, tell us
-about it.
+**Have you previously worked on a project of a similar scope?  If so, tell us
+about it.**
 
 FILLME
 
-What timezone will you be in during the coding period?
+**What timezone will you be in during the coding period?**
 
 FILLME
 
-Will your Summer of Code project be the main focus of your time during the
-program?
+**Will your Summer of Code project be the main focus of your time during the
+program?**
 
 FILLME
 
-Expected work hours (e.g. Monday–Friday 9am–5pm UTC)
+**Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
 FILLME
 
-Are you applying for other projects in GSoC 2018?  If so, with which
-organisation(s)?
+**Are you applying for other projects in GSoC 2018?  If so, with which
+organisation(s)?**
 
 .. We understand students sometimes want to apply to more than one org and
 .. we don't have a problem with that, but it's helpful if we're aware of it
@@ -148,11 +148,11 @@ Your Project
 Motivations
 -----------
 
-Why have you chosen this particular project?
+**Why have you chosen this particular project?**
 
 FILLME
 
-Who will benefit from your project and in what ways?
+**Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
@@ -164,27 +164,27 @@ Project Details
 
 .. Please go into plenty of detail in this section.
 
-Describe any existing work and concepts on which your project is based.
+**Describe any existing work and concepts on which your project is based.**
 
 FILLME
 
-Do you have any preliminary findings or results which suggest that your
-approach is possible and likely to succeed?
+**Do you have any preliminary findings or results which suggest that your
+approach is possible and likely to succeed?**
 
 FILLME
 
-What other approaches to have your considered, and why did you reject those in
-favour of your chosen approach?
+**What other approaches to have your considered, and why did you reject those in
+favour of your chosen approach?**
 
 FILLME
 
-Please note any uncertainties or aspects which depend on further research or
-investigation.
+**Please note any uncertainties or aspects which depend on further research or
+investigation.**
 
 FILLME
 
-How useful will your results be when not everything works out exactly as
-planned?
+**How useful will your results be when not everything works out exactly as
+planned?**
 
 FILLME
 
@@ -252,8 +252,8 @@ FILLME
 Licensing of your contributions to Xapian
 -----------------------------------------
 
-Do you agree to dual-license all your contributions to Xapian under the GNU
-GPL version 2 and all later versions, and the MIT/X licence?
+**Do you agree to dual-license all your contributions to Xapian under the GNU
+GPL version 2 and all later versions, and the MIT/X licence?**
 
 For the avoidance of doubt this includes all contributions to our wiki, mailing
 lists and documentation, including anything you write in your project's wiki
@@ -268,8 +268,8 @@ FILLME
 Use of Existing Code
 --------------------
 
-If you already know about existing code you plan to incorporate or libraries
-you plan to use, please give details.
+**If you already know about existing code you plan to incorporate or libraries
+you plan to use, please give details.**
 
 FILLME
 

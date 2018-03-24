@@ -59,27 +59,32 @@
 .. http://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
+Implement Bindings for Go
 ======================================
 
 About You
 =========
 
- * Name: FILLME
+ * Name: Marco Younan
 
- * E-mail address: FILLME
+ * E-mail address: xmarcoied@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): xmarcoied
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: https://xmarcoied.github.io
 
- * github URL: FILLME
+ * github URL: https://github.com/xmarcoied
 
- * Biography:
+ * Biography: 
 
-.. Tell us a bit about yourself.
+    I'm Marko Mohsen from Egypt, a 23 years old guy who study computer engineering at University of Ainshams.
+    a pinaist who can write codes. I am so passionate about the internet as my first passion. from building web applications to making the web and internet a better place, secured and interactive.
+    Through college, I found myself in love with programming and contents/competitions. (I joint many, and got qualified to ACM-ACPC the arab regional contest twice)
 
-FILLME
+    I also joint some local activities in my college, start new intiaitives and so. and have been an active member at `sefrwahed <https://facebook.com/zeroone.asu/>`_ for years, and developed sessions for JS/Go before.
+
+    Golang has became my main passion. I write in Go almost everyday, to solve problems on competitive websites (CF,Hackerrank) and for backend/server development and for desktop (CLI) programs. and I am always curious for new in Go.
+
 
 Background Information
 ----------------------
@@ -94,44 +99,65 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+Yes, I did `GSoC last year with Videolan <https://summerofcode.withgoogle.com/archive/2017/projects/5266266902233088/>`_. My project was about build a new update server to manage releases, update requests and so.
+Most of the code I did in summer relies `here <https://code.videolan.org/GSoC2017/Marco/UpdateServer>`_ . but I continued working on it till it get merged to VLC.
+also customized it for my college.
+
+the project was written in Golang, and I felt in love with the language. also was encryption, servers and infrastructure interfacing.
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+I am new to Xapian (to be honest), but I used Elastic Search and Beats (in Go) before. also worked on a project using `Bleve <https://github.com/blevesearch/bleve/>`_
 
 **Do you have previous experience with Free Software and Open Source other than
 Xapian?**
 
-FILLME
+I've been time with Videolan.
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+Previous Internships:
 
-**What development platforms, tools and methods do you prefer to use?**
+    (Software Engineering Intern , Microsoft Research Cairo)
 
-FILLME
+    With bing.com-team . Implementing data-mining pipeline and dashboard to provide statistics and user engagement numbers for Bing
+
+Projects I worked on:
+    
+    Through college, I was lucky to work on many web-based projects. (I'd like to list :simpldon (simpldon.com) and racingteam (asuracingteam.org))
+    
+    Also, I've been time developing in Golang, and some of what I develop is opensourced (would like to list: goexams, cloneAll, GoTasker, ,GoMovies)
+
+What development platforms, tools and methods do you prefer to use?
+ * Platforms: Linux(Ubuntu) , Windows 
+ 
+ * Tools : git , visualstudio code , vim , make
+ 
+ * Methods: TDD
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+I haven't worked with a typical binding project before, but I worked on mirroring/translating packages to GO.
 
 **What timezone will you be in during the coding period?**
 
-FILLME
+Cairo,Egypt (GMT+2) . but I will be felixable to work in other timing.
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-FILLME
+Yes, I'll be fully committed to the program till the last minute of it.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
-FILLME
+* Friday , Sunday : 3~5 Hours
+ 
+* Week days: 8~10 Hours
+
+ I am not yet sure about timing, but I'll try my best to catch with my mentor timing and so.
 
 **Are you applying for other projects in GSoC 2018?  If so, with which
 organisation(s)?**
@@ -140,7 +166,7 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+No. only you, xapian.
 
 Your Project
 ============
@@ -150,14 +176,17 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+The project is using Golang, It's my passion.
+building upon really useful tech (xapian), and the project itself is challenging to me. also beneficial to me going through a whole project with mentorship and the golang/xapian communities.
+
+Finally, it's going to be fun:)
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+I think, the binding project meant to serve the xapian, also the target-language (Go in my case).
 
 Project Details
 ---------------
@@ -171,22 +200,26 @@ FILLME
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+My approach to binding c/c++ xapian codebase to go can be similar to other already-in-use xapian bindings, also suggested at `Golang FAQs <https://golang.org/doc/faq#Do%5FGo%5Fprograms%5Flink%5Fwith%5FCpp%5Fprograms>`_
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+    * At first, we can translate the whole xapian code to go. but it's anyway applicable. one reason that it would be hard to keep updating the projects (mirroring), also it's huge to build xapian from scratch.
+    * Second approach (option) is developing the calling C/C++ from Go programs, so finally we can have written Golang statements. other than SWIG was cgo. which is so hard (or impossible to implement for c++ programs)
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+Well, I haven't used SWIG for larger (scale) project. but I explored other ready-in-use bindings for xapian. 
+there might be ambiguous cases/corners , also challenges for making the APIs so natural for Go.
+also, maybe specializing things to use Go concurrency or others (channels, routies etc..)
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+Well, There're already a trail (proof of concept) for the project. so I am expecting in the worsecases (or my risk plan).
+I'll providing a better vision for what stopped there, leaving the code simple as I can to be easy to update anytime later when the C++ chances.
 
 Project Timeline
 ----------------
@@ -237,7 +270,11 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
+**May 14 - June 11**
+
+**June 13 - July 9**
+
+**July 13 - August 13**
 
 Previous Discussion of your Project
 -----------------------------------
@@ -247,7 +284,9 @@ Previous Discussion of your Project
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
 
-FILLME
+I had a little discussion about the know-how binding in the mailing-list, also IRC before.
+
+but just a little.
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -259,7 +298,7 @@ For the avoidance of doubt this includes all contributions to our wiki, mailing
 lists and documentation, including anything you write in your project's wiki
 pages.
 
-FILLME
+Yes, I agree.
 
 .. For more details, including the rationale for this with respect to code,
 .. please see the "Licensing of patches" section in the "HACKING" document:
@@ -271,7 +310,7 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
-FILLME
+None.
 
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies

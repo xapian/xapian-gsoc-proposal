@@ -360,9 +360,8 @@ Pseudocode for indexing, searching, ranking:
         return expressions
 
     Ranking_dice_coefficient_similarity(query_pair, result_pair):
-        assign numerator to 2 * set_intersection(query_pair, result_pair)
-        assign denominator to sum(len(query_pair), len(result_pair))
-        return numerator / denominator
+        return :math: \frac{2 \times (query_pair \cap result_pair) 
+        {\left |query_pair \right | + \left|result_pair\right |}
 
 .. TODO try to add pseudocode for generating symbol tree
 
@@ -442,14 +441,52 @@ Add documentation.
 Buffer time. Work on anything lagging, else take a long break.
 
 [block 2: July 2 - 4]
-Construct symbol layout tree from query input. This involves majority code 
+Construct symbol layout tree from the query input. This involves majority code 
 reuse from block 1. Handle query specific changes needed.
 
 [block 2: July 5 - 9]
-Implement document retrieval from given query. This involves generating symbol
-pair tuples from the symbol layout tree for query and fetching postings from 
+Implement document retrieval from the given query. This involves generating symbol
+pair tuples from the symbol layout tree for the query and fetching postings from 
 the database index.
 
+Deliverable: Indexing of documents containing math expression. Retrive documents
+for the given math query.
+
+[block 3: July 12 - 15]
+Implement latex to mathml converter for document and query containg latex math 
+expression. Write test and document it.
+
+[block 3: July 16 - 20] 
+Integrate the code and perform testing. Code refactor if needed. Document the code.
+Profile the code, evaluate the performance.
+
+[block 3: July 23 - 24]
+Do the house keeping work in this period. Address any pending requested changes 
+and fix issues etc.
+
+Deliverable: Basic math aware search functionality will be realised in
+xapian.
+
+Add-ons:
+
+[block 3: July 25 - 27]
+Implement support for wildcard queries. This requires extending tuple generation 
+module of query further. 
+
+[block 3: July 30 - August 2]
+Add support for math expressions containg matrix type.
+
+[block 3: August 3 - 6]
+Matrix support requires update to parser code and tuple generation code. Write 
+tests and make sure no breakage in any functionality.
+
+[block 3: August 7 - 14]
+Complete any review modifications pending. Finalize the documentation. Do clean
+up work if any present. 
+
+Stretch Goal:
+Adding re-ranking stage - as this process is quite complex, it is attempted only
+if at least a week time remains after the completion of promised deliverables.
 
 Previous Discussion of your Project
 -----------------------------------

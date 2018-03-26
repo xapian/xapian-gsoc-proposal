@@ -59,21 +59,21 @@
 .. http://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
+Math Aware Search
 ======================================
 
 About You
 =========
 
- * Name: FILLME
+ * Name: Guruprasad Hegde
 
- * E-mail address: FILLME
+ * E-mail address: guruhegde1308@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): ghegde
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: None
 
- * github URL: FILLME
+ * github URL: https://github.com/guruhegde
 
  * Biography:
 
@@ -94,44 +94,78 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+I don't have any prior experience with GSoC or GCI or similar programmes.
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+I come across Xapian when organisations were announced by GSoC team. Since then
+I have been playing with xapian and some of its tools. Though i had learnt about
+IR systems(like Lucene) in courses, i don't have any experience using the system.
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+I contributed patches to Shogun(ML library), CLTK. 
+PR links:
+
+- https://github.com/shogun-toolbox/shogun/pull/4144
+- https://github.com/shogun-toolbox/shogun/pull/4119
+- https://github.com/shogun-toolbox/shogun/pull/4116
+- https://github.com/shogun-toolbox/shogun/pull/4139
+- https://github.com/shogun-toolbox/shogun/pull/4123
+- https://github.com/cltk/cltk/pull/660
+- https://github.com/cltk/cltk/pull/661
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+Courses i have taken which are relevant:
+
+- Statistical Natural Language Processing 
+- Information Retrieval & Data Mining
+- Database Systems
+- Distributed Systems
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+OS - Arch Linux, editor - vim, version control - git 
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+ I would like to mention couple of projects(academic), which highlight the
+ necessary background and experience.
+ 1.In-Memory Database System(c++/13kLoC): I implemented the following  database
+ system components. 
+
+    - Indexing techniques : Hash table, B+ Tree.
+    - data layout : row store, column store.
+    - Compression Techniques: RLE, Dictionary compression.
+
+ With this project, I had hands-on experience with building system. The project 
+ used latest c++ features(c++14, c++17), helped me get hands-on with them.
+
+ 2.Yet Another File System(c++/7kLoC): I implemented a multi-server file system. 
+
+    - Lock server implementation.
+    - File system with operations - mkdir, read, write, remove 
+    - Caching lock server, extent(data) server.
+
+I used low level system apis(like system calls), fuse library and RPC library. 
 
 **What timezone will you be in during the coding period?**
 
-FILLME
+CET(Central European Time)
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-FILLME
+Yes. I have no other commitments.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
-FILLME
+Monday-Friday 8am-4pm UTC+1
 
 **Are you applying for other projects in GSoC 2018?  If so, with which
 organisation(s)?**
@@ -140,7 +174,7 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+No.
 
 Your Project
 ============
@@ -150,33 +184,74 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+- I remember myself searching for Math notation and some strange symbol meaning 
+  in google, then results were not really satisfactory. I feel 'math aware search' is
+  a useful feature to be part of search engine. Hence this topic drew my attention
+  more than other topics. 
+- Recently, I had heard about the research in temporal IR which was very 
+  interesting. I found math aware IR eqully interesting.
+- Having gone through the literature, I found that some researches are very
+  recent and it's an emerging field. This motivated me to take up this topic.
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+Currently search engine support for retrieving math formula query is not very good, 
+as it treats them as text data, resulting in poor performance with search hits. 
+With search engine support for math queries, one will be able to get a better search 
+result when searching for math formula of interest. This is useful for students, 
+people in academics. A researcher can find applicability of particular math equation 
+in research papers by giving equation as query. Currently he/she has to put the math 
+formula name or search for concept name.
 
 Project Details
 ---------------
 
-.. Please go into plenty of detail in this section.
+.. Please go into plenty of detail in thi-s section.
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+The system I propose is based on Tangent - math expression search engine created 
+by David Stalnaker and it's improved versions developed at `dprl, RIT 
+<https://www.cs.rit.edu/~dprl/Software.html#tangent-s>`_. Tangent performs indexing
+on structure of the expression represented in MathML format. Encoding of structure is 
+done by constructing symbol layout tree from the expression and then generating symbol
+pairs from that tree. The symbol pairs are indexed using inverted index. 
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+Tangent system code is available for public. I successfully ran the system and 
+reproduced some of the results. Also, team who developed Tangent participated in `NTCIR
+math retrieval task <http://ntcir-math.nii.ac.jp/>`_ and obtained competitive results 
+for arXiv-main task[1]_.
+
+.. [1] Tangent - http://research.nii.ac.jp/ntcir/workshop/OnlineProceedings12/pdf/ntcir/OVERVIEW/01-NTCIR12-OV-MathIR-ZanibbiR.pdf
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+I considered MIaS system[2]_, which linearizes math expression into text and uses 
+traditional text retrieval search engine. Indexing part is similar to the Tangent 
+system, approach I would like to propose. It differs in the preprocessing of math
+expression to generate indexes. MIaS uses tokenization of expression and performs
+unification[*]_ strategy to generalize the expression. The reason for selecting 
+the approach used in Tangent system is, symbol layout tree approach extracts the 
+structural information in expression better than tokenization of text. This is 
+corroborated by the findings of hypothesis test. Also, Tangent system performance
+is better than MIaS system.
+
+I also studied the system[3]_ implemented by MCAT group. They include textual context
+of the formulae and integrate retrieval of text and formulae. The system extracts 
+three granularity level text information. Even though this system performs better
+than Tangent, due to the complexity and keeping time constraint in mind, I planned
+to pick Tangent system. This could be tried in Xapian in future.
+
+.. [2] NTCIR12 - http://research.nii.ac.jp/ntcir/workshop/OnlineProceedings12/pdf/ntcir/MathIR/05-NTCIR12-MathIR-RuzickaM.pdf
+.. [3] MCAT - https://pdfs.semanticscholar.org/6995/bf023d37a5fc10fe60d3783772801994751d.pdf
+.. [*] All variables and constants are substituted with unified symbols.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
@@ -237,7 +312,25 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
+Project Structure:
+
+Indexing stage:
+
+1. Extract List of Math expression from Document - this involves searching 
+   the document and extract MathML element.
+2. Generate symbol layout tree for each math expression.
+3. Create a list of symbol pair tuple from the symbol layout tree in step 2. 
+4. Symbol pair tuple is stringified. The output string is similar to the term
+   in case of text document. I will call this math term.
+5. Math term from step 4 is indexed using Xapian's existing indexing system.
+6. Steps 2 - 5 are repeated for each math expression in a document.
+
+Searching stage:
+1. Convert Query to Symbol Layout tree structure.
+2. Generate symbol pair tuple from symbol layout tree.
+3. Formulate disjunction query from symbol pair tuples.
+4. Retrieve relevant documents based on dice similarity coefficinet metric.
+
 
 Previous Discussion of your Project
 -----------------------------------

@@ -1,0 +1,208 @@
+1. Indexing and searching Mathematics in digital libraries(MIaS)
+
+Paper discusses previous math search engine designs:
+
+MathDex - encodes mathematics as text tokens and uses Apache Lucene as if searching for text. Uses similarity with search terms to rank search results. It puts undue weight on variable names.
+
+EgoMath - uses presentation MathML for indexing. Developes generalization algorithm and relevancy calculation to cope with normalization.
+
+LatexSearch - offered by springer. Searches directly in tex math string representation provided by author of papers. It is not open source.
+
+LeActiveMath - index string token from OMDoc with openmath semantic notation.
+
+MathwebSearch - adopts semantic approach, uses substitution trees. Both presentation and content MathML supported.
+
+Design of MIaS
+* supports searching mathmematical formulae as well as textual content. Process documents with math notation in MathML format.
+* supports subformaulae search.
+* relevance to the query is computed based on heuristic weighting of indexed terms.
+
+steps in math processing:
+
+1. Tokenization - obtain subformulae from input formulae. This can be done by traversing child nodes in presentation MathML. All logical subparts are passed to modification algorithms.
+
+2. Formulae Modifications: Goal is to produce several more or less generalized representations of all formulae obtained in tokenization step.
+    Three steps in this stage.
+    * ordering - order operands in alphabetical order of xml nodes.This is applied to both formulae being indexed as well as to the query expression. Ex - a+b = b+a => ab+
+    * unification of variables: All variables are substituted for unified symbols. Ex: a * b = c * d => id1 * id2. This process is not applied to single symbol. This will result in indexing many ids.
+    * Unification of constants: Substitute allnumerical constants for one unified symbol.
+
+3. Formulae Weighting: During searching, query can math many index terms. One match can be more important than others. System must consider this information when scoring matched documents. Tokenization process must lower the weeight of subformulae.
+
+Weight computation for sub formulae in level l:
+ - no changes made: w = l^level(1+v+c+vc)/n
+ - unified variables w = l^level(v+vc)/n
+ - unified constants w = l^level(c+vc)/n
+ - unified both variables and constantsw = l^level(vc)/n
+
+ Searching: user input split to math and text parts. Math part is processed similar to index phase. Query is first ordered and unified. No tokenization needed. All representations are connected with logical OR operator. Text part is connected with logical AND operator.
+
+#########################################################################
+MCAT - NTCIR 11
+
+task: search mathematical expression using hybrid queries - formulae + keyword
+
+The paper introduces encoding technique to capture the structure and content of math expressions.
+For each math expression two additional information extracted automatically - words in context window and descriptions.
+In addition system utilizes dependency graph of math expression and post-retrieval reranking method.
+
+Three fields used to encode the structure and content of math expression
+ * opaths - vertical paths are gathereed with orderering preserved.
+ * upaths - no ordering information
+ * sisters - lists nodes in each subtree - carries expression structure.
+
+example:
+ < math >
+    < mrow >
+        < msubsup >
+            <mo >& Sigma ; </ mo >
+            < mrow >
+                <mi >i </ mi >
+                <mo >= </ mo >
+                <mn >0 </ mn >
+            </ mrow >
+            <mi >n </ mi >
+        </ msubsup >
+    </ mrow >
+    < msub >
+        <mi >a </ mi >
+        <mi >i </ mi >
+    </ msub >
+</ math >
+
+opaths:
+ 1#msubsup 1#1#mo#sigma 1#2#1#mi#i 1#2#2#mo#=
+ 1#2#3#mn#1 1#3#mi#n 2#msub 2#1#mi#a 2#2#mi#i
+
+ opaths:
+ msubsup 1#mo#signma 2#1#mi#i 2#2#mo#= 2#3#mn#1
+
+ upaths:
+ msub #mi#a #mi#i
+
+ sisters:
+    mi#i mo#= mn#1
+    msubsup msub
+
+* Extracting textual information:
+ * context - fixed window used to extract words from math expression context.
+ *description - uses machine learning window.
+
+From extraction result they found that description for many expressions are not close.
+
+The paper introduces new technique to solve this - dependency graph of math expressions
+
+Dependency graph - directed graph built by examining tokens from each math expression in document.
+Each vertex represents distinct math expression found in a document.
+Directed edge from vertext 1 to vertex 2 indicates that vertex 1 contains vertext 2 expression. This is like as parent-child relation.
+With dependency graph, textual description from child exprression is used in representing parent.
+
+Reranking retrieved math expressions:
+System processes the math formula query and ranking list of initial retrieved math formulae and modifies the ranking with new scores.
+
+The 'similarity' measure is used for reranking.
+
+Similarity measure is a combination of two aspects: structure and content.
+Two measures are computed separately and combined to form new score.
+formSim = contentSim(fx, fq * l) + structsim(fx, fq) * (1 - l)
+
+l - weight parameter - set to 0.3 to give more weight to structure.
+
+Both content and structure information represented using vector space model. Similarity between query vector and dataset measured.
+
+
+##########################################################################
+MCAT - NTCIR 12
+
+This paper introduces three granularity level of textual information to approach:
+* score normalization
+* cold-start weights
+* unification
+
+It reports except cold-start weights, other modules have good impact on performance.
+
+The paper also address limitations of the system implemented in their previous work.
+
+Contribution of this paper:
+* investigate the impact of indexing three levels of information(math, paragraph, document), each with proper weightage to get final score.
+* investigate whether the effectiveness of text enriching procedure using dependency graph.
+* investigate the effectiveness of unification as post processing.
+
+Approach:
+Three main building blocks:
+1. pre-processing
+    * encode math expression
+    * extract text information
+    * extract dependency graph of math expressions
+
+2. Indexing math expression
+3. searching and ranking
+    * combine all the indexed types of information
+    * perform unification to initial ranked list
+
+##################################################################################
+Tangent-3
+
+The system uses search over two indices.
+1. TF-IDF textual search engine.
+2. query-by-expression engine.
+
+Inverted index is used to store math expressions using pair of symbols extracted from symbol layout tree built from
+presentation MAthML.
+
+It uses cascade model with two stages of retrieval:
+*First stage: relevant expressions are retrieved quickly using iterator trees over posting lists to find matches and expressions are ranked using Dice coefficient of matched symbol pairs.
+*second stage: top-k best candidates are reranked with more strict similarity metric supporting unification and wild card matching.
+
+Definitions:
+Generalization technique:replace variable names with generic identifiers.
+Canonicalization: sorts the elements within a math expression based on commutativity of certain operations.
+
+Tangent-3 uses diceÄs coefficient similarity metric in first stage and Maximum subtree similarity(MSS) in second stage.
+
+Method:
+1. Text retrieval: uses Solr.
+
+2. Formula retrieval:
+* Queries are parsed into symbol layout tree, which is used for generating tuples of the form (s1, s2, R, #).
+  s1 - ancestor symbol, s2 - descendant symbol, R edge label sequence, # - count
+
+Representation:
+Every node has a label and node's type is reflected in its label.
+    *If node's label includes exclamation mark(!), type is label prefix upto exclamation mark.
+    *Node label starting with * has wildcard type.
+    *Other node labels without ! , have type operator.
+
+Labeled edges capture the spatial relationship b/w objects.
+9 type of edges: next, within, element, above, below, pre-above, pre-below, over and under.
+
+Indexer: Inverted index used. Input:set of document names and extracted math formulae in each document. Each formula is converted
+to set of tuples that serve as index.
+The index contains postings lists that map each tuple to all formulae containing that tuple.
+
+Candidate selection:
+1. Query is parsed into SLT and tuples are extracted. Then wildcard tuples are expanded, associated postings lists are found, iterators over this lists are created. Iterator tree that implements query is formed.
+
+########################################################################
+Xapian code base:
+
+How query string processed during searching phase?
+
+1. Parse the query string to produce Xapian::Query object.
+Details:
+    internal->parse_query(); //queryparser_internal.cc
+
+ //queryparser_internal.cc //queryparser_internal.cc
+
+2. Search in database.
+Details:
+    enquire.set_query(query) //Xapian::Enquire class
+    enquire.get_mset() {
+        init weight scheme - default BM25
+        instantiate Matcher object.
+        Call match.get_mset(); returns mset.
+        In matcher object{
+        (complicated!) call get_local_mset(); //ignore remote database for now
+    }}
+
+

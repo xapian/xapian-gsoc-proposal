@@ -368,7 +368,89 @@ Pseudocode for indexing, searching, ranking:
 
 Timeline:
 
-        
+Until May 10 : 
+
+- Get to know the community, interact with the people.
+- Read and understand the Xapian code base -understand the underlying design 
+  principle, get to know all the relevant classes. 
+- Submit patches for existing issues, go through code review process.
+- Get equipped with all the background knowledge needed to implement 
+  the project parts - writing parser, adding weighting scheme, study how wildcard 
+  expansion performed.
+- Have clear blueprint of the project.
+- Store energy for the coding period.
+
+1. Preprocessing stage
+
+[block 1: May 14 - 15]:
+Implementation to extract list of presentation mathml expression from the input 
+document. 
+
+[block 1: May 16 - 21]:
+Write symbol layout tree class. Add the necesaary attributes, implement member
+functions. Task requires representing math symbols as different types of nodes
+and spatial relationship as edge types, writing helper functions to traverse
+the tree, adding children, updating the tree etc. 
+
+[block 1: May 22 - 28]
+Construct symbol layout tree from presentation mathml expression. This involves 
+parsing the mathml expression and adding the extracted token to the tree 
+structure. 
+
+[block 1: May 29]:
+Make sure test cases are there for the code written so far. Write documentation.
+
+[block 1: May 30]
+Buffer to cover up any lagging work if any.
+
+[block 1: May 31 - June 1]
+Create symbol pair tuple class, make symbol pair tuple class indexable.
+
+[block 1: June 2 - 4]
+Generate symbol pair tuple from symbol layout tree with given window size 
+parameter.
+
+[block 1: June 5 - 6]
+Make sure test cases are there for the code written so far. Write documentation.
+
+[block 1: June 7 - 11]
+Integrate the work done so far. Rework the class design, refactoring the code if 
+needed.
+
+Deliverable:Given a document containing math ml expression, set of symbol pair 
+tuple generated. 
+
+2. Indexing stage
+
+[block 2: June 18 - 19]
+Work on indexing math terms available at the end of block 1. Implement posting 
+list for math terms. 
+
+[block 2: June 20 - 21]
+Test indexing of documents with multiple test data files. Fix issues if any.
+
+3. Searching stage
+
+[block 2: June 22 - 25]
+Implement dice's coefficinet of similariy weight metric. 
+
+[block 2: June 26 - 28]
+Test the weight metric with multiple test data. Fix issues if any.
+Add documentation.
+
+[block 2: June 29]
+Buffer time. Work on anything lagging, else take a long break.
+
+[block 2: July 2 - 4]
+Construct symbol layout tree from query input. This involves majority code 
+reuse from block 1. Handle query specific changes needed.
+
+[block 2: July 5 - 9]
+Implement document retrieval from given query. This involves generating symbol
+pair tuples from the symbol layout tree for query and fetching postings from 
+the database index.
+
+
 Previous Discussion of your Project
 -----------------------------------
 

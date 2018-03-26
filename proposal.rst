@@ -17,7 +17,7 @@
 .. improved in response to feedback.  You can share draft applications with
 .. us by forking the git repository containing this file, filling in where
 .. it says "FILLME", committing your changes and pushing them to your fork,
-.. then pointing us at the fork by giving us a link or IRC or the mailing list.
+.. then opening a pull request to request us to review your draft proposal.
 .. You can do this even before applications officially open.
 .. 
 .. IMPORTANT: Your application is only valid is you upload a PDF of your

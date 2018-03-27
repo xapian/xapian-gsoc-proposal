@@ -80,12 +80,12 @@ About You
 
 .. Tell us a bit about yourself.
 
-I am a master student in computer science at the University of Saarland, Germany. 
-I am from Karnataka, India. 
+I am a master student in computer science department at the University of Saarland, 
+Germany. I am from Karnataka, India. 
 
-I choose courses which has project work as part of it, this helped me improve 
-my overall programming skills(coding,testing, debugging). I am hands-on with 
-tools like gdb, valgrind.
+During my masters studies, I have selected courses which also involves project 
+work.This has helped me immensely to improve my overall programming skills 
+(coding,testing, debugging). I have practical experience with tools - gdb, valgrind.
 
 During my spare time, I learn about new programming languages or read code from
 github repos and pick up the design, coding styles etc.
@@ -129,7 +129,7 @@ PR links:
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-Courses i have taken which are relevant:
+Courses I have taken which are relevant:
 
 - Statistical Natural Language Processing 
 - Information Retrieval & Data Mining
@@ -143,25 +143,25 @@ OS - Arch Linux, editor - vim, version control - git
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-I would like to mention couple of projects(academic), which highlight the
-necessary background and experience.
+I would like to mention couple of projects (academic) which highlight the
+necessary background and experience:
 
-1.In-Memory Database System(c++/13kLoC): I implemented the following  database
+1. In-Memory Database System (c++/13kLoC): I implemented the following  database
 system components. 
 
 - Indexing techniques : Hash table, B+ Tree.
 - data layout : row store, column store.
 - Compression Techniques: RLE, Dictionary compression.
 
-With this project, I had hands-on experience with building system. The project 
-used latest c++ features(c++14, c++17), helped me get hands-on with them.
+The project involved using  c++14/c++17 which helped me learn about the latest
+features in c++.
 
-2.Yet Another File System(c++/7kLoC): I implemented a multi-server file system. 
+2. Yet Another File System(c++/7kLoC): I implemented a multi-server file system. 
 
 - File system with operations - mkdir, read, write, remove 
-- implement lock server, extent(data) server and support caching.
+- Implemented lock server, extent (data) server and support caching.
 
-I used low level system apis(like system calls), fuse library and RPC library. 
+I used low level system apis (system calls), fuse library and RPC library. 
 
 **What timezone will you be in during the coding period?**
 
@@ -170,11 +170,11 @@ CET(Central European Time)
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-Yes. I signed up for a seminar at the university. This requires 2 hours/week 
-meeting time and upto 8 hours/every 2 week for project work. This can be 
-adjusted with some time during the weekend also if necessity arises. Other 
-than this I don't have any commitments like part-time job, course work etc.
-I want to take GSoC as full time job as required.
+Yes. I have signed up for a seminar at the university. This requires 2 hours per 
+week meeting time and upto 4 hours per week for project work. This can be adjusted 
+with some time during the weekend also if necessity required. Other than this I do not 
+have any commitments like part-time job, course work, etc. This GSoC project will
+be the main focus during this program.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -197,26 +197,27 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-- I remember myself searching for Math notation and some strange symbol meaning 
-  in google, then results were not really satisfactory. I feel 'math aware search' is
-  a useful feature to be part of search engine. Hence this topic drew my attention
-  more than other topics. 
-- Recently, I had heard about the research in temporal IR which was very 
-  interesting. I found math aware IR eqully interesting.
-- Having gone through the literature, I found that some researches are very
-  recent and it's an emerging field. This motivated me to take up this topic.
+- I remember myself searching for Math notation and math symbol meaning in google, 
+  then results were not really satisfactory. I feel 'math aware search' is a useful 
+  feature to be part of search engine. Hence this topic drew my attention more than 
+  other topics. 
+- Recently, I had studied about the research in time aware IR which was very 
+  interesting. Since Math aware search problem is similar in nature, I decided to
+  take up this topic.
+- Having gone through the literature, I found that some research works are very
+  recent and it is an emerging field. This motivated me to take up this topic.
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-Currently search engine support for retrieving math formula query is not very good, 
+Currently,search engine support for retrieving math formula query is not very good, 
 as it treats them as text data, resulting in poor performance with search hits. 
 With search engine support for math queries, one will be able to get a better search 
 result when searching for math formula of interest. This is useful for students, 
 people in academics. A researcher can find applicability of particular math equation 
-in research papers by giving equation as query. Currently he/she has to put the math 
+in research papers by giving equation as query. Currently the user has to put the math 
 formula name or search for concept name.
 
 Project Details
@@ -227,7 +228,7 @@ Project Details
 **Describe any existing work and concepts on which your project is based.**
 
 The system I propose is based on Tangent - math expression search engine created 
-by David Stalnaker and it's improved versions developed at `dprl, RIT 
+by David Stalnaker and its improved versions developed at `dprl, RIT 
 <https://www.cs.rit.edu/~dprl/Software.html#tangent-s>`_. Tangent performs indexing
 on the structure of the expression represented in MathML format. Encoding of structure 
 is done by constructing symbol layout tree from the expression and then generating 
@@ -246,13 +247,13 @@ favour of your chosen approach?**
 
 I considered MIaS system [2]_, which linearizes math expression into text and uses 
 traditional text retrieval search engine. Indexing part is similar to the Tangent 
-system, approach I would like to propose. It differs in the preprocessing of math
-expression to generate indexes. MIaS uses tokenization of expression and performs
-unification [*]_ strategy to generalize the expression. The reason for selecting 
-the approach used in Tangent system is, symbol layout tree approach extracts the 
-structural information in expression better than tokenization of text. This is 
-corroborated by the findings of hypothesis test. Also, Tangent system performance
-is better than MIaS system.
+system, approach which I would like to propose. It differs in the preprocessing of 
+math expression to generate indexes. MIaS uses tokenization of expression and 
+performs unification [*]_ strategy to generalize the expression. The reason for 
+selecting the approach used in Tangent system is, symbol layout tree approach 
+extracts the structural information in expression better than tokenization of text. 
+This is corroborated by the findings of hypothesis test. Also, Tangent system 
+performance is better than MIaS system.
 
 I also studied the system [3]_ implemented by MCAT group. They include textual context
 of the formulae and integrate retrieval of text and formulae. The system extracts 
@@ -263,11 +264,9 @@ to pick Tangent system. This could be tried in Xapian in future.
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
- We have decided to support latex format for documents and queries. This requires
- conversion of latex format to mathml format. As this function is in itself can be 
- a project, we plan to use third party tool like latexmathml. But the exact tool 
- choice is not finalised yet. This feature will be floater in the work pipeline.
-
+Query/document types to be supported is still under discussion. Having discussed
+this with mentor, We plan to support math expressions in  mathml format first and
+later decide on the addition of latex support.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
@@ -275,56 +274,6 @@ planned?**
 Most of the work is divided into small independent chunk in timeline. So there
 will be useful result available after completion of each block. Hence extending 
 the work in future will be very easy.
-
-**Project Structure**
-
-**Preprocessing and Indexing stage:**
-
-1. Extract List of Math expression from Document - this involves searching 
-   the document and extract MathML element. If document is in latex format,
-   conversion of math expression from latex to mathml is performed.
-2. Generate symbol layout tree for each math expression.
-3. Create a list of symbol pair tuple from the symbol layout tree in step 2. 
-4. Symbol pair tuple is stringified. The output string is similar to the term
-   in case of text document. I will call this math term.
-5. Math term from step 4 is indexed using Xapian's existing indexing system.
-6. Steps 2 - 5 are repeated for each math expression in a document.
-
-**Searching stage:**
-
-1. Convert Query to Symbol Layout tree structure.
-2. Generate symbol pair tuple from symbol layout tree.
-3. Formulate disjunction query from symbol pair tuples.
-4. Retrieve relevant documents based on dice similarity coefficinet metric.
-
-Details on the symbol layout tree structure and symbol pair tuple:
-
-Symbol layout tree is used to represent each math expression. The vertices in
-this tree represent the symbols in the expression and the edges are the spacial
-relationship between symbols. The tree is rooted at the leftmost symbol.
-
-Symbol pair tuple of the form (s1, s2, R, #) with ancestor symbol s1, descendant
-symbol s2, edge label R from s1 to s2 and a count(#) is generated by traversing 
-from the root of symbol layout tree. Parameter window size(w) control the 
-maximum path length between symbols in tuples and other parameter to decide 
-whether to include tuples for symbols at the end of writing lines(EOL).
-
-**Pseudocode for indexing, searching, ranking:**
-
-::
-
-    Index(expression, index):
-    for pair in symbol pairs of expression:
-        append expression to index[pair]
-
-    Search(query, index):
-    for pair in symbol pairs of query:
-        for expession in index[pair]:
-            append pair to result_pair[expression]
-        sort expressions by the ranking function(using result_pairs)
-        return expressions
-
-.. TODO try to add pseudocode for generating symbol tree
 
 Project Timeline
 ----------------
@@ -375,6 +324,60 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
+**Project Structure**
+
+**Preprocessing and Indexing stage:**
+
+1. Extract List of Math expression from Document - this involves searching 
+   the document and extract MathML element. If document is in latex format,
+   conversion of math expression from latex to mathml is performed.
+2. Generate symbol layout tree for each math expression.
+3. Create a list of symbol pair tuple from the symbol layout tree in step 2. 
+4. Symbol pair tuple is stringified. The output string is similar to the term
+   in case of text document. I will define this as math term.
+5. Math term from step 4 is indexed using Xapian's existing indexing system.
+6. Steps 2 - 5 are repeated for each math expression in a document.
+
+**Searching stage:**
+
+1. Convert Query to Symbol Layout tree structure.
+2. Generate symbol pair tuple from symbol layout tree.
+3. Formulate disjunction query from symbol pair tuples.
+4. Retrieve relevant documents based on dice similarity coefficinet metric.
+
+**Details on the symbol layout tree structure and symbol pair tuple:**
+
+Symbol layout tree is used to represent each math expression. The vertices in
+this tree represent the symbols in the expression and the edges are the spacial
+relationship between symbols. The tree is rooted at the leftmost symbol.
+
+Symbol pair tuple of the form (s1, s2, R, #) with ancestor symbol s1, descendant
+symbol s2, edge label R from s1 to s2 and a count (#) is generated by traversing 
+from the root of symbol layout tree. Parameter window size (w) control the 
+maximum path length between symbols in tuples and other parameter to decide 
+whether to include tuples for symbols at the end of writing lines (EOL).
+
+**Example math expression, its symbol layout tree and symbol pair tuple**
+
+.. image:: example.png
+
+**Pseudocode for indexing, searching, ranking:**
+
+::
+
+    Index(expression, index):
+    for pair in symbol pairs of expression:
+        append expression to index[pair]
+
+    Search(query, index):
+    for pair in symbol pairs of query:
+        for expession in index[pair]:
+            append pair to result_pair[expression]
+        sort expressions by the ranking function(using result_pairs)
+        return expressions
+
+.. TODO try to add pseudocode for generating symbol tree
+
 **Timeline:**
 
 **Until May 10 :**
@@ -409,7 +412,7 @@ structure.
 Make sure test cases are there for the code written so far. Write documentation.
 
 **[block 1: May 30]:**
-Buffer to cover up any lagging work if any.
+Buffer to cover up any lagging work (if any).
 
 **[block 1: May 31 - June 1]:**
 Create symbol pair tuple class, make symbol pair tuple class indexable.

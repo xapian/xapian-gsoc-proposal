@@ -17,7 +17,7 @@
 .. improved in response to feedback.  You can share draft applications with
 .. us by forking the git repository containing this file, filling in where
 .. it says "FILLME", committing your changes and pushing them to your fork,
-.. then opening a pull request to request us to review your draft proposal.
+.. then pointing us at the fork by giving us a link or IRC or the mailing list.
 .. You can do this even before applications officially open.
 .. 
 .. IMPORTANT: Your application is only valid is you upload a PDF of your
@@ -112,8 +112,8 @@ I have been playing with xapian and some of its tools for the past couple of mon
 Apart from user experience with google, duckduckgo for long time, I don't have any 
 other experience with search engine.
 
-**Tell us about any previous experience with Free Software and Open Source
-other than Xapian.**
+**Do you have previous experience with Free Software and Open Source other than
+Xapian?**
 
 I contributed patches to Shogun(ML library), CLTK. 
 PR links:
@@ -465,15 +465,11 @@ the database index.
 Indexing of documents containing math expression. Retrive documents
 for the given math query.
 
-**[block 3: July 12 - 15]:**
-Implement latex to mathml converter for document and query containg latex math 
-expression. Write test and document it.
-
-**[block 3: July 16 - 20]:** 
+**[block 3: July 14 - 19]:** 
 Integrate the code and perform testing. Code refactor if needed. Document the code.
 Profile the code, evaluate the performance.
 
-**[block 3: July 23 - 24]:**
+**[block 3: July 20 - 24]:**
 Do the house keeping work in this period. Address any pending requested changes 
 and fix issues etc.
 
@@ -498,8 +494,12 @@ Complete any review modifications pending. Finalize the documentation. Do clean
 up work if any present. 
 
 **Stretch Goal:**
-Adding re-ranking stage - as this process is quite complex, it is attempted only
-if at least a week time remains after the completion of promised deliverables.
+
+- Implement latex to mathml converter for document and query containg latex math 
+  expression. Write test and document it.
+
+- Adding re-ranking stage - as this process is quite complex, it is attempted only 
+  if at least a week time remains after the completion of promised deliverables.
 
 Previous Discussion of your Project
 -----------------------------------

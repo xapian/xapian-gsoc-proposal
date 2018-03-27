@@ -195,7 +195,12 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+The project aims to implement/support Golang on xpaian
+support ambiguous cases, renaming, pattern renames and so. and mostly using `Go typemaps <http://www.swig.org/Doc3.0/Go.html#Go_typemaps>`_. stuff like try-catch to golang panic.
+
+The project will use SWIG for writing most of the Golang codes, so the very first work is about modifying needed swig interfaces.
+
+Example of swig golang generated codes for C++ classes(`here <http://www.swig.org/Doc3.0/Go.html#Go_classes>`_)
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -270,11 +275,29 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
+**Now - May 14**
+        * read more about Xapian, and its APIs, classify related classes and so.
+        
+        * working more with swig and go
+
 **May 14 - June 11**
-
+    * week #1 working-on/change the "configure.ac" , "Makefile.am" in the xapian-binding , cutomized swig-golang interfaces
+    * week #2 Query support at xapian-go 
+    * week #3 MatchDecider , Database/* support at xapian-go 
+    * week #4 Mset , Eset support at xapian-go 
 **June 13 - July 9**
-
+    * week #1 ExpandDecider/* , ValueRangeProcessor support at xapian-go  
+    * week #2 implement other existing classes 
+    * week #3 Support Non-class functions (after this, we should use the non-class functions at xapian in xapian-go)
+    * week #4 improve exceptions/error-handling and writing tests for xapian-go
 **July 13 - August 13**
+    * week #1 writing examples for xapian-go (simpleexpand.go , simpleindex.go , simplematchdecide.go , simplesearch.go)
+    * week #2 writing docs (index.rst) for xapian-go APIs , (docs/bindings/go) , (godoc.org/xapian/xapian-go) & writing more tests for xapian-go-testing
+    documentation will be more specific for golang community at godoc.org for golang-users (gophers), also at docs/bindings/go for xapian users.
+    
+    * week #3 (pencil down): develop example with a real set of data and work with go-tooling
+    
+    * week #4 (offical  pencil down date): Fixing minor bugs, work on merging codes, and publish documentations and xapian-go package
 
 Previous Discussion of your Project
 -----------------------------------
@@ -284,7 +307,7 @@ Previous Discussion of your Project
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
 
-I had a little discussion about the know-how binding in the mailing-list, also IRC before.
+I had a little discussion about the know-how binding in the `mailing-list <https://lists.xapian.org/pipermail/xapian-devel/2018-March/003247.html>`_, also IRC before.
 
 but just a little.
 

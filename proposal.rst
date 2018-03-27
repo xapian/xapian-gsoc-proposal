@@ -264,11 +264,50 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-April 24, 2018 - May 14, 2018	familiarilize myself with xapian by doing some small changes or demoes
-May 15, 2018 - June 6, 2018		improve DBN with EM and test
-June 7, 2018 - June 30, 2018	implement DCM and IAM and test
-July 1, 2018n - July 21, 2018	finalize letor API with omega and test
-July 21, 2018n - August 6, 2018	explore more recent proposed ideas to improve
+Coding Week 1: May 15, 2018 - May 21, 2018
+Do Feature extraction and statical analysis of data to determine the format of Log template.
+
+Coding Week 2: May 22, 2018 - May 28, 2018
+Finalize the format of Log template.
+Adjust previous implementation of Log template.
+Record the click data in the new format and corresponding queries.
+
+Coding Week 3: May 29, 2018 - June 4, 2018 
+Complete implementation of Log template, data record and query generation.
+Improve DBN with EM.
+
+Coding Week 4: June 5, 2018 - June 11, 2018 (Phase 1 Evaluation: June 12 - 15, 2018) 
+Submit PRs for Phase 1 Evaluation.
+Complete improving DBN with EM.
+
+Coding Week 5: June 12, 2018 - June 18, 2018
+Test new DBN implementation and finetuning the model parameters.
+Document various components of the model and how to use the model.
+
+Coding Week 6: June 19, 2018 - June 25, 2018
+Start implementing DCM.
+
+Coding Week 7: June 26, 2018 - July 2, 2018
+Complete implementing DCM.
+
+Coding Week 8: July 3, 2018 - July 9, 2018 (Phase 2 Evaluation: July 10 - 13, 2018)
+Test DCM and finetuning details.
+Document various components of the model and how to use the model.
+Submit PRs for Phase 2 Evaluation.
+
+Coding Week 9: July 10, 2018 - July 16, 2018
+Start implementing IAM.
+
+Coding Week 10: July 17, 2018 - July 23, 2018
+Complete implementing IAM.
+
+Coding Week 11: July 24, 2018 - July 30, 2018
+Test IAM and finetuning details.
+Document various components of the model and how to use the model.
+
+Coding Week 12: 
+July 30, 2018 - Aug 6, 2018
+Finalize letor API with omega and test.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -277,8 +316,8 @@ Previous Discussion of your Project
 .. link to the discussion in the list archives.  If you've discussed it on
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
-
-None.
+Pull request on Github:
+https://github.com/xapian/xapian-gsoc-proposal/pull/2
 
 Licensing of your contributions to Xapian
 -----------------------------------------

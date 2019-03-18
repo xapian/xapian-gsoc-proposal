@@ -1,7 +1,7 @@
 .. This document is written in reStructuredText, a simple and unobstrusive
 .. markup language.  For an introductiont to reStructuredText see:
 .. 
-.. http://www.sphinx-doc.org/en/master/rest.html
+.. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 .. 
 .. Lines like this which start with `.. ` are comments which won't appear
 .. in the generated output.
@@ -10,7 +10,9 @@
 .. Placeholder text for where you're expected to write something says "FILLME"
 .. - search for this in the generated PDF to check you haven't missed anything.
 .. 
-.. See the [wiki:GSoCProjectIdeas ideas list] for some suggested project ideas.
+.. See our GSoC Project Ideas List for some suggested project ideas:
+.. https://trac.xapian.org/wiki/GSoCProjectIdeas
+..
 .. You are also most welcome to propose a project based on your own ideas.
 .. 
 .. From experience the best proposals are ones that are discussed with us and
@@ -37,8 +39,8 @@
 .. further to make them practical for Xapian.
 .. 
 .. You're welcome to include diagrams or other images if you think they're
-.. helpful - see http://www.sphinx-doc.org/en/master/rest.html#images for how
-.. to do so.
+.. helpful - for how to do this see:
+.. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#images
 .. 
 .. Please take care to address all relevant questions - attention to detail
 .. is important when working with computers!
@@ -56,7 +58,7 @@
 .. https://google.github.io/gsocguides/student/writing-a-proposal
 .. 
 .. "How to write a kick-ass proposal for Google Summer of Code":
-.. http://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
+.. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
 FILLME WITH THE TITLE OF YOUR PROPOSAL
@@ -263,7 +265,7 @@ FILLME
 
 .. For more details, including the rationale for this with respect to code,
 .. please see the "Licensing of patches" section in the "HACKING" document:
-.. https://trac.xapian.org/browser/git/xapian-core/HACKING#L1376
+.. https://trac.xapian.org/browser/git/xapian-core/HACKING#L1399
 
 Use of Existing Code
 --------------------

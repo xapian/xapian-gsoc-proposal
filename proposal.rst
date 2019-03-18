@@ -135,7 +135,7 @@ FILLME
 
 FILLME
 
-**Are you applying for other projects in GSoC 2018?  If so, with which
+**Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
 
 .. We understand students sometimes want to apply to more than one org and

@@ -1,3 +1,10 @@
-Please see proposal.rst for more information:
+Please read the information on our wiki about using this proposal template:
+
+https://trac.xapian.org/wiki/GSoCApplicationTemplate
+
+and the comments at the top of proposal.rst for more information:
 
 https://raw.githubusercontent.com/xapian/xapian-gsoc-proposal/master/proposal.rst
+
+In particular, you should note that it is much easier for us to provide feedback on proposals
+if you open a pull request in github, rather than simply pushing commits to your fork.

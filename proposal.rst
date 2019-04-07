@@ -129,7 +129,7 @@ Summer of Code project will be the main focus of my time. I have no other engage
 
 My summer vacation starts from April 29, and will end around last week of July. During the vacation, I would be available for work and be online on IRC any time I am awake (usually IST 0800 to 2330). But to organize the schedule, I plan to work during Monday-Friday IST 0830 to 1830 (45-50 hours per week) and catch up on weekends if needed. However, when the classes resume, the working hours would be determined by the schedule of the semester.
 
-**Are you applying for other projects in GSoC 2019?  If so, with which
+**Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
 
 .. We understand students sometimes want to apply to more than one org and

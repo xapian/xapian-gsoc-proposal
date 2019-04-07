@@ -313,7 +313,7 @@ For the avoidance of doubt this includes all contributions to our wiki, mailing
 lists and documentation, including anything you write in your project's wiki
 pages.
 
-Yes, I agree to dual-license all your contributions to Xapian under the GNU
+Yes, I agree to dual-license all my contributions to Xapian under the GNU
 GPL version 2 and all later versions, and the MIT/X licence.
 
 .. For more details, including the rationale for this with respect to code,

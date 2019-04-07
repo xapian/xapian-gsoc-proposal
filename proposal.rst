@@ -162,20 +162,14 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-The project is divided into   subprojects - 
-* Implementation of libarchive library for reading formats based around the zip file format instead of running the unzip program.
-* Use of the PDF rendering library libpoppler in the PDF text extractor instead of running external commands pdfinfo and pdftotext.
-* Implementing the DjVuLibre library for reading DjVu format
-* Adding support to other file formats such as AbiWord, Microsoft Publisher, etc. using the libraries available.
-* Using the functionalities of the libraries including loading them dynamically and run in a subprocess to avoid the bugs in the library to be isolated from omindex. 
+The project is divided into 4 subprojects -
 
-1) Many modern file formats are based around the zip file format with XML contents. So using a zip file reading library instead of the unzip program would is the first target. Currently, Omega uses zlib to read gzip compressed Abiword files. To cover these formats - using libarchive is probably a sensible option.
-2) Currently the extraction of text from a PDF file is done by running external commands pdfinfo and pdftotext on it and reading their output whereas those two commands use libpoppler to do their work. Hence, using libpoppler and saving running two commands per PDF file would be desirable instead of creating two child processes, and two times any set up and tear down libpoppler does
-3) DjVu is a web-centric format which can display documents and images. DjVuLibre can be used as an extractor for these type of files.
-4) There are number of other file formats which require external filter programs and can be replaced by available libraries.
+1) Many modern file formats are based around the zip file format with XML contents. So using a zip file reading library instead of the unzip program would is the first target. Currently, Omega uses zlib to read gzip compressed Abiword files. To cover these formats - using libarchive is probably a sensible option. Implementing this library is the first subproject.
+2) Currently the extraction of text from a PDF file is done by running external commands pdfinfo and pdftotext on it and reading their output whereas those two commands use libpoppler to do their work. Hence, using libpoppler and saving running two commands per PDF file would be desirable instead of creating two child processes, and two times any set up and tear down libpoppler doe. Implementing this library is the second subproject.
+3) DjVu is a web-centric format which can display documents and images. DjVuLibre can be used as an extractor for these type of files. Implementing this library is the third subproject.
+4) There are number of other file formats which require external filter programs and can be replaced by available libraries. Although if we could not cover all the libraries available, we could give priority to the file formats which are used more than others such that the overall indexing speed can be reduced by a noticeable amount. This is the fourth subproject.
 
-
-The project mainly consists on replacement of external filter programs with shared libraries having same functionalities and hence reducing the time required for indexing. These shared libraries are to be dynamically loaded at the runtime. The support is to be added by isolating the subprocess to avoid library bugs from crashing omindex. The child subprocess created using fork() syscall 
+The approach for making the libraries work on replacement of external filter programs with shared libraries having same functionalities and hence reducing the time required for indexing is to dynamically load at the runtime. Also, to avoid library bugs from crashing omindex, they can be implemented in a subprocess isolated from the parent process. The output of the child subprocess created using fork() syscall could be piped to the parent process. Another issue is if the library ends up in a memory or CPU eating infinite loop. This can be avoided by using sandboxing to put resource constraints on the process so that the loop will eventually terminate.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -184,8 +178,7 @@ Preliminary findings are from the implementation of Olly's patch (which adds sup
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
-
-
+Other approach could have been to compile all the current external filter programs into a single shared library which can be used instead of other available libraries.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
@@ -280,7 +273,7 @@ Project Timeline
 	Although the libarchive would be able to read the AbiWord files, the extent of AbiWord is large. Hence, I would like to implement the library libabw in case the library crashes. This week can be devoted to it. Testing and documentation all along.
 
 * Week 8 from July 15th-July 21st
-	Implementing other libraries which are available after discussing with mentors. The overall number of libraries to be implemented can be less than the available but I think we could focus on the file formats which are used more than others such that the overall indexing speed can be reduced by a noticeable amount.
+	Implementing other libraries which are available after discussing with mentors. The overall number of libraries to be implemented can be less than the available but I think we could focus on the file formats which are used more than others.
 
 					 ----- Phase 2 Evaluation -----
 
@@ -320,7 +313,8 @@ For the avoidance of doubt this includes all contributions to our wiki, mailing
 lists and documentation, including anything you write in your project's wiki
 pages.
 
-Yes, I agree.
+Yes, I agree to dual-license all your contributions to Xapian under the GNU
+GPL version 2 and all later versions, and the MIT/X licence.
 
 .. For more details, including the rationale for this with respect to code,
 .. please see the "Licensing of patches" section in the "HACKING" document:

@@ -153,7 +153,7 @@ This project has many interesting subtasks which I think I will enjoy doing. Als
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-After the implementation of this project, the omindex indexer will use external extractor programs which are available as shared libraries. These libraries will be loaded dynamically during the runtime which will avoid the expense of running other external filters and hence, will speed up indexing as dynamic linking is noticeably faster than static linking. Hence, users of omega will benefit as the search time will be reduced.  
+After the implementation of this project, the omindex indexer will use external extractor programs which are available as shared libraries. These libraries will be loaded dynamically during the runtime which will avoid the expense of running other external filters. The external filters, though likely to be dynamically linked, are to be executed separately. This probably takes longer time as these programs have to be started in contrast to the libraries which continue running during the existing program. This will probably speed up indexing by omega which would benefit the user community.
 
 Project Details
 ---------------
@@ -326,7 +326,7 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
-This project requires the use of existing code i.e. to import various open source file reading libraries such as Poppler, DjVuLibre and other available libraries from the Document Liberation Project.
+This project requires the use of existing code i.e. to import various open source file reading libraries such as Poppler, DjVuLibre and other available libraries from the Document Liberation Project which are free softwares under the GNU General Public License version 2 and later.
 
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies

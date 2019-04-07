@@ -259,7 +259,7 @@ Project Timeline
 	* Discussing it with mentors to find possible hurdles and their solutions.
 	* Continue working on issues related to omega.
 
-					 ----- Coding officially begins -----
+                                       **------ Coding officially begins -----**
 
 * **Week 1 from May 27th to June 2nd**
 
@@ -375,7 +375,7 @@ This project requires the use of existing code i.e. to import various open sourc
 
 * DjVu : From http://djvu.sourceforge.net/licensing.html, "DjVuLibre-3.5 was developed by Leon Bottou and others as a "Derived Work" of the DjVu Reference Library 3.5. As such, it is also subject to the GNU General Public License version 2."
 
-* From the debian/copyright file from the Debian packaging, "Poppler is based on a Xpdf fork (updated at Xpdf 3.02), so the license of the poppler core library (libpoppler.so.X) is GPL v2 only."
+* From the ``debian/copyright`` file from the Debian packaging, "Poppler is based on a Xpdf fork (updated at Xpdf 3.02), so the license of the poppler core library (libpoppler.so.X) is GPL v2 only."
 
 Hence, the licenses of all the software libraries used are thus compatible with the GPL v2.
 

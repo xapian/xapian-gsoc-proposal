@@ -104,8 +104,7 @@ I have used Free and Open Source softwares like Vim, gcc, etc. I also have used 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-I have worked on a web development project in the previous summer which consisted of making a web application to automate the messing facility on the campus by eliminating the use of tokens
-and registers using HTML, CSS, JavaScript, PHP, MySQL to build the web-app and hosted it on Microsoft Azure. We used SendGrid API for e-mail verification and OTP, hashing to securely store passwords. I have C and C++ programming experience from the introductory programming course and BASH and Haskell programming experience from the Computing Laboratory course. I have worked on some small projects and assignments and I also have written many programs in C, C++ as a part of my coursework and as my hobby. I have participated in competitive programming and 
+I have worked on a web development project in the previous summer which consisted of making a web application to automate the messing facility on the campus by eliminating the use of tokens and registers using HTML, CSS, JavaScript, PHP, MySQL to build the web-app and hosted it on Microsoft Azure. We used SendGrid API for e-mail verification and OTP, hashing to securely store passwords. I have C and C++ programming experience from the introductory programming course and BASH and Haskell programming experience from the Computing Laboratory course. I have worked on some small projects and assignments and I also have written many programs in C, C++ as a part of my coursework and as my hobby. I have participated in various programming competitions.
 
 **What development platforms, tools and methods do you prefer to use?**
 
@@ -123,7 +122,7 @@ IST (UTC + 0530)
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-Summer of Code project will be the main focus of my time. I have no other engagements during the summer.
+Yes, Summer of Code project will be the main focus of my time. I have no other engagements during the summer.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -146,7 +145,7 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-This project has many interesting subtasks which I think I will enjoy doing. Also, an open source project is a great way to improve programming skills. There is a lot of scope to think something different and implement it such that to make work. 
+This project has many interesting subtasks which I think I will enjoy doing. Also, an open source project is a great way to improve programming skills. There is a lot of scope to think something different and implement it such that to make work. This project will give me an opportunity to learn specific details about Linux system programming. As a Linux enthusiast, I can gain more knowledge in this field with this project.
 
 **Who will benefit from your project and in what ways?**
 
@@ -162,15 +161,15 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-The project is divided into 4 subprojects -
+The project is divided into 5 subprojects -
 
-1) 
+1) One of the most important subtask is to come up with a plan for implementing each library. This can be done by loading the library in the subprocess by using ``dlopen()`` system call. 
 2) Many modern file formats are based around the zip file format with XML contents. So using a zip file reading library instead of the unzip program would is the first target. Currently, Omega uses zlib to read gzip compressed Abiword files. To cover these formats - using libarchive is probably a sensible option. Implementing this library is the first subproject.
 3) Currently the extraction of text from a PDF file is done by running external commands pdfinfo and pdftotext on it and reading their output whereas those two commands use libpoppler to do their work. Hence, using libpoppler and saving running two commands per PDF file would be desirable instead of creating two child processes, and two times any set up and tear down libpoppler doe. Implementing this library is the second subproject.
 4) DjVu is a web-centric format which can display documents and images. DjVuLibre can be used as an extractor for these type of files. Implementing this library is the third subproject.
 5) There are number of other file formats which require external filter programs and can be replaced by available libraries. Although if we could not cover all the libraries available, we could give priority to the file formats which are used more than others such that the overall indexing speed can be reduced by a noticeable amount. This is the fourth subproject.
 
-The approach for making the libraries work on replacement of external filter programs with shared libraries having same functionalities and hence reducing the time required for indexing is to dynamically load at the runtime. Also, to avoid library bugs from crashing omindex, they can be implemented in a subprocess isolated from the parent process. The output of the child subprocess created using fork() syscall could be piped to the parent process. Another issue is if the library ends up in a memory or CPU eating infinite loop. This can be avoided by using sandboxing to put resource constraints on the process so that the loop will eventually terminate.
+The approach for making the libraries work on replacement of external filter programs with shared libraries having same functionalities and hence reducing the time required for indexing is to dynamically load at the runtime. Also, to avoid library bugs from crashing omindex, they can be implemented in a subprocess isolated from the parent process. The output of the child subprocess created using ``fork()`` syscall could be piped to the parent process. Another issue is if the library ends up in a memory or CPU eating infinite loop. This can be avoided by using sandboxing to put resource constraints on the process so that the loop will eventually terminate.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -179,7 +178,8 @@ Preliminary findings are from the implementation of Olly's patch (which adds sup
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
-Other approach could have been to compile all the current external filter programs into a single shared library which can be used instead of other available libraries.
+
+Other approach could have been to compile all the current external filter programs into a single shared library which can be used instead of other available libraries but this would make the library unnecessarily long. Also, we would prefer to use separate libraries for each file format as we can avoid the need to link the whole library everytime.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
@@ -248,48 +248,93 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-* Pre-acceptance Period from Present to May 5th
-	This one month period can be utilized to work on issues related to omega so that I can get familiar to the codebase and also to gain some familiarity to Linux system programming.
+* **Pre-acceptance Period from Present to May 5th**
+
+	* This one month period can be utilized to work on issues related to omega so that I can get familiar to the codebase and code review process with the developer community.
+	* Gain some familiarity to Linux system programming.
 	
-* Community Bonding Period from May 6th to May 26th
-	Understand the usage of the shared libraries to be used to replace external filter programs by reading the documentation and discussing it with mentors and continue working on issues related to omega.
+* **Community Bonding Period from May 6th to May 26th**
+
+	* Understanding the usage of the shared libraries to be used to replace external filter programs by reading the documentation
+	* Discussing it with mentors to find possible hurdles and their solutions.
+	* Continue working on issues related to omega.
 
 					 ----- Coding officially begins -----
 
-* Week 1 from May 27th to June 2nd
-	Testing Omega before adding any library to the project and check how it runs with the verbose mode to get the grasp of the sequence of implementation of current source code. Continue search and understanding the usage of libraries. Discuss the outcomes with mentors.
+* **Week 1 from May 27th to June 2nd**
 
-* Week 2 and 3 from June 3rd to June 16th
-	Implementing the libarchive library for reading zip file formats. Testing and documentation along. (This phase may take a longer time than expected as this is the beginning of coding)
+	* Testing Omega before adding any library to the project and check how it runs with the verbose mode to get the grasp of the sequence of implementation of current source code.
+	* Continue search and understanding the usage of libraries and discuss the outcomes with mentors.
+ 
+* **Week 2 and 3 from June 3rd to June 16th**
 
-					 ----- Phase 1 Evaluation -----
-					 
-* Week 5 from June 17th to June 23rd
-	Implementing the libpoppler library for reading zip file formats. Testing and documentation along. Getting libarchive and libpoppler to work before Phase I evaluation will be my main goal.
-
-* Week 6 and 7 from June 24th to July 7th
-	Implementing the DjVuLibre library for reading DjVu format. Testing and documentation along.
-
-* Week 8 from July 8th to July 14th
-	Although the libarchive would be able to read the AbiWord files, the extent of AbiWord is large. Hence, I would like to implement the library libabw in case the library crashes. This week can be devoted to it. Testing and documentation all along.
+	* One of the main goals in this period will be to come up with the final scheme of how the isolation of the subprocess will be implemented and how the actual extractors from the library will be made to work.
+	* Implementing the libarchive library for reading zip file formats.
+	* Testing and documentation along.
 	
-					 ----- Phase 2 Evaluation -----
+* **Week 4 from June 17th to June 23rd**
+	
+	* Continue implementing the libarchive library if needed. (As this will be the first implementation of the project, it may take more time than expected)
+	* Start implementing the libpoppler library for reading zip file formats if time permits.
+	* Testing and documentation so that early work can get merged before evaluation.
+
+  **Deliverables for phase 1 evaluation**
+
+  * Getting libarchive to work before Phase 1 evaluation will be my main goal.
+
+					 **------ Phase 1 Evaluation -----**
 					 
-* Week 9 from July 15th-July 21st
-	Implementing other libraries which are available after discussing with mentors. The overall number of libraries to be implemented can be less than the available but I think we could focus on the file formats which are used more than others.
+* **Week 5 from June 17th to June 23rd**
 
-* Week 10 from July 22nd to July 28th
-	Continue implementing other libraries.
+	* Continue implementing the libpoppler library for reading zip file formats.
+	* Testing and documentation along.
 
-* Week 11 and 12 from August 5th to August 18th
-	Buffer period: Can be used if any of the previous work is lagged and shifted. Else continue implementing other libraries. Start with the final testing documentation.
+* **Week 6 and 7 from June 24th to July 7th**
 
-* Week 13 from August 19th - August 26th
-	Finishing all the remaining tasks along with final testing and documentation. Preparing final report.
+	* Implementing the DjVuLibre library for reading files of the DjVu format.
+	* Testing and documentation along.
 
-					 ----- Phase 3 Evaluation -----
+* **Week 8 from July 8th to July 14th**
 
-NOTE - The pace of work is likely to be slow during the last two weeks as my regular classes begin. But I will try to re-organize the scheduleso that I can handle both.
+	* Continue implementing the DjVuLibre library if needed else start implementing other libraries which are available after discussing with mentors. 
+	* Final testing and documentation before evaluation.
+
+  **Deliverables for phase 2 evaluation**
+
+  * Getting libpoppler and DjVuLibre to work before Phase 2 evaluation..
+
+					 **------ Phase 2 Evaluation -----**
+					 
+* **Week 9 and 10 from July 15th-July 21st**
+
+	* Implementing other libraries which are available after discussing the priority order with the mentors. The overall number of libraries to be implemented can be less than the available but I think we could focus on the file formats which are used more than others.
+	* Testing and documentation along.
+
+
+* **Week 11 from August 5th to August 18th**
+
+	* Continue implementing other libraries from the Document Liberation project.
+
+* **Week 12 from August to August**
+
+	* *Buffer period* : Can be used if any of the previous work is lagged and shifted. Else continue implementing other libraries.
+	* Testing the indexing of file formats of which libraries were used and observe the change in indexing time.
+	* Start with the final testing and documentation.
+
+* **Week 13 from August 19th - August 26th**
+
+	* Organizing and integrating the work done.
+	* Finishing all the remaining tasks along with final testing and documentation.
+	* Preparing final report.
+
+  **Deliverables for phase 3 evaluation**
+
+  * Getting the libraries implemented during this phase to work.
+  * Final report consisting the test results of the libraries and functionalities added along with the documentation.
+
+					 **------ Phase 3 Evaluation -----**
+
+**NOTE** - The pace of work is likely to be slow during the last two weeks as my regular classes begin. Hence, I have assigned comparatively less-heavy tasks in these period. But I will try to re-organize the scheduleso that I can handle both.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -299,7 +344,7 @@ Previous Discussion of your Project
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
 
-Discussion on IRC with handle bazinga_65.
+Discussion on IRC with handle 'bazinga_65'
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -324,7 +369,15 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
-This project requires the use of existing code i.e. to import various open source file reading libraries such as Poppler, DjVuLibre and other available libraries from the Document Liberation Project which are free softwares under the GNU General Public License version 2 and later.
+This project requires the use of existing code i.e. to import various open source file reading libraries such as Poppler, DjVuLibre and other available libraries from the Document Liberation Project.
+
+* Document Liberation project: From https://www.documentliberation.org/about/, "All participating libraries are released inter alia under the Mozilla Public License Version 2.0." And from https://www.gnu.org/licenses/license-list.en.html, Mozilla Public License Version 2.0 is compatible with the GPL v2.
+
+* DjVu : From http://djvu.sourceforge.net/licensing.html, "DjVuLibre-3.5 was developed by Leon Bottou and others as a "Derived Work" of the DjVu Reference Library 3.5. As such, it is also subject to the GNU General Public License version 2."
+
+* From the debian/copyright file from the Debian packaging, "Poppler is based on a Xpdf fork (updated at Xpdf 3.02), so the license of the poppler core library (libpoppler.so.X) is GPL v2 only."
+
+Hence, the licenses of all the software libraries used are thus compatible with the GPL v2.
 
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies

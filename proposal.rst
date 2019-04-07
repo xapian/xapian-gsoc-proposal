@@ -164,10 +164,11 @@ Project Details
 
 The project is divided into 4 subprojects -
 
-1) Many modern file formats are based around the zip file format with XML contents. So using a zip file reading library instead of the unzip program would is the first target. Currently, Omega uses zlib to read gzip compressed Abiword files. To cover these formats - using libarchive is probably a sensible option. Implementing this library is the first subproject.
-2) Currently the extraction of text from a PDF file is done by running external commands pdfinfo and pdftotext on it and reading their output whereas those two commands use libpoppler to do their work. Hence, using libpoppler and saving running two commands per PDF file would be desirable instead of creating two child processes, and two times any set up and tear down libpoppler doe. Implementing this library is the second subproject.
-3) DjVu is a web-centric format which can display documents and images. DjVuLibre can be used as an extractor for these type of files. Implementing this library is the third subproject.
-4) There are number of other file formats which require external filter programs and can be replaced by available libraries. Although if we could not cover all the libraries available, we could give priority to the file formats which are used more than others such that the overall indexing speed can be reduced by a noticeable amount. This is the fourth subproject.
+1) 
+2) Many modern file formats are based around the zip file format with XML contents. So using a zip file reading library instead of the unzip program would is the first target. Currently, Omega uses zlib to read gzip compressed Abiword files. To cover these formats - using libarchive is probably a sensible option. Implementing this library is the first subproject.
+3) Currently the extraction of text from a PDF file is done by running external commands pdfinfo and pdftotext on it and reading their output whereas those two commands use libpoppler to do their work. Hence, using libpoppler and saving running two commands per PDF file would be desirable instead of creating two child processes, and two times any set up and tear down libpoppler doe. Implementing this library is the second subproject.
+4) DjVu is a web-centric format which can display documents and images. DjVuLibre can be used as an extractor for these type of files. Implementing this library is the third subproject.
+5) There are number of other file formats which require external filter programs and can be replaced by available libraries. Although if we could not cover all the libraries available, we could give priority to the file formats which are used more than others such that the overall indexing speed can be reduced by a noticeable amount. This is the fourth subproject.
 
 The approach for making the libraries work on replacement of external filter programs with shared libraries having same functionalities and hence reducing the time required for indexing is to dynamically load at the runtime. Also, to avoid library bugs from crashing omindex, they can be implemented in a subprocess isolated from the parent process. The output of the child subprocess created using fork() syscall could be piped to the parent process. Another issue is if the library ends up in a memory or CPU eating infinite loop. This can be avoided by using sandboxing to put resource constraints on the process so that the loop will eventually terminate.
 
@@ -261,33 +262,30 @@ Project Timeline
 * Week 2 and 3 from June 3rd to June 16th
 	Implementing the libarchive library for reading zip file formats. Testing and documentation along. (This phase may take a longer time than expected as this is the beginning of coding)
 
-* Week 4 from June 17th to June 23rd
+					 ----- Phase 1 Evaluation -----
+					 
+* Week 5 from June 17th to June 23rd
 	Implementing the libpoppler library for reading zip file formats. Testing and documentation along. Getting libarchive and libpoppler to work before Phase I evaluation will be my main goal.
 
-					 ----- Phase 1 Evaluation -----
-
-* Week 5 and 6 from June 24th to July 7th
+* Week 6 and 7 from June 24th to July 7th
 	Implementing the DjVuLibre library for reading DjVu format. Testing and documentation along.
 
-* Week 7 from July 8th to July 14th
+* Week 8 from July 8th to July 14th
 	Although the libarchive would be able to read the AbiWord files, the extent of AbiWord is large. Hence, I would like to implement the library libabw in case the library crashes. This week can be devoted to it. Testing and documentation all along.
-
-* Week 8 from July 15th-July 21st
+	
+					 ----- Phase 2 Evaluation -----
+					 
+* Week 9 from July 15th-July 21st
 	Implementing other libraries which are available after discussing with mentors. The overall number of libraries to be implemented can be less than the available but I think we could focus on the file formats which are used more than others.
 
-					 ----- Phase 2 Evaluation -----
-
-* Week 9 from July 22nd to July 28th
+* Week 10 from July 22nd to July 28th
 	Continue implementing other libraries.
 
-* Week 10 and 11 from July 29th to August 11th
-	Buffer period: Can be used if any of the previous work is lagged and shifted .Else continue implementing other libraries.
-
-* Week 12 from August 12th - August 18th 
-	Again this period can be used as a buffer period. Final testing and documentation and reviews on the documentation.
+* Week 11 and 12 from August 5th to August 18th
+	Buffer period: Can be used if any of the previous work is lagged and shifted. Else continue implementing other libraries. Start with the final testing documentation.
 
 * Week 13 from August 19th - August 26th
-	Finishing all the remaining tasks (probably testing and documentation) and preparing final report.
+	Finishing all the remaining tasks along with final testing and documentation. Preparing final report.
 
 					 ----- Phase 3 Evaluation -----
 

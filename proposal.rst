@@ -67,23 +67,22 @@ FILLME WITH THE TITLE OF YOUR PROPOSAL
 About You
 =========
 
- * Name: FILLME
+ * Name: Gayatri Palkar
 
- * E-mail address: FILLME
+ * E-mail address: gayatripalkarhere@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): gayatri_palkar
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: My Linkedin Profile: https://www.linkedin.com/in/gayatri-palkar-9a3509180 
 
- * github URL: FILLME
+ * github handle: gayatripalkar
 
  * Biography:
 
-.. Tell us a bit about yourself.
+I am a 2nd Year Undergraduate in Cummins College of Engineering
 
-FILLME
+Background Information: I am a keen learner and interested in the C++ technology.
 
-Background Information
 ----------------------
 
 .. The answers to these questions help us understand you better, so that we can
@@ -96,44 +95,45 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+No I haven't participated in any programmes and am a fresher
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+N/A
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+None. I am a fresher.
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+I have also participated in College level Hackathon in 1st year and would try my best at completing given tasks in given time.
+
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+C language, C++ and Java
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+N/A
 
 **What timezone will you be in during the coding period?**
 
-FILLME
+IST, 5 days a week, 10am to 4pm 
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-FILLME
+Yes
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
-FILLME
+Monday to Friday 10am to 4pm
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -142,7 +142,9 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+The project LibreOffice has interested me.
+Idea Title: Libre Office Online Admin
+Idea Link: https://wiki.documentfoundation.org/Development/GSoC/Ideas#LibreOffice_Online_Admin
 
 Your Project
 ============
@@ -152,43 +154,51 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+I want to participate in this project as it would be a learning experience for me and I think that it will be a good opportunity to identify and understand my skill set; improve it, and use it to solve real life problems.
+
+Plus I will be able to gain knowledge of different fields and learn under the guidance of experts.
+It would also help me fulfill my goal to use my->'Love of coding' to really make a difference by helping others.  
+
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+My project would benefit the majority of people that spend a lot of time being online. It would also help students
 
-Project Details
+Project Details:
+
+Idea Title: Projects related to testing
+Idea Link: https://trac.xapian.org/wiki/GSoCProjectIdeas#ProjectsRelatedtoTesting
+
 ---------------
 
 .. Please go into plenty of detail in this section.
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+N/A
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+Being a Fresher, I am likely to work hard on new environments and have a tendency to prove myself worthy. 
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+N/A
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+N/A
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+I plan on giving 100% results, but even if they are 20% I'll make sure that they are fulfilling
 
 Project Timeline
 ----------------
@@ -239,7 +249,7 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
+Yes, I have annual exams during this period, which will last for two and half weeks.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -249,7 +259,7 @@ Previous Discussion of your Project
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
 
-FILLME
+I have not yet looked into the code
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -261,7 +271,7 @@ For the avoidance of doubt this includes all contributions to our wiki, mailing
 lists and documentation, including anything you write in your project's wiki
 pages.
 
-FILLME
+I agree to dual-license
 
 .. For more details, including the rationale for this with respect to code,
 .. please see the "Licensing of patches" section in the "HACKING" document:
@@ -273,7 +283,7 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
-FILLME
+I wish to contribute to Existing codes
 
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies

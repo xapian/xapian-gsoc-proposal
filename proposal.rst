@@ -196,8 +196,8 @@ Xapian will provide better service for users.
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-At present, users of Omega will get a document list reranked by the existing 
-click model SimplifiedDBN. My work will focus on improving the user experience 
+A simplified Dynamic Bayesian Network click model has been implemented from the 
+previous GSoC work. My work will focus on improving the user experience 
 by making the search result more personalized and satisfying. I believe 
 multiple well-performed click models and a detailed documentation will provide
 the users with more freedom and more personalized choices.
@@ -219,8 +219,9 @@ The previous work has implemented the simplified DBN model for clickstream minin
 I plan to finish the EM algorithm in order to get a better performance.
 
 
-Besides DBN model, I will implement two more click models, the Dependent click Model 
-(DCM) and the User Browsing Model (UBM). Both two are also highly 
+Besides DBN model, I will implement two more click models, `the Dependent click Model 
+(DCM) <https://dl.acm.org/citation.cfm?id=1498818>`_ and `the User Browsing Model (UBM) 
+<https://dl.acm.org/citation.cfm?id=1390392>`_. Both two are also highly 
 effective to improve document ranking. 
 
 I will first work on an abstract class for all click models and then try to implement 
@@ -230,18 +231,31 @@ each model according to relevant papers.
 
 **Phase 2: Documentation**
 
-The second phase of my work will be a detailed documentation of each model I 
-implemented. It will provide the Omega users with a brief view of click models and
-pros & cons of each model. I will continue to work on the clickmodel.rst in the 
+Considering the different groups of Omega users, it seems unnecessary to provide all 
+users with technical details of each click model. However, for the developers who are 
+likely to continue to work on this area would need a deeper comprehension of the 
+implementation of all click models. 
+
+For most Omega users, I believe the documentation should focus on the whole process from 
+generating the training data to the re-ranking command of Omega. It should clarify what 
+to do during each part and a detailed example will be of great help. A 
+high-level description of click models will work. I will continue to work on the clickmodel.rst in the 
 Omega documentation files.
+
+As for the technical details of each model, I will refer to the research paper I used to 
+implement the model in the comment of the code. Interested users and developers will 
+dive into the papers by themselves.
+
 
 **Phase 3: Evaluation**
 
 The third phase is about the evaluation. With more and more models applied, I 
-believe it will be necessary to provide an evaluation method for the users. I'm 
-going to use CTR estimation for the evaluation of the models. For the method 
-is convenient to implement and has a relatively high accuracy. Also the click logs 
-is easy to acquire due to the previous GSoC project.
+believe it will be necessary to provide an evaluation and selecting method for the users. I'm 
+going to use `CTR estimation <https://dl.acm.org/citation.cfm?id=1526711>`_ for the evaluation 
+of the models, for the method is convenient to implement and has a relatively high accuracy. 
+Also the click logs is easy to acquire due to the previous GSoC project.
+
+The details of CTR estimation is included in the paper of DBN model.
 
 
 
@@ -256,22 +270,26 @@ The EM algorithm of **DBN model**: I will implement the EM algorithm for DBN mod
 
 The **DCM model**: I will implement the dependent click model according to the paper `Efficient 
 multiple-click models in web search. WSDM (2009). 
-<https://dl.acm.org/citation.cfm?id=1498818>`_.
+<https://dl.acm.org/citation.cfm?id=1498818>`_. 
 
 The **UBM model**: the user browsing model is from paper `A user browsing model to predict search engine click data from past observations. SIGIR (2008).  <https://dl.acm.org/citation.cfm?id=1390392>`_.
+
+Also, the previous GSoC 2017 work has provided great template for the implementation of click model.
 
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
 
-The Federated Click Model (FCM) and Vertical Click Model (VCM)are not appropiate 
-for Xapian because of the SERP (search engine return pages) of Xapian do not 
-provide with vertical contents.
+Due to the layout of Omega's SERP (search engine return pages), the Federated 
+Click Model (FCM) and Vertical Click Model (VCM) are not appropiate for now. It is 
+likely that Omega will need this kind of click models in the future, however, 
+it is better to focus on getting things working well for the common simple case. 
+So I won't consider to implement these models this time.
 
-I have also considered about the end to end model.However, I can not make sure to
+I have also considered about the end to end model. However, I can not make sure to
 develop a clear and fairly smooth process all the way through from logging clicks 
 to turning the logs into relevance judgements to training the model to getting 
-queries reranked. So I didn't continue to work on this idea.
+queries reranked. So I won't continue to work on this idea.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
@@ -363,7 +381,6 @@ Project Timeline
 * Finish the training method for the DBN class.
 * Discuss the DCM model template with mentors.
 * Start writing automated test for the click models.
-* **Deliverable:** DBN model with EM alogorithm
 
 **Coding Week 4: June 18–June 24**
 
@@ -371,13 +388,14 @@ Project Timeline
 * Start testing the DBN models with click logs. 
 * Implementing the DCM model.
 
+
 **Coding Week 5: June 25–July 1**
 
 * GSoC Evaluation: June 25 - 29
 * Finish testing the DBN model.
 * Finish implementing the DCM model.
+* **Deliverable:** DBN model with EM alogorithm.
 
-* **Deliverable:** DCM model.
 
 **Coding Week 6: July 2–July 8**
 
@@ -385,6 +403,7 @@ Project Timeline
 * Start implementing the UBM model.
 * Generate more click logs for testing.
 * Testing the DCM model.
+* **Deliverable:** DCM model.
 
 **Coding Week 7: July 9–July 15**
 
@@ -403,19 +422,23 @@ Project Timeline
 **Coding Week 9: July 23–July 29**
 
 * GSoC Evaluation: July 23 - 27
-* Document various models and how to use the model.
+* Give an example of how the whole system works from click logging to reranking the documents in the documentation. 
+* Document how to use the model in detail.
 * Discuss the CTR evaluation with mentors.
-* **Deliverable:** a detailed documentation.
+* **Deliverable:** a brief guidance for users.
 
 **Coding Week 10: July 30–August 5**
 
+* Generate more click logs for the traning and evaluation phase. 
 * Implementing the CTR evaluation method for click models.
-* Discuss the frequency of evaluation and the threshold of accuray to change the model.
+* Discuss the selecting mechanism between different models.
+* Document various models in technical details.
+
 
 **Coding Week 11: August 5–August 11**
 
 * Documenting how to use the evaluation method for click models.
-* Decide the default click model and implement the machanism of changing the click models.
+* Implement the selecting machanism of changing the click models.
 * **Deliverable:** a detailed mechanism and documentation about the evaluation methods of click models. 
 
 **Coding Week 12: August 12–August 19**

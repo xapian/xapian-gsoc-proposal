@@ -1,5 +1,5 @@
 .. This document is written in reStructuredText, a simple and unobstrusive
-.. markup language.  For an introduction to reStructuredText see:
+.. markup language.  For an introductiont to reStructuredText see:
 .. 
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 .. 
@@ -67,24 +67,27 @@ FILLME WITH THE TITLE OF YOUR PROPOSAL
 About You
 =========
 
- * Name: FILLME
+ * Name: Hemant Kumar Singh     
 
- * E-mail address: FILLME
+ * E-mail address: hkssheroksher@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): iamhks, Hemant
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: themindschatter.blogspot.com, FB: fb.com/iamhks, Insta and Twitter: _mr_hks_
 
  * github URL: FILLME
 
- * Biography:
+ * Biography: 
 
 .. Tell us a bit about yourself.
 
-FILLME
+I’m Hemant, an Engineering student at National Institute of Technology Warangal, India.
+I am fascinated by the intersection between humans and computers i.e, I am majoring in Computer Science and Engineering (CSE), and am passionate about finding new ways to use computing to maximize social impact. I’m an effective communicator, a productive team member, and a smart leader. Exploring the meaningful impact of technology is something that excites me to the core!
 
 Background Information
 ----------------------
+
+
 
 .. The answers to these questions help us understand you better, so that we can
 .. help ensure you have an appropriately scoped project and match you up with a
@@ -96,44 +99,44 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+Unfortunately no, but as Joyce Meyer said, “It’s never too late for a new beginning in your life.” I am more than willing to contribute as much as I can from my end.
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+Honestly, these terms are new to my knowledge and hence I've been watching youtube videos and developed some understanding of the same.
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+I've been recently introduced to the open source coomunity so I do not have any prior experience.
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+I am a computer science major in my college and hence till now I've taken problem solving computer programming course for a semester and I have also done basic c++ for 2 years back in my high school. I have also enrolled in a few MOOC's courses on coursera and edX.
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+Ubuntu 18.04, vim, sublime text etc.
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+I am a novice in this field. That being said, I am a potential candidate who wants to explore, learn and contribute to the open source community.
 
 **What timezone will you be in during the coding period?**
 
-FILLME
+The timezone that GSoC operates in i.e, Indian Standard Time(IST)(GMT+5:30)
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-FILLME
+Yes, definitely. I will be having a vacation during the GSoC coding period and will have ample amount of free time to contribute since there will be no course work from the college.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
-FILLME
+Monday to Saturday (10am-3pm and 9pm-12noon (GMT+5:30)(IST)), I think this should be sufficient but if it's required I am ready to work on Sundays too. 
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -142,24 +145,24 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+No, I am not applying to other projects in GSoC this year. Although I did want to keep some other organization as a backup but due to my college examinations I could not manage time (just being honest).
 
-Your Project
-============
+Your Project - Improve estimated total number of results
+======================================================
 
 Motivations
 -----------
 
 **Why have you chosen this particular project?**
 
-FILLME
+I am good with probability and C++ which are the prerequisites of the project and this was the only project which was appealing to me. In other words the only project where I could understand what was going on. Therefore, since the prerequisites matched me and I could understand and relate to the aim of the project I chose this one.
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+First of all, I myself will benefit from this project as I will get to learn and get some practical work experience. Apart from me, the xapian developers, the open source community and the xapian userbase will benefit from my project. Since, while doing a search as of now, xapian provides an estimate of the total, along with upper and lower bounds. My project will improve the estimated total number of results which in turn will benefit the user-base.
 
 Project Details
 ---------------
@@ -168,27 +171,27 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+As per the current scenario, when we perform a search the total number of results are returned by Xapian::MSet::get_matches_estimated() method. The user specifies how many matching documents they're interested in. For instance, for the first page of the web search result we're interested in the top 10 results. The xapian's matcher does all the work here but in the process it often doesn't know exaclty how many total matching documents are there so it provides an estimate of the same along with the upper and lower bounds. But now due to some recent changes, the matcher now knows the first and last dcoument with which each term matches. Hence, we will be using this to calculate better estimates also by looking into how much these ranges overlap between terms.  
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+The approach was suggested in the ideas page and it seems perfectly fine. And the possibility of success is very high and the things that could possible go wrong are pretty low.
 
-**What other approaches to have your considered, and why did you reject those in
+**What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+I was totally fine with the approach suggested in the ideas page until this question was asked. So, what I thought was to declare and initialize a new variable and keep incrementing and displaying the results as per the user requirement (an instance of 10 in the first page) but this approach is not efficient since it will work only when the searched item is single word. But when we have and array of strings containing more than a word this approach will fail and hence I rejected it. So, I will be sticking with the approach suggested by the ideas page and as elaborated in the previous to previous question.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+I can't think of any uncertainites as of now. But while coding and testing if I come across any, I will communicate with my mentor and will rectify the error. I can assure that you will get a bug free code by the end of the coding period.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+First of all, I don't see any fault as in why everything won't work out as planned. But incase still anything doesn't work out, it will be useful for the future developers who will work on this project as they will know what mistake to avoid. As the famous quotes goes, " I didnot fail 1000 times, I discoved 1000 ways in which my goal can't be reached ".But, you won't get to see that part from my end, because I have a gut feeling that everything will work out fine (just saying).
 
 Project Timeline
 ----------------
@@ -239,7 +242,37 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
+Community Bonding Period ( May 6- May 27 )
+- In this period, I will be studing the xapian codebase in detail and discuss with my mentor regarding the doubts I have so that once the coding period start I can actually start coding and will not stay confused by no tunderstanding the codebase itself.
+
+Coding Period ( May 27- August 19 ) (12 weeks)
+Before starting of the coding period I will discuss with my mentor and divide my project into 3 parts since there are 3 weeks of coding time. The main algorithm will be divided into 3 sub parts and once approved by the mentor I will go through the coding period as follows:
+
+Week 1: Code part 1 of the algorithm
+
+Week 2: Test for errors and debugging
+
+Week 3: Approve from the mentor
+
+Week 4: Document the progress
+
+Week 5: First Evalutaion Week- will review the code and documentation and after discussing with mentor will submit the evalutaion.
+
+Week 6: Code part 2 of the algorithm
+
+Week 7: Test for errors, debug and discuss with mentor
+
+Week 8: Document the progress
+
+Week 9: Second Evalutaion Week- will review the code and documentation and after discussing with mentor will submit the evalutaion.
+
+Week 10: Code part 3 of the algorithm 
+
+Week 11: Error testing and debugging
+
+Week 12: Discuss with mentor and document the entire progress in detail.
+
+Final Evalutaion- After the completion of the project, I will look into in once more to find any bugs or errors, will also go through the documentation, and approve with my mentor before the submission of my project.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -249,7 +282,7 @@ Previous Discussion of your Project
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
 
-FILLME
+I have introduced myself in the xapian development mailing list which was seen and replied by the mentor Olly Betts. The same can be verified by searching the mailing list by my name Hemant or my email id, hkssheroksher@gmail.com 
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -261,7 +294,7 @@ For the avoidance of doubt this includes all contributions to our wiki, mailing
 lists and documentation, including anything you write in your project's wiki
 pages.
 
-FILLME
+Yes I do.
 
 .. For more details, including the rationale for this with respect to code,
 .. please see the "Licensing of patches" section in the "HACKING" document:
@@ -273,11 +306,9 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
-FILLME
+I have cloned the xapian repository as per the GSoC-xapian guidelines and am going through it. Once I am done with my university examinations I will update you regarding the same.
 
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies
 .. don't have conflicting licenses.  So if you plan to use or end up using code
 .. which you didn't write yourself as part of the project, it is very important
-.. to clearly identify that code (and keep existing licensing and copyright
-.. details intact), and to check with the mentors that it is OK to use.

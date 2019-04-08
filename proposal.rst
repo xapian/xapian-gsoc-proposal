@@ -272,7 +272,7 @@ Week 11: Error testing and debugging
 
 Week 12: Discuss with mentor and document the entire progress in detail.
 
-Final Evalutaion- After the completion of the project, I will look into in once more to find any bugs or errors, will also go through the documentation, and approve with my mentor before the submission of my project.
+Final Evalutaion- After the completion of the project, I will look into it once more to find any bugs or errors, will also go through the documentation, and approve with my mentor before the submission of my project.
 
 Previous Discussion of your Project
 -----------------------------------

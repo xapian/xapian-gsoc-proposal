@@ -119,6 +119,7 @@ COURSES :
 
 - NLP (project on context sensitive lexicons for sentiment analysis, assignments such as weighted-context-free-grammer, beam-search for scoring, HMM or vitebri, text-chunking model)
 - Research Assistant project on Evaluation methods for Topic Models (LDA-type). Read some papers on evaluation metrics, implemented them and also designed some metrics to quantify real-world variables from collected Reddit sub-thread data such as level of expertise of user towards the topic-being discussed.
+- Research Assistant project on sequence detection, profiling, producing statistics(graphs etc..) using Python/C++/Awk. 
 
 **What development platforms, tools and methods do you prefer to use?**
 
@@ -133,7 +134,7 @@ Some Useful Backends I know : Flask, Django, RabbitMQ, Celery, Scrapy, networkx.
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-At one of my internships, I worked on a data-pipeline for versioning of data-involved. The code-base involved lots of moving parts so the testing was dominated by Docker with multiple containers interacting. My strategy was to identify places with code change, change/test one file(if independent), test with few data examples and then scale for full testing on Docker (replicate the actual workflow including data-entering, Going through stages for processing, Storage, Sync with Kubernetes). 
+At one of my internships, I worked on a data-pipeline for versioning of data-involved. The code-base involved lots of moving parts so the testing was dominated by Docker with multiple containers interacting. My strategy was to identify places with code change, change/test one file(if independent), test with few data examples and then scale for full testing on Docker (replicate the actual workflow including data-entering, Going through stages for processing, BSON Storage, Sync with Kubernetes). Used Flask,Celery,RabbitMQ,Docker,OpenStack,Kubernetes. 
 
 
 **What timezone will you be in during the coding period?**
@@ -220,38 +221,36 @@ This component can be thought of as solution to the first three points in Projec
 		- Small Front end to illustrate numbers using charts and graphs. Store the results into files and import those files to make graph on them(jupyter notebook is a good starting point).
 		- If the previous is done, incorporate a small web-server(like a docker) which shows the interactive illustrations. For instance something like this one : https://pyldavis.readthedocs.io/en/latest/readme.html
 		- Cover all the code with the unit tests and component-testing. 
-
-At this point of time, the first option is more time consuming w.r.t just setting Omega up with templates. In the
 	
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
+- Consult with mentors before approach anything novel 
+- Document all my code including workflow to obtain same results.
+- In case of API, make unitests and then integrative tests if API interacts with multiple moving code-chunks.
+- For reporting system, I will implement algorithm through Cli, develop basic front-end, and then add more charts as required. 
 
-[DOCUMENTATION STEP] : 
-	- there are few chances that something will fail on massive scale. Actually the work can be divided into iteration such as "Practical Examples", "How to", "Core concepts". So for instance, I can develop and post user-friendly code for Practical examples, then how tos, then core-concepts. For the new user-friend API, 
-	 
-	- As of now, the project to support the front-end for Xapian is a big chunk of task. If however, something happens along the way, the "Rework Omega templates to use more modern web techniques" will ensure that we have some good front-end working. 
-
-	- Also for the benchmarking system, I can begin with a small prototype of front-end in python(such as )
+Overall in worst-case scenario, I may under-deliver but whatever deliver will have everything well-tested and documented.
 
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
 
+- Earlier I thought of pursuing more analytical project (such as  Click-stream model, new weighting-schemes), however I decided in favour of documentation because I felt it took a considerable amount of time setting things up. I want to make other people be able to build, configure things in less time so that they can focus on functional stuff. So I put Documentation as first project component.
 
-
-FILLME
+- With the reporting system, because there are lot of breakable steps (obtain results (relevance judgment), make visualisations, scale to other ranking/scoring functions, data-set), I am sure this is more agile and not ending up in situation with "not know what to do". 
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+- I would like to do more research on TracAdvanceSearchPlugin as I gave some buffer days in my Project timeline below.
+- Little more advanced data-profiling tools(for benchmarking visualization) even though I know how to make a basic one with a web-server.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+New developers starting with Xapian and people working on end-to-end LETOR api for easier model-testing and evaluation(to focus on actual algorithms instead of logistical issues).
 
 Project Timeline
 ----------------
@@ -373,7 +372,11 @@ Week 3
 
 Week 4
 	-  Buffer week if things are not completed from previous month otherwise continue.
-	
+
+MONTH 2 DELEVERABLE : 
+
+	[MINIMUM] : Started with Xapian backend support with TracAdvancedSearchPlugin and documented the procedure for future follow-ups.
+	[SATISFIABLE] : Fully integreate Xapian backend with TracAdvancedSearchPlugin and complete all the preceding projects.	
 
 Previous Discussion of your Project
 -----------------------------------

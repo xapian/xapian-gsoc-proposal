@@ -175,7 +175,7 @@ approach is possible and likely to succeed?**
 
 FILLME
 
-**What other approaches to have your considered, and why did you reject those in
+**What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
 FILLME

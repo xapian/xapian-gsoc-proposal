@@ -75,7 +75,7 @@ About You
 
  * Any personal websites, blogs, social media, etc: themindschatter.blogspot.com, FB: fb.com/iamhks, Insta and Twitter: _mr_hks_
 
- * github URL: FILLME
+ * github URL: https://github.com/iamhks
 
  * Biography: 
 

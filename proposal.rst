@@ -78,8 +78,7 @@ About You
  * github URL: https://github.com/iamhks
 
  * Biography: 
-I’m Hemant, an Engineering student at National Institute of Technology Warangal, India.
-I am fascinated by the intersection between humans and computers i.e, I am majoring in Computer Science and Engineering (CSE), and am passionate about finding new ways to use computing to maximize social impact. I’m an effective communicator, a productive team member, and a smart leader. Exploring the meaningful impact of technology is something that excites me to the core!
+
 .. Tell us a bit about yourself.
 
 I’m Hemant, an Engineering student at National Institute of Technology Warangal, India.

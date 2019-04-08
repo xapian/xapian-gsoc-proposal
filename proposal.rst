@@ -73,7 +73,7 @@ About You
 
  * IRC nickname(s): stmatengss
 
- * Any personal websites, blogs, social media, etc: https://www.linkedin.com/in/teng-ma-69a0a8115/
+ * Any personal websites, blogs, social media, etc: https://www.linkedin.com/in/teng-ma-69a0a8115/  OR http://stmatengss.github.io
 
  * github URL: https://github.com/stmatengss
 

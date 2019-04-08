@@ -1,5 +1,5 @@
 .. This document is written in reStructuredText, a simple and unobstrusive
-.. markup language.  For an introductiont to reStructuredText see:
+.. markup language.  For an introduction to reStructuredText see:
 .. 
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 .. 

@@ -60,9 +60,9 @@
 .. "How to write a kick-ass proposal for Google Summer of Code":
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
-======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
-======================================
+=========================================
+IMPROVE ESTIMATED TOTAL NUMBER OF RESULTS
+=========================================
 
 About You
 =========
@@ -147,8 +147,8 @@ organisation(s)?**
 
 No, I am not applying to other projects in GSoC this year. Although I did want to keep some other organization as a backup but due to my college examinations I could not manage time (just being honest).
 
-Your Project - Improve estimated total number of results
-======================================================
+Your Project
+============
 
 Motivations
 -----------

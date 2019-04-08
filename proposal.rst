@@ -79,7 +79,7 @@ About You
 
  * Biography:
 
- I am a student of Saint-Petresburg State University, Databases and algorithms department. My most well studied language is C++, but I have some experience in Pyhon with some additional libraries like NumPy. As for my background, I got award in Baltic engeneer fair with `code formattig project <https://github.com/Random90000/Code-Formatting-Tool/>`_ . Also I wrote a papaer with my mentor in Uni, it get good reviews on SEIM2019 conference, it will be published in journal of this conference wich is indexed in Scopus. 
+ I am a student of Saint-Petresburg State University, Databases and algorithms department. My most well studied language is C++, but I have some experience in Pyhon with some additional libraries like NumPy. As for my background, I got award in Baltic engeneer fair with `code formattig project <https://github.com/Random90000/Code-Formatting-Tool/>`_ . Also I wrote a papaer with my mentor in Uni, it get good reviews on SEIM2019 conference, and will be published in journal of this conference wich is indexed in Scopus. 
 
 Background Information
 ----------------------
@@ -109,7 +109,7 @@ I have some experience with using Open Source libraries, but not with developing
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-I have cources of maths, algorithms, and programming languages(Ocaml, C++, Python). Also my first cource work from my mentor is to write SQL parser in C++ for his development team, but I am at the very beginnig of study what GNU bison and some other software are.
+I have cources of maths, algorithms, and programming languages(Ocaml, C++, Python). Also my first cource work from my mentor is to write SQL parser in C++ for his developers team, but I am at the very beginnig of study what GNU bison and some other software are.
 
 **What development platforms, tools and methods do you prefer to use?**
 
@@ -118,7 +118,7 @@ There are some experience with Qt platform and cmake in my life, but now I decid
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-I am involved in ine small teem project in my Uni. There some ways to seed up queries to database, so we are writing framework with implementation of several algorithms. I have a draft of my part of job in git, but it bad structured and now documented yet.    
+I am involved in ine small team project in my Uni. There some ways to speed up queries to database, so we are writing framework with implementation of several algorithms. I have a draft of my part of job in git, but it bad structured and not documented yet.    
 
 **What timezone will you be in during the coding period?**
 
@@ -157,7 +157,10 @@ I have read several articles about how Google search works and it is get interes
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-Firstly, I want to get skills of interacting with people inside project. Secondly, it is very important to try to understand code wich written by other people.  
+This project aimed at search engines developers, it could provide kit of ranking algorithms with ability to change dataset automatically.
+I do not have full understandind Xapian structure now, but I think it could be two ways of user interaction with my part of project:
+	1) Letor and Omega as a parts of Xapian will provide set of user functions to Xapian API. So user will have ability to collect data by Omega and rank dataset by one of Letor algorithms.
+	2) Create separate application for managing collecting and ranking process.  
 
 Project Details
 ---------------
@@ -167,14 +170,16 @@ Project Details
 **Describe any existing work and concepts on which your project is based.**
 
 I have read info about previous step of project and noticed following:
-	1) There are not automated way to transfer data from Omega to Letor
-	2) Letor has one click model with one algorithm inside, tested on one dataset
+
+- There are not automated way to transfer data from Omega to Letor
+- Letor has one click model with one algorithm inside, tested on one dataset
+
 So it is possible to improve ranking quality by developing these two points.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-I have some experience in developing framework with many algorithms based on common dataset. Given the mistakes of that project, it is importatnt to collect and transfer data automaticlly, so that is why point 1) from previous paragraf is most critical. After the implementation of 1) it could be much easier to develop and test other click models or other algorithms for DBN.
+I have some experience in developing framework with many algorithms based on common dataset. Given the mistakes of that project, it is importatnt to collect and transfer data automaticlly, so that is why first point from previous paragraf is most critical. After the implementation of first it could be much easier to develop and test other click models or other algorithms for DBN.
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
@@ -189,7 +194,7 @@ As for me, it is not enough documentation and examples of code which is already 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-I will try to note my reflections and measure difficulty one each step of project, so you will have ability to post it and help to other developers how do not have any experience in this area. Also I will try to reach the expected minimum: enable an end-to-end use of Letor with Omega. If it necessary, I will done it after the end of school. 
+I will try to note my reflections and measure difficulty one each step of project, so you will have ability to post it and help to other developers who do not have any experience in this area. Also I will try to reach the expected minimum: enable an end-to-end use of Letor with Omega. If it necessary, I will done it after the end of school. 
 
 Project Timeline
 ----------------
@@ -225,7 +230,7 @@ Project Timeline
 .. announced.  During this time you should aim to complete any further research
 .. or other issues which need to be done before you can start coding, and to
 .. continue to get familiar with the code you'll be working on.  Your mentors
-.. are there to help you with this.  We realise that many students have classes
+.. are there to h0elp you with this.  We realise that many students have classes
 .. and/or exams in this time, so we certainly aren't expecting full time work
 .. on your project, but you should aim to complete preliminary work such that
 .. you can actually start coding at the start of the coding period.
@@ -240,48 +245,61 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-06.05 - 26.05
-	Understand how Xapian works; fully understand the code predecessor; read articles about algorithms.
+**06.05 - 26.05** 
 
-27.05 - 02.06
-03.06 - 09.06
-	Choose writing language for Letor-Omega interaction. Develop structure of interaction interface (should it be a part of Letter or separate application). Realise interfase.
+Understand how Xapian works; fully understand code of predecessor; read articles about algorithms.
 
-10.06 - 16.06
-	Test interfase and write documentation.
+**27.05 - 09.06**
 
-17.06 - 23.06 
-	Additional week to rewrite code\documentation if some preblems will appear. Also this week is peak of exams in Uni.
+Choose writing language for Letor-Omega interaction. Develop structure of interaction interface (should it be a part of Letter or separate application). Sart implementation.
 
-24.06 - 30.06
-	Discuss results of interface developing. If it is success, start developing Expectaction-Maximization algorithm for DBN model.
+**10.06 - 16.06**
 
-01.07 - 07.07
-	Finish first evaluation of developing and write tests\documentation.
+Test interfase and write documentation.
 
-08.07 - 14.07 
-	Collect one or more datasets for compare effectiveness of algorithms. Write about results.
+**17.06 - 23.06** 
+	
+Additional week to rewrite code and documentation if some preblems will appear. Also this week is peak of exams in Uni.
 
-15.07 - 21.07
-	Depends on result of comparing, start developing another one click model (DCM or UBM) or improve existing.
+**24.06 - 30.06**
 
-22.07 - 28.07
-	Discuss results of algorithms developing. Fix some bugs and decide what to develop next.
+Discuss results of interface developing. If it is success, start developing Expectaction-Maximization algorithm for DBN model.
 
-29.07 - 04.08
-	Developing another click model or fixing bugs. Maybe some changes in Letor ranking will need.
+**01.07 - 07.07**
 
-05.08 - 11.08 
-	Finish developing another click model.
+Finish first evaluation of developing and write tests and documentation.
 
-12.08 - 18.08
-	Test click model and write documentation.
+**08.07 - 14.07**
+ 
+Collect one or more datasets for compare effectiveness of algorithms. Write about results.
 
-19.08 - 25.08
-	Compare quality of click models.
+**15.07 - 21.07**
+	
+Depends on result of comparing, start developing another one click model (DCM or UBM) or improve existing.
 
-26.08 - 01.09
-	Week for finish developing.
+**22.07 - 28.07**
+
+Discuss results of algorithms developing. Fix some bugs and decide what to develop next.
+
+**29.07 - 04.08**
+
+Developing another click model or fixing bugs. Maybe some changes in Letor ranking will need.
+
+**05.08 - 11.08** 
+	
+Finish developing another click model.
+
+**12.08 - 18.08**
+
+Test click model and write documentation.
+
+**19.08 - 25.08**
+
+Compare quality of click models.
+
+**26.08 - 01.09**
+
+Week for finish developing.
 
 I hope I can realise at least part with interface interacting and develop at least one algorithm in Letor. 
 

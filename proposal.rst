@@ -99,7 +99,7 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-Unfortunately no, but as Joyce Meyer said, “It’s never too late for a new beginning in your life.” I am more than willing to contribute as much as I can from my end.
+No, this will be my first time.
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
@@ -155,7 +155,7 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-I am good with probability and C++ which are the prerequisites of the project and this was the only project which was appealing to me. In other words the only project where I could understand what was going on. Therefore, since the prerequisites matched me and I could understand and relate to the aim of the project I chose this one.
+I am good with probability and C++ which are the prerequisites of the project and this was the only project which was appealing to me. In other words, I was comfortable understanding what is going on. Therefore, since the prerequisites matched me and I could understand and relate to the aim of the project I chose this one.
 
 **Who will benefit from your project and in what ways?**
 

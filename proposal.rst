@@ -214,18 +214,12 @@ This component can be thought of as solution to the first three points in Projec
 	- New users who are getting started with Xapian development in Letor. This may include project setup(documentation for newbies), simple cli/front-end tool to actually see stuff happening. This is important in order to develop curiosity for new developers looking into Xapian as a whole. As actionable steps, this includes building good tutorial documentation for Omega , Xapian and more use-cases that may even combine all three : Xapian-Core, omega and letor.
 	- Add the documentation of visualisations on comparing algorithms from ReportingSystem milestone.
 
-	- Testing : 
-		- Higher-level API (python) : Add the unit tests for all the commands done in the xapian docs 	
-		- Lower-level API (C++) : Add the test for any new code involved in the xapian/xapian-core/tests/api_[test_name].cc
-
 
 Small GSOC bite size/ tickets issues to start with (Before GSOC results.) : 
 	- "Rework Omega templates to use more modern web techniques"
 	- "get PDF building" : 
-	- " https://trac.xapian.org/ticket/778"  : sphinx documentation
-	
+	- "Support indexing another file format in Omindex "
 
-This component can be thought of as solution to the first three points in ProjectSummary (https://trac.xapian.org/wiki/GSoCProjectIdeas/LearningtoRankStabilisation) "Create practical code examples that use the core features and API, fleshing out the ​user guide"
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -237,13 +231,13 @@ approach is possible and likely to succeed?**
 
 - I broke down the project like this ; 
 
-	For family-algorithm in [weight-scheme, letor, spell-check, stemming ..] : 
-		For different algorithm parameters : 
+	- For family-algorithm in [weight-scheme, letor, spell-check, stemming ..] : 
+		- For different algorithm parameters : 
 			
-			Use existing API or make one to quickly change params, dataset, feature-list etc..
-			score or rank or evaluate 
+			- Use existing API or make one to quickly change params, dataset, feature-list etc..
+			- score or rank or evaluate and store results.
 
-		Make visuals (different for family of algorithms) for rank/evaluation scores
+		Make visuals (different for family of algorithms) for rank/evaluation scores for easy access.
 
 
 **What other approaches to have your considered, and why did you reject those in
@@ -256,7 +250,8 @@ favour of your chosen approach?**
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-- I would like to do more research on TracAdvanceSearchPlugin as I gave some buffer days in my Project timeline below.
+- For reporting system, some more thorough research may need to actual find good evaluation or benchmarks methods. Currently my estimate is based on time and algorithm-specific evaluation(from relevance-judgments) comparison. 
+
 - Little more advanced data-profiling tools(for benchmarking visualization) even though I know how to make a basic one with a web-server.
 
 **How useful will your results be when not everything works out exactly as
@@ -313,7 +308,7 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-**Month 1 Theme** : *DOCUMENTATION AND RESEARCH*
+**Month 1 Theme** : *DOCUMENTATION AND OMEGA *
 
 **Week 1** 
 	- Read and understand code-base further. 
@@ -324,14 +319,13 @@ Project Timeline
  	- Add Omega documentation (in Xapian docs) for indexing, and how to obtain a front-end html(omindex, omega "query" [arguments]) with cgi.
 
 **Week 3** 
-	- Identify areas that requires change user-end python APIs, consult with mentors about this.
-	- Add more coding examples in "Core Concepts" and "Installation" with wrapper user-end (discussed in previous proposals) and install setups.
+	- Work on "Support indexing another file format in Omindex " issue 
 
 **Week 4**
 	- Buffer week to complete the above. 
 
 **Deliverable** : 
-	- Some documentation changes on Xapian Docs. New user-end python API created 
+	- Some documentation changes on Xapian Docs. Omega sub-issues solved or progressed
 
 **Month 2 Theme**  : **WEIGHT-SCHEME REPORTING**
 

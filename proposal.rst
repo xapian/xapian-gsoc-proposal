@@ -73,7 +73,7 @@ About You
 
  * IRC nickname(s): iamhks, Hemant
 
- * Any personal websites, blogs, social media, etc: themindschatter.blogspot.com, FB: fb.com/iamhks, Insta and Twitter: _mr_hks_
+ * Any personal websites, blogs, social media, etc: Blog: themindschatter.blogspot.com, FB: fb.com/iamhks, Insta and Twitter: _mr_hks_ , LinkedIn: http://linkedin.com/in/iamhks
 
  * github URL: https://github.com/iamhks
 
@@ -181,7 +181,7 @@ The approach was suggested in the ideas page and it seems perfectly fine. And th
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-I was totally fine with the approach suggested in the ideas page until this question was asked. So, what I thought was to declare and initialize a new variable and keep incrementing and displaying the results as per the user requirement (an instance of 10 in the first page) but this approach is not efficient since it will work only when the searched item is single word. But when we have and array of strings containing more than a word this approach will fail and hence I rejected it. So, I will be sticking with the approach suggested by the ideas page and as elaborated in the previous to previous question.
+I was totally fine with the approach suggested in the ideas page until this question was asked. So, what I thought was to declare and initialize a new variable and keep incrementing and displaying the results as per the user requirement (an instance of 10 in the first page) but this approach is not efficient since it will work only when the searched item is single word. Moreover, when the search query is a single word the estimated number of matches is already exact (because it's just the number of different documents which that term occurs, which we have stored for each term). Another approach could be to use the memory cache to treat many repeatedly appeared outcomes but this one would consume a lot of storage, hence I rejected it. So, I will be sticking with the approach suggested by the ideas page and as elaborated in the previous to previous question.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
@@ -242,37 +242,43 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-Community Bonding Period ( May 6- May 27 )
-- In this period, I will be studing the xapian codebase in detail and discuss with my mentor regarding the doubts I have so that once the coding period start I can actually start coding and will not stay confused by no tunderstanding the codebase itself.
+Community Bonding Period ( May 6- May 26 )
+- In this period, I will be studying the xapian codebase in detail and discuss with my mentor regarding the doubts I have so that once the coding period start I can actually start coding and will not stay confused by not understanding the codebase itself. I learn enough to build up the test environment atleast.
 
-Coding Period ( May 27- August 19 ) (12 weeks)
-Before starting of the coding period I will discuss with my mentor and divide my project into 3 parts since there are 3 weeks of coding time. The main algorithm will be divided into 3 sub parts and once approved by the mentor I will go through the coding period as follows:
+May 27-  Current project status and goals are reviewed by mentor. Timeline
+is corrected if needed.
 
-Week 1: Code part 1 of the algorithm
+Conding Period ( May 28- August 19 ) (12 weeks)
 
-Week 2: Test for errors and debugging
+Week 1: Creating practical code examples and adding the corresponding API documentation about the total number of search results estimations.
 
-Week 3: Approve from the mentor
+Week 2: Designing and formalizing the algorithm
 
-Week 4: Document the progress
+Week 3: Implementation of a beta version according to the algorithm.
 
-Week 5: First Evalutaion Week- will review the code and documentation and after discussing with mentor will submit the evalutaion.
+Week 4: Making changes according to the suggestions from the mentors and submission of the final pull request.
 
-Week 6: Code part 2 of the algorithm
+---First Evalutaion Round---
 
-Week 7: Test for errors, debug and discuss with mentor
+Week 5: Benchmarking and Testing
 
-Week 8: Document the progress
+Week 6: Chosing the best approach that will be reserved in xapian.
 
-Week 9: Second Evalutaion Week- will review the code and documentation and after discussing with mentor will submit the evalutaion.
+Week 7: Integrating them into xapian and adding examples in Xapian accordingly.
 
-Week 10: Code part 3 of the algorithm 
+Week 8: Making changes according to the suggestions from the mentors and submit the final pull request.
 
-Week 11: Error testing and debugging
+---Second Evalutaion Week---
 
-Week 12: Discuss with mentor and document the entire progress in detail.
+Week 9: Making Unit tests & issue bugs & Finishing uncompleted details
 
-Final Evalutaion- After the completion of the project, I will look into it once more to find any bugs or errors, will also go through the documentation, and approve with my mentor before the submission of my project.
+Week 10: Tuning algorithms to get a higher performance.
+
+Week 11: Issuing bugs and discuss the future works.
+
+Week 12: Writing documents & Reviewing the code.
+
+Final Evalutaion- After the completion of the project, I will look into it once more to find any bugs or errors, will also go through the documentation, and approve with my mentor before the submission of my project. Only then I will submit the final pull request.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -307,6 +313,7 @@ Use of Existing Code
 you plan to use, please give details.**
 
 I have cloned the xapian repository as per the GSoC-xapian guidelines and am going through it. Once I am done with my university examinations I will update you regarding the same.
+
 
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies

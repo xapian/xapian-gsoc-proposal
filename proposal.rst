@@ -72,6 +72,9 @@ About You
 
  * IRC nickname(s): bazinga_65
 
+ * Any personal websites, blogs, social media, etc: https://www.facebook.com/hrishi.najan75
+
+
  * github URL: https://github.com/bazinga65
 
  * Biography: I am a sophomore studying Computer Science and Engineering at the Indian Institute of Technology Kanpur, India. I have a keen interest in Linux. If I were to describe myself, I would say that I always try out tech, languages, programs, etc. I like to spend my time on giving a thorough thought about how things work, be it some lines of code or a physical mechanism. 
@@ -161,27 +164,34 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-The project is divided into 5 subprojects -
+Currently Omega avoids a hard requirement on the filter programs it uses by automatically disabling those formats for which the filters aren't installed. We could have used ``dlopen()`` for libraries and if they aren't available disable those formats which require them. But there are issues with this approach. Most platforms support something equivalent to ``dlopen()`` and ``dlsym()`` but the actual API varies - that means more work to support this for all the platforms omindex currently works on. So we follow the approach in the Olly's existing patch for support of libwv2 library. In this approach we use a class framework which can communicate between parent and child subprocesses and the extraction library is wrapped in a program which then uses the client classes from that framework and links to the library.
 
-1) One of the most important subtask is to come up with a plan for implementing each library. This can be done by loading the library in the subprocess by using ``dlopen()`` system call. 
-2) Many modern file formats are based around the zip file format with XML contents. So using a zip file reading library instead of the unzip program would is the first target. Currently, Omega uses zlib to read gzip compressed Abiword files. To cover these formats - using libarchive is probably a sensible option. Implementing this library is the first subproject.
-3) Currently the extraction of text from a PDF file is done by running external commands pdfinfo and pdftotext on it and reading their output whereas those two commands use libpoppler to do their work. Hence, using libpoppler and saving running two commands per PDF file would be desirable instead of creating two child processes, and two times any set up and tear down libpoppler doe. Implementing this library is the second subproject.
-4) DjVu is a web-centric format which can display documents and images. DjVuLibre can be used as an extractor for these type of files. Implementing this library is the third subproject.
-5) There are number of other file formats which require external filter programs and can be replaced by available libraries. Although if we could not cover all the libraries available, we could give priority to the file formats which are used more than others such that the overall indexing speed can be reduced by a noticeable amount. This is the fourth subproject.
+We have to come up with a plan for implementing each library. Since we don't want to use ``dlopen()`` (as the complexity for using it is not justified), we can do one of the following - If the library is very highly likely to be installed by the user, we can just link these libraries at the build time and use it in the parent process (omindex itself and not run_filters) rather than a separate subprocess. Else if there is no hard requirement of that library, we can give the users the option to install it or not. In this case, the extractors cuould be used by creating the class framework in the above approach. 
 
-The approach for making the libraries work on replacement of external filter programs with shared libraries having same functionalities and hence reducing the time required for indexing is to dynamically load at the runtime. Also, to avoid library bugs from crashing omindex, they can be implemented in a subprocess isolated from the parent process. The output of the child subprocess created using ``fork()`` syscall could be piped to the parent process. Another issue is if the library ends up in a memory or CPU eating infinite loop. This can be avoided by using sandboxing to put resource constraints on the process so that the loop will eventually terminate.
+One of our concerns is that the parent-child subprocess model doesn't work exactly the same across different non Linux-based operating systems . If we consider Windows, it doesn't support ``fork()`` but ``CreateProcess()`` is the closest thing Windows has to ``fork()`` (Unless we use Cygwin or similar in which case, probably the performance may not be as good as we want and there may be other issues). ``CreateProcess()`` can be used to run a program in a subprocess and hence the portability issue can be solved (atleast initially for Windows systems). 
+
+After the approach is finalized, the project is divided into 4 subprojects -
+
+1) Many modern file formats are based around the zip file format with XML contents. Some of the main formats supported are tar, zip, xar, etc. So using a zip file reading library instead of the unzip programs is the first target. Currently, Omega uses zlib to read gzip compressed Abiword files. To cover these formats - using libarchive is probably a sensible option. Implementing this library is the first subproject.
+2) Currently the extraction of text from a PDF file is done by running external commands pdfinfo and pdftotext on it and reading their output whereas those two commands use libpoppler to do their work. Hence, using libpoppler and saving running two commands per PDF file would be desirable instead of creating two child processes, and two times any set up and tear down libpoppler doe. Implementing this library is the second subproject.
+3) There are number of other file formats from the Document Liberation project like  which require external filter programs and can be replaced by available libraries. Although if we could not cover all the libraries available, we could give priority to the file formats which are used more than others such that the overall indexing speed can be reduced by a noticeable amount. This is the third subproject.
+4) DjVu is a web-centric format which can display documents and images. DjVuLibre can be used as an extractor for these type of files. Implementing this library is the fourth subproject.
+
+The approach for making the libraries work on replacement of external filter programs with shared libraries having same functionalities and hence reducing the time required for indexing is to dynamically load at the runtime. Also, to avoid library bugs from crashing omindex, they can be implemented in a subprocess isolated from the parent process. The output of the child subprocess created using ``fork()`` syscall could be piped to the parent process. Another issue is if the library ends up in a memory or CPU eating infinite loop. This can be avoided by using sandboxing to put resource constraints on the process so that the loop will eventually terminate. 
+
+**Note:** Although I am not much familiar with the Linux system programming (this project will need managing subprocesses, communicating through pipes, sockets, etc.) I have devoted the time of Pre-Acceptance period for extensive learning of the same. I am quite familiar with processes and piping using shell, so I believe this would help me learn quicker.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-Preliminary findings are from the implementation of Olly's patch (which adds supportfor using libwv2) that isolating it in a subprocess does avoid bugs in the library from crashing omindex. Hence, this method is likely to work. 
+Preliminary findings are from the implementation of Olly's patch (which adds supportfor using libwv2) that isolating it in a subprocess does avoid bugs in the library from crashing omindex. Hence, this method is likely to work. Adding resource constraints to avoid the library to end up in an infinite loop isn't done in this patch and needs to be implemented in this project. 
 
-**What other approaches to have your considered, and why did you reject those in
+**What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
 Other approach could have been to compile all the current external filter programs into a single shared library which can be used instead of other available libraries but this would make the library unnecessarily long. Also, we would prefer to use separate libraries for each file format as we can avoid the need to link the whole library everytime.
 
-**Please note any uncertainties or aspects which depend on further research or
+**Please note any uncertainties or aspects which depend on further research or 
 investigation.**
 
 The uncertainties which can appear would mostly be about using the libraries and their functionalities aptly. The documentations can help in this case. In any case, the usage of libraries would be isolated from omindex. 
@@ -195,8 +205,8 @@ Deliverables
 -------------
 * Implementation of libarchive library for reading formats based around the zip file format instead of running the unzip program.
 * Use of the PDF rendering library libpoppler in the PDF text extractor instead of running external commands pdfinfo and pdftotext.
-* Implementing the DjVuLibre library for reading DjVu format
 * Adding support to other file formats such as AbiWord, Microsoft Publisher, etc. using the libraries available.
+* Implementing the DjVuLibre library for reading DjVu format (stretch goal)
 * Using the functionalities of the libraries including loading them dynamically and run in a subprocess to avoid the bugs in the library to be isolated from omindex. 
 
 Project Timeline
@@ -248,27 +258,27 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
+This project timeline is prepared keeping in mind that I get ample time for the work to be reviewed and merged.
+
 * **Pre-acceptance Period from Present to May 5th**
 
 	* This one month period can be utilized to work on issues related to omega so that I can get familiar to the codebase and code review process with the developer community.
-	* Gain some familiarity to Linux system programming.
+	* Gain some familiarity to Linux system programming (processes, pipes and sandboxing).
 	
 * **Community Bonding Period from May 6th to May 26th**
 
-	* Understanding the usage of the shared libraries to be used to replace external filter programs by reading the documentation
-	* Discussing it with mentors to find possible hurdles and their solutions.
-	* Continue working on issues related to omega.
+	* Understanding the usage of the shared libraries to be used to replace external filter programs by reading the documentation and discussing it with mentors to find possible hurdles and their solutions.
+	* Testing Omega before adding any library to the project and check how it runs with the verbose mode to get the grasp of the sequence of implementation of current source code.
 
                                        **------ Coding officially begins -----**
 
 * **Week 1 from May 27th to June 2nd**
 
-	* Testing Omega before adding any library to the project and check how it runs with the verbose mode to get the grasp of the sequence of implementation of current source code.
-	* Continue search and understanding the usage of libraries and discuss the outcomes with mentors.
+	* One of the main goals in this period will be to come up with the final scheme of how the isolation of the subprocess will be implemented and how the actual extractors from the library will be made to work.
+	* To test the above task, creating some automated tests to check how the system works by writing a minimal library than can exhibit failures depending on the file it is run over.
  
 * **Week 2 and 3 from June 3rd to June 16th**
 
-	* One of the main goals in this period will be to come up with the final scheme of how the isolation of the subprocess will be implemented and how the actual extractors from the library will be made to work.
 	* Implementing the libarchive library for reading zip file formats.
 	* Testing and documentation along.
 	
@@ -291,34 +301,35 @@ Project Timeline
 
 * **Week 6 and 7 from June 24th to July 7th**
 
-	* Implementing the DjVuLibre library for reading files of the DjVu format.
+	* Continue implementing the libpoppler library if needed.
+	* Implementing other libraries from Document Liberation project which are available after discussing the priority order with the mentors. The overall number of libraries to be implemented can be less than the available but I think we could focus on the file formats which are used more than others.
 	* Testing and documentation along.
 
 * **Week 8 from July 8th to July 14th**
 
-	* Continue implementing the DjVuLibre library if needed else start implementing other libraries which are available after discussing with mentors. 
-	* Final testing and documentation before evaluation.
+	* Continue implementing other libraries from the Document Liberation project.
+	* Testing and documentation before evaluation.
 
   **Deliverables for phase 2 evaluation**
 
-  * Getting libpoppler and DjVuLibre to work before Phase 2 evaluation..
+  * Getting libpoppler and around two to three libraries to work before phase 2 evaluation is my goal.
 
 					 **------ Phase 2 Evaluation -----**
 					 
 * **Week 9 and 10 from July 15th-July 21st**
 
-	* Implementing other libraries which are available after discussing the priority order with the mentors. The overall number of libraries to be implemented can be less than the available but I think we could focus on the file formats which are used more than others.
+	* Continue implementing other libraries from the Document Liberation project.
 	* Testing and documentation along.
-
 
 * **Week 11 from August 5th to August 18th**
 
-	* Continue implementing other libraries from the Document Liberation project.
+	* Implementing the DjVuLibre library if time permits after discussing with mentors. 
+	* Testing and documentation along.
 
 * **Week 12 from August to August**
 
 	* *Buffer period* : Can be used if any of the previous work is lagged and shifted. Else continue implementing other libraries.
-	* Testing the indexing of file formats of which libraries were used and observe the change in indexing time.
+	* Testing the indexing of file formats of which libraries were used and probably observe the change in indexing time.
 	* Start with the final testing and documentation.
 
 * **Week 13 from August 19th - August 26th**
@@ -334,7 +345,11 @@ Project Timeline
 
 					 **------ Phase 3 Evaluation -----**
 
-**NOTE** - The pace of work is likely to be slow during the last two weeks as my regular classes begin. Hence, I have assigned comparatively less-heavy tasks in these period. But I will try to re-organize the scheduleso that I can handle both.
+|
+**Points to Note :** 
+
+* The pace of work is likely to be slow during the last two weeks as my regular classes begin. Hence, I have assigned less-heavy tasks in these period. But I will try to re-organize the scheduleso that I can handle both.
+* The last twp or three weeks are kept comparatively less heavy so that if time permits this time may be utilized for completing stretch-goals and unfinished tasks.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -373,9 +388,9 @@ This project requires the use of existing code i.e. to import various open sourc
 
 * Document Liberation project: From https://www.documentliberation.org/about/, "All participating libraries are released inter alia under the Mozilla Public License Version 2.0." And from https://www.gnu.org/licenses/license-list.en.html, Mozilla Public License Version 2.0 is compatible with the GPL v2.
 
-* DjVu : From http://djvu.sourceforge.net/licensing.html, "DjVuLibre-3.5 was developed by Leon Bottou and others as a "Derived Work" of the DjVu Reference Library 3.5. As such, it is also subject to the GNU General Public License version 2."
+* DjVu: From http://djvu.sourceforge.net/licensing.html, "DjVuLibre-3.5 was developed by Leon Bottou and others as a "Derived Work" of the DjVu Reference Library 3.5. As such, it is also subject to the GNU General Public License version 2."
 
-* From the ``debian/copyright`` file from the Debian packaging, "Poppler is based on a Xpdf fork (updated at Xpdf 3.02), so the license of the poppler core library (libpoppler.so.X) is GPL v2 only."
+* Poppler: From the ``debian/copyright`` file from the Debian packaging, "Poppler is based on a Xpdf fork (updated at Xpdf 3.02), so the license of the poppler core library (libpoppler.so.X) is GPL v2 only."
 
 Hence, the licenses of all the software libraries used are thus compatible with the GPL v2.
 

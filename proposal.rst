@@ -187,6 +187,8 @@ The key challenge is that the estimation of different intersection between terms
 
 2. (A Minimal Variance Estimator for the Cardinality of Big Data Set Intersection [SigKDD 17])[https://arxiv.org/pdf/1606.00996.pdf] This paper gives a maximum likelihood method to estimate the Intersection between two sets with a low IO overhead (streaming). We can gain the result through `set1 + set2 - the Intersection of set1 and set2`.
 
+3. (Multilingual Information Retrieval From Research To Practice) In section 2.5, it introduces several useful method for estimating results with a multi-term query.
+
 ### Industry
 
 [The collector of Lucene](https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/search/TopDocsCollector.html) has a field `totalHits` to describe the total number of documents that the collector encountered. I try to understand the codes from Lecene.
@@ -194,13 +196,14 @@ The key challenge is that the estimation of different intersection between terms
 The conclusions of the implementation details as following:
 
 ### Implementation Details
+
 1. Basic implementation: The estimated total number of results will be returned by the `Xapian::MSet::get_matches_estimated()` function. This function belongs to `MSet`. The result is an approximate estimation of both upper bound and lower bound via `round_estimate`. This returned value is based on an evaluation to ensure its upper bound and lower bound. We should assume terms occur independently of one another. The matcher will exploit various short-cuts, and calculate the result from the frequency of occurrence of the terms. The formula is like this `T1 * T2 * T3 * ... * Tn`. 
 
 2. Algorithm: Assume there is a query `term1 term2`, we should get the result of `term1` and `term2` separately from `MSet` as t1 and t2. After that, we can search for the results which contain `term1` from the intersection of `term1` and `term2` as t1 & t2. For searching `term1`, the overhead is acceptable since the size of `term2` is not too large. Finally, we can calculate the final result as `t1 + t2 - t1 & t2`. Similarity, a more complex query can be disaggregated with subterms. These terms will be calculated with the same approach.
 
 3. Challenges: 
-    - Eliminate Bias: We should try to reduce the skew effect we get from assuming independence. On my mind, some of the methods include sampling and parameter tuning are efficient.
-    - Frequency terms: I aim to cache some hot results of the intersection of more than two terms. The cache approach can accelerate the processing of calculating results.
+    1. Eliminate Bias: We should try to reduce the skew effect we get from assuming independence. On my mind, some of the methods include sampling and parameter tuning are efficient.
+    2. Frequency terms: I aim to cache some hot results of the intersection of more than two terms. The cache approach can accelerate the processing of calculating results.
 
 ### Evaluation Dataset
 
@@ -315,8 +318,6 @@ I notice Google Summer of Code recently. So I haven't discussed with the communi
 .. link to the discussion in the list archives.  If you've discussed it on
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
-
-FILLME
 
 Licensing of your contributions to Xapian
 -----------------------------------------

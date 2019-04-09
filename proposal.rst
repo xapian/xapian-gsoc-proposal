@@ -73,7 +73,7 @@ About You
 
  * IRC nickname(s): jugnu
 
- * Any personal websites, blogs, social media, etc: LinkedIn : www.linkedin.com/in/prithipal-285
+ * Any personal websites, blogs, social media, etc: LinkedIn : www.linkedin.com/in/prithipal-285(https://drive.google.com/open?id=1r3EilRwyBrFqlcEVYvSUWlI4jz8NN2Vb for partial pdf version of linkedin profile)
  * github URL: github.com/PrithiPal
 
  * Biography:

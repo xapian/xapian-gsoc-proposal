@@ -82,7 +82,7 @@ Hello to you people reading this. I am Prithi, 5th BSc. Computer science undergr
 
 In school, I also hold onto two different research assistant positions. One is Bioinformatics based where I primarily wrote code for finding sequences in Proteins, producing statistics, and rough-pipeline for experimental/theoretical data comparisons. My second RA was based on Computational Linguistics where I focused on researching and implementing Evaluation metrics for LDA Topic-models based on Reddit data and wrote metric to quantify some real-time variables such as knowledge of user etc.  
 
-Now Apart from school and work, I participated in competition to create a drawing robot where I designed and implemented an interactive Image-processing/segmentation application on MATLAB. To be honest, that was one of the biggest project which took months to develop and our team placed first for robot which drew a photograph given on spot.
+Now Apart from school and work, I participated in competition to create a drawing robot where I designed and implemented an interactive Image-processing/segmentation application on MATLAB. To be honest, that was one of the biggest project which took months to develop and our team placed first for robot which drew a photograph given on spot. You can find our mention here : https://www.sfu.ca/computing/newsandevents/2017/inaugural-robotics-competition.html
 
 On the non-technical note, I started volunteering starting the second year and carried on front-end roles such as advisor, peer-mentor and workshop facilitation. 
 

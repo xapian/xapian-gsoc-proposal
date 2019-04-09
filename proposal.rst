@@ -175,34 +175,54 @@ Project Details
 
 First, I have collected several resources about how to implement and improve the estimation.
 
-*** Academic
-1. (Estimating Corpus Size via Queries [CIKM'06])[http://fontoura.org/papers/cikm2006.pdf] This paper uses the basic estimator estimate the search result size. The first approach requires a uniform random sample of documents from the corpus. It avoids this notoriously difficult sample generation problem, and instead uses two fairly uncorrelated sets of terms as query pools; the accuracy of the second approach depends on the degree of correlation among the two sets of terms.
-2. (Random Sampling from a Search Engine’s Index [WWW'06]) [http://www2006.org/programme/files/pdf/3047.pdf] This paper proposes a lexicon-based technique and a random
-walk technique to avoid long documents and highly ranked documents.
-3. (Efficient Search Engine Measurements [WWW'07])[http://wwwconference.org/www2007/papers/paper753.pdf] This paper present two estimators that are able to remedy the skew introduced by approximate degrees. This estimators are based on a careful implementation of an approximate importance sampling procedure.
+### Basic Background
 
-*** Industry
-[The collector of Lucene](https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/search/TopDocsCollector.html) has a field `totalHits` to describe the total number of documents that the collector encountered.
+The key purpose is to eliminate the bias between the lower-bound and upper-bound estimation. After that, compared with origin approach (i.e., `round_estimate` in  `roundestimate.h`), this method can return an approximate result to users. This origin approach is a very simple implementation. The final result is produced according to three values: `matches_upper_bound`, `matches_lower_bound` and `matches_estimated`. Those three values are all gained from a sorted index data structure (a.k.a., PostList Tree in Xapian). 
 
-Second, after understanding the introduction on the website and read some of Xapian's codes. I conclude the implementation details simply.
+The key challenge is that the estimation of different intersection between terms from an indicated query. As an instance, a query is like <term1, term2>, term1 may have several matched documents (da1, da2 ... dan) and term2 has a set of (db1, db2, ... dbn). Some documents may exist in both term1's set and term2's set. So we need to avoid the repeat count in the final estimation. Inclusion–exclusion principle can meet the requirement to calculate an approximate result.
 
-*** Implementation Details
-1. Basic implementation: The estimated total number of results will be returned by the `Xapian::MSet::get_matches_estimated()` function. This function belongs to `MSet`. The result is an approximatelly estimation of both upper bound and lower bound via `round_estimate`. 
+### Academic
 
-2. Algorithm: This returned value is based on an evaluation to ensure its upper bound and lower bound. We should assume terms occur independently of one another. The matcher will exploit various short-cuts, and calculate the result from the frequency of occurrence of the terms. The formula is like this `T1 * T2 * T3 * ... * Tn`.
+1. (Efficient Search Engine Measurements [WWW'07])[http://wwwconference.org/www2007/papers/paper753.pdf] This paper present two estimators that are able to remedy the skew introduced by approximate degrees. This estimators are based on a careful implementation of an approximate importance sampling procedure.
 
-3. Eliminate Bias: We should try to reduce the skew effect we get from assuming independence.
+2. (A Minimal Variance Estimator for the Cardinality of Big Data Set Intersection [SigKDD 17])[https://arxiv.org/pdf/1606.00996.pdf] This paper gives a maximum likelihood method to estimate the Intersection between two sets with a low IO overhead (streaming). We can gain the result through `set1 + set2 - the Intersection of set1 and set2`.
 
+### Industry
+
+[The collector of Lucene](https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/search/TopDocsCollector.html) has a field `totalHits` to describe the total number of documents that the collector encountered. I try to understand the codes from Lecene.
+
+The conclusions of the implementation details as following:
+
+### Implementation Details
+1. Basic implementation: The estimated total number of results will be returned by the `Xapian::MSet::get_matches_estimated()` function. This function belongs to `MSet`. The result is an approximate estimation of both upper bound and lower bound via `round_estimate`. This returned value is based on an evaluation to ensure its upper bound and lower bound. We should assume terms occur independently of one another. The matcher will exploit various short-cuts, and calculate the result from the frequency of occurrence of the terms. The formula is like this `T1 * T2 * T3 * ... * Tn`. 
+
+2. Algorithm: Assume there is a query `term1 term2`, we should get the result of `term1` and `term2` separately from `MSet` as t1 and t2. After that, we can search for the results which contain `term1` from the intersection of `term1` and `term2` as t1 & t2. For searching `term1`, the overhead is acceptable since the size of `term2` is not too large. Finally, we can calculate the final result as `t1 + t2 - t1 & t2`. Similarity, a more complex query can be disaggregated with subterms. These terms will be calculated with the same approach.
+
+3. Challenges: 
+    - Eliminate Bias: We should try to reduce the skew effect we get from assuming independence. On my mind, some of the methods include sampling and parameter tuning are efficient.
+    - Frequency terms: I aim to cache some hot results of the intersection of more than two terms. The cache approach can accelerate the processing of calculating results.
+
+### Evaluation Dataset
+
+1. https://en.wikipedia.org/wiki/AOL_search_data_leak 
+This is a intentional release of query logs.
+
+2. We hope to collect more datasets from the internet like a mirror website to provide search service for users.
+
+3. A dump data from wikipedia or other websites to generate a naive workload. 
+
+4. Several non-public research datasets which it's possible to arrange access to. Currently we have access to FIRE, and we're working on access to another one.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-The estimation of the total number of search results is well studied in the past 20 years. Especially, these techniques like sampling, random walk, and basic probability calculations make estimation become easy and accuracy.
+The estimation of the total number of search results is well studied in the past 20 years. Especially, these techniques like sampling, random walk, and basic probability calculations make estimation become easy and accuracy. From anther aspect, the sum of result of each term can be obtained from the indexed structure. Thereby, it is not hard for us to estimate the final result of the query since we only need to calculate the intersection of different terms.
 
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
 
-Another approaches is using memory cache to buffer several frequent appeared search results. However, this implementation will incur high overhead and heavy storage.
+1. Using memory cache to buffer several frequent appeared search results. However, this implementation will incur high overhead and heavy storage.
+2. Some sampling algorithm will strength the accurary of the results. However, after dicussion with one of the contributor, this approach will increase the complexity of Xapian. 
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
@@ -232,7 +252,7 @@ Add corresponding API documentation about the total number of search results est
 
 Week 2: 06.03-06.10
 
-Design algorithm and formalize the algorithm
+Design algorithm and formalize the algorithm, and discuss with mentors to validate its correctness.
 
 Week 3: 06.10-06.17
 
@@ -240,17 +260,17 @@ Implement a beta version according to the algorithm.
 
 Week 4: 06.17-06.24
 
-Make changes according to the suggestions from mentors and submit the final pull request.
+Add extra APIs in MSet to support estimation. Make changes according to the suggestions from mentors and submit the final pull request.
 
 -- Evaluation Round 1 --
 
 Week 5: 06.24-07.01
 
-Benchmark and Test
+Do benchmarks and tests. Conclude the experiment results. 
 
 Week 6: 07.01-07.08
 
-Choose the best approach which will be reserved in Xapian
+Choose the best approach which will be reserved in Xapian. Discuss with menters to ensure its effect.
 
 Week 7: 07.08-07.15
 
@@ -272,11 +292,11 @@ Tune algorithms to get a higher performance.
 
 Week 11: 08.05-08.12
 
-Issue bugs and discuss the future works.
+Issue bugs and discuss the future works. Document some un-issued problems.
 
 Week 12: 08.12-08.19
 
-Write documents & Code Review.
+Write documents & Final Code Review.
 
 Week 13: 08.19-08.26
 

@@ -86,7 +86,7 @@ majoring in computer science. I have always wanted to be a great developer
 and use my code to make the world a little better since the first day I learnt 
 programming. I'm also passionate about challenges and solving problems.
 
-When I first heard of the concept of open source, I thought it is 
+When I first heard of the concept of open source, I thought it was 
 super cool. I belive that computer science has been changing the world at a 
 tremendous speed ever because many developers keep an open mind and are willing 
 to share their thoughts with others. GSoC provides me with a chance to make 
@@ -140,7 +140,7 @@ I've taken some relevant courses in school, including but not limited to:
 
 * OS: Ubuntu 18.04 LTS
 * Editor: VSCode
-* Version Control: git
+* Version Control: Git
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
@@ -154,7 +154,7 @@ UTC +8.
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-Yes, I don't have other arrangement this summer.
+Yes, I don't have other arrangement.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -188,7 +188,7 @@ search engine and can provide a highly valuable source of relevance
 information. Compare to editorial labels, clicks are much cheaper to obtain 
 and always reflect current relevance.
 
-I believe with a better click model and multiple model choices , 
+I believe with a better click model and multiple model choices, 
 Xapian will provide better service for users.
 
 **Who will benefit from your project and in what ways?**
@@ -197,10 +197,10 @@ Xapian will provide better service for users.
 .. do and how your project will improve things for them.
 
 A simplified Dynamic Bayesian Network click model has been implemented from the 
-previous GSoC work. My work will focus on improving the user experience 
+previous GSoC work. My work will focus on further improving the user experience 
 by making the search result more personalized and satisfying. I believe 
 multiple well-performed click models and a detailed documentation will provide
-the users with more freedom and more personalized choices.
+the users with more freedom for choices.
 
 
 Project Details
@@ -215,14 +215,35 @@ Learning to Rank training data <https://trac.xapian.org/wiki/GSoC2017/LetorClick
 
 **Phase 1: Implementing Click Models**
 
-The previous work has implemented the simplified DBN model for clickstream mining. 
-I plan to finish the EM algorithm in order to get a better performance.
+The previous work has implemented `the simplified DBN model <https://dl.acm.org/citation.cfm?id=1526711>`_ 
+for clickstream mining. I plan to finish the EM algorithm in order to get a better performance.
 
 
 Besides DBN model, I will implement two more click models, `the Dependent click Model 
 (DCM) <https://dl.acm.org/citation.cfm?id=1498818>`_ and `the User Browsing Model (UBM) 
 <https://dl.acm.org/citation.cfm?id=1390392>`_. Both two are also highly 
-effective to improve document ranking. 
+effective to improve document ranking.
+
+\newpage
+
+.. figure:: DBN.png
+   :scale: 50 %
+   :alt: DBN
+
+   The Dynamic Bayesian Network (DBN) Model
+
+.. figure:: DCM.png
+   :scale: 50 %
+   :alt: DCM
+
+   The Dependent Click Model (DCM)
+
+.. figure:: UBM.png
+   :scale: 50 %
+   :alt: UBM
+
+   The User Browsing Model (UBM)
+
 
 I will first work on an abstract class for all click models and then try to implement 
 each model according to relevant papers. 
@@ -237,7 +258,7 @@ likely to continue to work on this area would need a deeper comprehension of the
 implementation of all click models. 
 
 For most Omega users, I believe the documentation should focus on the whole process from 
-generating the training data to the re-ranking command of Omega. It should clarify what 
+generating the training data to the re-ranking in Omega. It should clarify what 
 to do during each part and a detailed example will be of great help. A 
 high-level description of click models will work. I will continue to work on the clickmodel.rst in the 
 Omega documentation files.

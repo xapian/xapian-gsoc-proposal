@@ -203,7 +203,14 @@ I tried using -builtin function and written few testcases to test the difference
 **What other approaches to have your considered, and why did you reject those in
 favour of your chosen approach?**
 
-The only part in my project which can have different approaches is for the trac issue #263. There are two approaches which Olly has suggested Either: doxy2swig.py should combine the comments for all the possible overloaded forms, or we should provide manually written overrides for all cases where these forms exist. I'll go with the former one as it will be much easier to combine the comments and show them.
+The only part in my project which can have different approaches is for the trac issue #263. There are two approaches which Olly has suggested Either: doxy2swig.py should combine the comments for all the possible overloaded forms, or we should provide manually written overrides for all cases where these forms exist. 
+
+There's another potential option for this now - SWIG has fairly recently gained the ability to pick up doxygen-format documentation comments from the headers it is parsing and output them in the generated Python wrappers.
+
+So I think I can try the last one suggested by Olly, it will be much easier of implement that and check how it compares to doxy2swig.py
+
+
+Again, for the PyPy part, extending swig for PyPy will take so much time as suggested by James. So, wrapping a C++ library for PyPy is the option which is preferred by me.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
@@ -267,8 +274,8 @@ Project Timeline
 Overview:
 	| First 2 weeks : Modify to use swig's -builtin function
 	| 3rd week : working on issue #263 (https://trac.xapian.org/ticket/263)
-	| 4th - 8th week : Adding support for PyPy
-	| 9th - 12th week : Adding PyPI package for Python bindings
+	| 4th - 9th week : Adding support for PyPy
+	| 10th - 12th week : Adding PyPI package for Python bindings
 
 May 6 - May 27 (Community Bonding Period)
 
@@ -302,30 +309,49 @@ Week 3: June 10 - June 16
 	- Merge the changed file
 
 
-Week 4: June 17 - June 23 and Week 5: June 24 - June 30
+Week 4: June 17 - June 23, Week 5: June 24 - June 30 and Week 6: July 1 - July 7
+
+	
+	- Create module 'Xapian' to import from PyPy 
+		- Get familiar with Xapian’s C++ API
+		- Wrapping a C++ library for PyPy (The main task)
+	- The wrappers which needs to be written :
+		- Database
+		- Document
+		- Enquire
+		- Query
+		- RSet
+		- Stem
+		- TermGenerator
+	- Take help from references of other language bindings :
+		- Erlang		
+		| Available from: https://github.com/arcusfelis/xapian-erlang-bindings/#readme
+
+		- Node.js		
+		| Available from: https://github.com/mtibeica/node-xapian#readme
 
 
-	- Create module 'Xapian' to import from PyPy
+
+Week 7: July 8 - July 14 and Week 8: July 15 - July 21
+
+
+	- Buffer for previous work (if any)
 	- Create Makefiles for PyPy to get easily installed with other language bindings
 	- Write testsuite
-
-
-Week 6: July 1 - July 7
-
-
 	- Figure out and write testcases for smoketest
+		- The objects are not freed instantly in PyPy when they are no longer reachable. This might reach OS's limit on number of concurrent files opened.
+		- In many corner cases, CPython can silently swallow exceptions.
+		- CPython has an optimization that can make repeated string concatenation not quadratic but we'll have to modify that for PyPy
 	- Create smoketest file
 
-
-Week 7: July 8 - July 14
-
-
-	- Documentation for Pypy bindings
 
 
 Week 8: July 15 - July 21
 
 
+	- Documentation for Pypy bindings
+		- Without documenting the bindings, they aren't likely to be useful to anyone else
+		- Add few example cases where there is much difference in PyPy compared to CPython
 	- Add example codes with proper comments in Documentation
 	- Merge the newly created PyPy bindings 
 
@@ -339,7 +365,8 @@ Week 9: July 22 - July 28
 
 Week 10: July 29 - August 4
 
-
+	- Buffer for previous work (if any)
+		- This week has less task as PyPy bindings can take more time than assumed
 	- Create readme file
 	- Discuss and create licence.md file
 	- Generate distribution archive
@@ -350,15 +377,17 @@ Week 11: August 5 - August 11
 
 
 	- Install and test the newly uploaded package into virtualenv with different version of Python
-	- Test and fix bugs (if any)
 	- Discuss the credentials and register at pypi.org for twine upload as the uploaded generation archive remains temporary
+	- Test and fix bugs (if any)
+		- Testing requires significant amount of time here
 
 
 Week 12: August 12 - August 18
 
 
-	- Finally, execution of "pip install xapian" into the virtualenv with different versions
-	- Documentation of PyPI package
+	- Finally, execution of "pip install xapian" into the virtualenv
+	- Documentation of the PyPI package 
+		- Good documentation with proper usage examples needs significant time.
 
 
 Final Evaluations: August 19 - August 26

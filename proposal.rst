@@ -399,9 +399,22 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
+Non-Xapian Code : 
+
+- As of now, there is no direct external library that will be part of this. However while developing advanced tools for reporting system (specifically the front-end to show charts and figure) I plan to setup a small web-server probably Flask for quick setup, or an Omega front-end indexing server. So to summarise external portions could be Flask, Docker(for my testing) and apache (For Omega cgi, not external entirely).
+
+- For visualisations, python is the best bet for beginning and its corresponding libraries of seaborn, matplotlib and other data manipulating libs such as numpy,pandas etc. 
+
+- For NLP oriented problem, for instance I have code from one my courses for the Language model which I stated above can be used as a evaluation metric for stemming. 
+
+- For Web-server problems, I made a simple django website (some back-end and minimal front-end) as one of independent projects. I remember its outline at bigger level, and can see to integrate parts of the reporting system (Also django has plugins for dashboard from third-party so that could be a possibility also.).
+
+- For theoretical understanding of algorithms, best resources are research papers as pointed out in GSOC Ideas page or on the individual Journal page of people who worked on specific algorithm (Like one for clustering).
+
+Xapian code to begin with : 
+
 I have cited the code-base references (folders, git-repo) above as they were relevant to the context. However still for my background research I went through all documentation on Xapian docs (from xapian-docsprint), Omega (Overview and few other ones), Letor(the ML workflow), Yahoo and Letor research paper(to understand ML theory including dataset-creation , feature-selection)
 
-Still, 
 
 - weight-scheme algorithm definition : xapian-core/weight
 - weight-scheme algorithm calling API : xapian-core/bin/*

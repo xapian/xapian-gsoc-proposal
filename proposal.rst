@@ -61,27 +61,29 @@
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
+Gsoc Proposal for Xapian
 ======================================
 
 About You
 =========
 
- * Name: FILLME
+ * Name: Andelrahman Atef Mohamed
 
- * E-mail address: FILLME
+ * E-mail address: boda998@yahoo.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): Boda
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: https://www.facebook.com/boda.sadala
 
- * github URL: FILLME
+ * github URL: https://github.com/BodaSadalla98
 
  * Biography:
 
 .. Tell us a bit about yourself.
 
-FILLME
+Hey, I am Boda, Computer Engineering student from Egypt.
+I have a great passion for Competitve programming, I have praticipated in many 'ACM <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>' contests
+Last year we came in third in local contest and qualified to next round.
 
 Background Information
 ----------------------
@@ -101,39 +103,44 @@ FILLME
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+I haven't used Xapian before to be honest.
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+There was a small project which is a ' command line interface to spotify on Linux <https://github.com/pwittchen/spotify-cli-linux/>'
+which is written in python3, and it uses a 'python2 api <https://github.com/enricobacis/lyricwikia/>' to get songs lyrics, but the two 
+didn't build for me due to combatibility issues, so I 'adapted them and get them to fully work <https://github.com/BodaSadalla98/spotify-cli-linux/>'
+
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+In college we took many Sofrware related Courses, starting from MIPS processors and its assembly, c, c++, OOP with c++, DS and algorithms.
+I have dived a little bit deeper in DS and algorithms due to my interest in compettive programming.
+
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+Right now, I develope on Ubuntu, I use vscode and geany.
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+I have worked on many projects, but not related to information retreval nor idexed search.
 
 **What timezone will you be in during the coding period?**
 
-FILLME
+GMT+2
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-FILLME
+Yes.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
-FILLME
+Sunday-Thursday 8am-6pm UTC.
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -142,7 +149,7 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+I am not, this is the only project I am applying to, and I have gave it all my interest.
 
 Your Project
 ============

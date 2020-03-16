@@ -1,27 +1,27 @@
 .. This document is written in reStructuredText, a simple and unobstrusive
 .. markup language.  For an introduction to reStructuredText see:
-.. 
+..
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-.. 
+..
 .. Lines like this which start with `.. ` are comments which won't appear
 .. in the generated output.
-.. 
+..
 .. To apply for a GSoC project with Xapian, please fill in the template below.
 .. Placeholder text for where you're expected to write something says "FILLME"
 .. - search for this in the generated PDF to check you haven't missed anything.
-.. 
+..
 .. See our GSoC Project Ideas List for some suggested project ideas:
 .. https://trac.xapian.org/wiki/GSoCProjectIdeas
 ..
 .. You are also most welcome to propose a project based on your own ideas.
-.. 
+..
 .. From experience the best proposals are ones that are discussed with us and
 .. improved in response to feedback.  You can share draft applications with
 .. us by forking the git repository containing this file, filling in where
 .. it says "FILLME", committing your changes and pushing them to your fork,
 .. then opening a pull request to request us to review your draft proposal.
 .. You can do this even before applications officially open.
-.. 
+..
 .. IMPORTANT: Your application is only valid is you upload a PDF of your
 .. proposal to the GSoC website at https://summerofcode.withgoogle.com/ - you
 .. can generate a PDF of this proposal using "make pdf".  You can update the
@@ -29,7 +29,7 @@
 .. leave it until the last minute to upload a version.  The deadline is
 .. strictly enforced by Google, with no exceptions no matter how creative your
 .. excuse.
-.. 
+..
 .. If there is additional information which we haven't explicitly asked for
 .. which you think is relevant, feel free to include it. For instance, since
 .. work on Xapian often draws on academic research, it's important to cite
@@ -37,26 +37,26 @@
 .. 'algorithm X is considered to perform better than algorithm Y') and to show
 .. which ideas underpin your project, and how you've had to develop them
 .. further to make them practical for Xapian.
-.. 
+..
 .. You're welcome to include diagrams or other images if you think they're
 .. helpful - for how to do this see:
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#images
-.. 
+..
 .. Please take care to address all relevant questions - attention to detail
 .. is important when working with computers!
-.. 
+..
 .. If you have any questions, feel free to come and chat with us on IRC, or
 .. send a mail to the mailing lists.  To answer a very common question, it's
 .. the mentors who between them decide which proposals to accept - Google just
 .. tell us HOW MANY we can accept (and they tell us that AFTER student
 .. applications close).
-.. 
+..
 .. Here are some useful resources if you want some tips on putting together a
 .. good application:
-.. 
+..
 .. "Writing a Proposal" from the GSoC Student Guide:
 .. https://google.github.io/gsocguides/student/writing-a-proposal
-.. 
+..
 .. "How to write a kick-ass proposal for Google Summer of Code":
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
@@ -82,7 +82,7 @@ About You
 .. Tell us a bit about yourself.
 
 Hey, I am Boda, Computer Engineering student from Egypt.
-I have a great passion for Competitve programming, I have praticipated in many 'ACM <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>' contests
+I have a great passion for Competitve programming, I have praticipated in many _ACM: https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest contests
 Last year we came in third in local contest and qualified to next round.
 
 Background Information
@@ -109,7 +109,7 @@ I haven't used Xapian before to be honest.
 other than Xapian.**
 
 There was a small project which is a ' command line interface to spotify on Linux <https://github.com/pwittchen/spotify-cli-linux/>'
-which is written in python3, and it uses a 'python2 api <https://github.com/enricobacis/lyricwikia/>' to get songs lyrics, but the two 
+which is written in python3, and it uses a 'python2 api <https://github.com/enricobacis/lyricwikia/>' to get songs lyrics, but the two
 didn't build for me due to combatibility issues, so I 'adapted them and get them to fully work <https://github.com/BodaSadalla98/spotify-cli-linux/>'
 
 
@@ -205,7 +205,7 @@ Project Timeline
 .. week long, or else you won't be able to realistically judge how long
 .. they might take.  Even a week is too long really.  Try to break larger
 .. tasks down into sub-tasks.
-.. 
+..
 .. The timeline helps both you and us to know what you should do next, and how
 .. on track you are.  Your plan certainly isn't set in stone - as you work on
 .. your project, it may become clear that it is better to work on aspects in a
@@ -213,7 +213,7 @@ Project Timeline
 .. scope of the project may need to be adjusted.  If you think that's the
 .. case during the project, it's better to talk to us about it sooner rather
 .. than later.
-.. 
+..
 .. You should strive to break your project down into a series of stages each of
 .. which is in turn divided into the implementation, testing, and documenting of
 .. a part of your project. What we're ideally looking for is for each stage to
@@ -223,10 +223,10 @@ Project Timeline
 .. you've structured your project that way. It also allows us to reliably
 .. determine your progress, and should be more satisfying for you - you'll be
 .. able to see that you've achieved something useful much sooner!
-.. 
+..
 .. Look at the dates in the timeline:
 .. https://summerofcode.withgoogle.com/how-it-works/
-.. 
+..
 .. There are about 3 weeks of "community bonding" after accepted students are
 .. announced.  During this time you should aim to complete any further research
 .. or other issues which need to be done before you can start coding, and to
@@ -235,13 +235,13 @@ Project Timeline
 .. and/or exams in this time, so we certainly aren't expecting full time work
 .. on your project, but you should aim to complete preliminary work such that
 .. you can actually start coding at the start of the coding period.
-.. 
+..
 .. The coding period is broken into three blocks of about 4 weeks each, with
 .. an evaluation after each block.  The evaluations are to help keep you on
 .. track, and consist of brief evaluation forms sent to GSoC by both the
 .. student and the mentor, and a chance to explicitly review how your project
 .. is going with Xapian mentors.
-.. 
+..
 .. If you will have other commitments during the project time (for example,
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.

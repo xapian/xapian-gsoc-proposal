@@ -81,11 +81,10 @@ About You
 
 
 like Python_.
-.. _Python: http://www.python.org/
+..  _Python: http://www.python.org/
+
 .. Tell us a bit about yourself.
 
-`Python
-<http://www.python.org/>`_.
 
 Hey, I am Boda, Computer Engineering student from Egypt.
 I have a great passion for Competitve programming, I have praticipated in many _ACM: https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest contests

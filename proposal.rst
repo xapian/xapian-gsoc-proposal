@@ -79,6 +79,9 @@ About You
 
  * Biography:
 
+
+like Python_.
+.. _Python: http://www.python.org/
 .. Tell us a bit about yourself.
 
 `Python

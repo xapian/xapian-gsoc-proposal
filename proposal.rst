@@ -61,7 +61,7 @@
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-Gsoc Proposal for Xapian
+Improve estimated total number of results
 ======================================
 
 About You
@@ -80,15 +80,11 @@ About You
  * Biography:
 
 
-like Python_.
-..  _Python: http://www.python.org/
 
-.. Tell us a bit about yourself.
-
-
-Hey, I am Boda, Computer Engineering student from Egypt.
-I have a great passion for Competitve programming, I have praticipated in many _ACM: https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest contests
-Last year we came in third in local contest and qualified to next round.
+	Hey, I am Boda, Computer Engineering student from Egypt.
+	I have a great passion for Competitve programming, I have praticipated in many
+	`ACM  <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>`_.  contests
+	Last year we came in third in local contest and qualified to next round.
 
 Background Information
 ----------------------
@@ -103,25 +99,32 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+No, I haven't.
+
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-I haven't used Xapian before to be honest.
+My first encounter with Xapian was when I installed xapian to index search results on synaptic package manger.
+After I grew interest to take part in Xapian project for Gsoc, I started by building xapian and getting familiar with the code base.
+I started working on adding `two new range operators <https://github.com/xapian/xapian/pull/289/>`_ (OP_VALUE_LT and OP_VALUE_GT), then I built two new testcases for them, and once these
+changes commited, I will start on writing a documentation for them.
+I also added a `minor optimization <https://github.com/xapian/xapian/commit/3c56e5db5b8f3696fd8f311793c62921eb413ef8/>`_ for "OP_VALUE_GE".
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-There was a small project which is a ' command line interface to spotify on Linux <https://github.com/pwittchen/spotify-cli-linux/>'
-which is written in python3, and it uses a 'python2 api <https://github.com/enricobacis/lyricwikia/>' to get songs lyrics, but the two
-didn't build for me due to combatibility issues, so I 'adapted them and get them to fully work <https://github.com/BodaSadalla98/spotify-cli-linux/>'
+There was a small project which is a `command line interface for spotify on Linux <https://github.com/pwittchen/spotify-cli-linux/>`_
+which is written in python3, and it uses a `python2 api <https://github.com/enricobacis/lyricwikia/>`_ to get songs lyrics, but the two
+didn't build for me due to combatibility issues, so I `adapted them and get them to fully work <https://github.com/BodaSadalla98/spotify-cli-linux/>`_.
 
+
+|
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-In college we took many Sofrware related Courses, starting from MIPS processors and its assembly, c, c++, OOP with c++, DS and algorithms.
+In college we took many Software related Courses, starting from MIPS processors and its assembly, c, c++, OOP with c++, DS and algorithms.
 I have dived a little bit deeper in DS and algorithms due to my interest in compettive programming.
 
 
@@ -145,7 +148,7 @@ Yes.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
-Sunday-Thursday 8am-6pm UTC.
+Sunday-Thursday 8am-4pm UTC.
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -154,7 +157,7 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-I am not, this is the only project I am applying to, and I have gave it all my interest.
+I am not, this is the only project I am applying to this year!
 
 Your Project
 ============
@@ -164,14 +167,16 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+As I worked on implementing `new operators <https://github.com/xapian/xapian/pull/289/>`_, I got more familiar with operators, and queryinternal
+code. Also, This project is more suitable for me, as I prefer working on backend stuff.
 
 **Who will benefit from your project and in what ways?**
+
+Pretty much anyone uses Xapian, as giving more accurate estimation for the number of the matches, can help in many ways.
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
 
 Project Details
 ---------------
@@ -180,30 +185,75 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+
+I am still trying to see if we can utilize the N-gram algorithm to help on this task.
+
+
+.. **MY research so far**
+.. https://docs.google.com/document/d/1yXdnAhtNKWcODLLBy2hB2pluQ2nr3EfZJP2_F1XIpDs/edit
+
+
+
+
+
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+There's approach addressed in a `patch <https://oligarchy.co.uk/xapian/patches/docid-ranges-in-matcher.patch/>`_ by Olly,
+that make use of the fact that we have the ids for the first and last documents now.
+Example: for the "MultiAndPostList", we would mutiply the probability of each term independantly, and we would do that by
+divide the term frequnecy(from term_freq_est() function) by the database size. But now we can get the range from the first docid to the last docid
+(last - first +1), and we use that range instead of the whole database size.
+
+As for now, I am trying to come by a better approach for this task.
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+
+To store the count of term pairs in the database, but this can pretty huge
+(ie 10k terms would be (10k C 2) entries which around 50 million).
+This would give us an accurate number of the results, but it can grow exponentially
+and take huge space.
+
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+I am still not sure if we can come up with better approach. Or how better the result would be for approach using the first and last doc ids
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+It would still produce better estimates as we reduced the number of documents we divide by.
 
 Project Timeline
 ----------------
+
+Three Weeks of Bonding:
+
+ Get more familiar with the code base, especially the Matcher code.
+
+ Build some tests on debug mode to see how functions are invoked.
+
+ Search more for ways to tackle this task.
+
+Two Weeks: Working on OP_AND, OP_OR, and OP_AND_NOT (Code, testing, and doumentation)
+
+One and half Week: Working on OP_XOR,and OP_AND_MAYBE (Code, testing, and doumentation.)
+
+Two Weeks: Working on OP_FILTER, OP_NEAR, and OP_PHRASE (Code, testing, and doumentation.)
+
+Two Weeks: Working on OP_VALUE_RANGE, OP_VALUE_LE, OP_VALUE_LT, OP_VALUE_GE, and OP_VAUE_GT (Code, testing, and doumentation).
+
+Two Weeks: Working on OP_SCALE_WEIGHT,and OP_ELITE_LIST (Code, testing, and doumentation.)
+
+One Weeks: Working on OP_SYNONYM,and OP_MAX (Code, testing, and doumentation.)
+
+One Weeks: Working on OP_WILDCARD,and OP_INVALID (Code, testing, and doumentation.)
+
+This could be done in a shorter amount of time. If so, i can start work on other projects.
 
 .. We want you to think about the order you will work on your project, and
 .. how long you think each part will take.  The parts should be AT MOST a
@@ -251,7 +301,6 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
 
 Previous Discussion of your Project
 -----------------------------------
@@ -261,7 +310,7 @@ Previous Discussion of your Project
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
 
-FILLME
+I discussed it with Olly and James on IRC channel
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -273,7 +322,7 @@ For the avoidance of doubt this includes all contributions to our wiki, mailing
 lists and documentation, including anything you write in your project's wiki
 pages.
 
-FILLME
+I do!
 
 .. For more details, including the rationale for this with respect to code,
 .. please see the "Licensing of patches" section in the "HACKING" document:
@@ -285,7 +334,7 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
-FILLME
+I don't know yet.
 
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies

@@ -8,3 +8,9 @@ https://raw.githubusercontent.com/xapian/xapian-gsoc-proposal/master/proposal.rs
 
 In particular, you should note that it is much easier for us to provide feedback on proposals
 if you open a pull request in github, rather than simply pushing commits to your fork.
+
+When writing your application, please ensure you've read our guidance:
+
+https://trac.xapian.org/wiki/GSoC%20Guide
+
+in particular the section on writing your proposal.

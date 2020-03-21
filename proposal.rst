@@ -38,6 +38,14 @@
 .. which ideas underpin your project, and how you've had to develop them
 .. further to make them practical for Xapian.
 ..
+
+.. For academic research, it's helpful to include a URL if the paper is
+.. freely available online (via an author's website or preprint server,
+.. for instance). Not all Xapian contributors have free access to academic
+.. publishers. You should still provide all the normal information used
+.. when citing academic papers.
+.. 
+
 .. You're welcome to include diagrams or other images if you think they're
 .. helpful - for how to do this see:
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#images
@@ -139,16 +147,48 @@ I have worked on many projects, but not related to information retreval nor idex
 
 **What timezone will you be in during the coding period?**
 
-GMT+2
+
+GMT+2, Cairo,Egypt
+
+.. Please give at least the offset from GMT, but ideally also the timezone
+.. name so we aren't surprised by any differences around daylight savings
+.. time, which don't all line up in different parts of the world.
+
+
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
+
 Yes.
+
+
+
+.. It need not be a problem to have other commitments during Summer of Code,
+.. but if we don't know about them in advance we can't make sure you have
+.. the support you need.
+
+
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
+.. A common mistake is to think you can work a huge number of hours per week
+.. for the entire duration of Summer of Code. If you try, you run the risk of
+.. making yourself exhausted or ill, which may mean you are unable to keep
+.. working right the way through. It's important to take good care of
+.. yourself. Make sure you leave adequate time for other commitments, as well
+.. as for eating, exercising, sleeping and socialising. Summer of Code
+.. doesn't have to take over your life; it's better to think of it as you
+.. would a job, leaving time to do other things.
+..
+.. If you have commitments for particular periods of Summer of Code, such as
+.. exams or personal or family events, then please note in your timeline
+.. (further down) when you'll be unable to work on your project. Providing
+.. these are few, it is usually possible to get enough done across Summer of
+.. Code to make for a worthwhile project.
+
 Sunday-Thursday 8am-4pm UTC.
+
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -309,6 +349,10 @@ Previous Discussion of your Project
 .. link to the discussion in the list archives.  If you've discussed it on
 .. IRC, please say so (and the IRC handle you used if not the one given
 .. above).
+..
+.. One of the things we've discovered sets apart many of the best applications
+.. is that the students in question have discussed the project with us before
+.. submitting their proposal.
 
 I discussed it with Olly and James on IRC channel
 
@@ -324,9 +368,12 @@ pages.
 
 I do!
 
+
 .. For more details, including the rationale for this with respect to code,
-.. please see the "Licensing of patches" section in the "HACKING" document:
-.. https://trac.xapian.org/browser/git/xapian-core/HACKING#L1399
+.. please see the "License grant" section of our developer guide:
+.. https://xapian-developer-guide.readthedocs.io/en/latest/contributing/contributing-changes.html#license-grant
+
+
 
 Use of Existing Code
 --------------------
@@ -334,7 +381,9 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
+
 I don't know yet.
+
 
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies

@@ -39,14 +39,22 @@
 .. further to make them practical for Xapian.
 ..
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 4796b82fbb1bae0c98771cd84755919605805518
 .. For academic research, it's helpful to include a URL if the paper is
 .. freely available online (via an author's website or preprint server,
 .. for instance). Not all Xapian contributors have free access to academic
 .. publishers. You should still provide all the normal information used
 .. when citing academic papers.
-.. 
+..
+<<<<<<< HEAD
 >>>>>>> c9ae48fb18ba96274483bb4ef645efb1fe67b330
+=======
+
+>>>>>>> 4796b82fbb1bae0c98771cd84755919605805518
 .. You're welcome to include diagrams or other images if you think they're
 .. helpful - for how to do this see:
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#images
@@ -148,31 +156,30 @@ I have worked on many projects, but not related to information retreval nor idex
 
 **What timezone will you be in during the coding period?**
 
-<<<<<<< HEAD
-GMT+2
-=======
+
+
+GMT+2, Cairo,Egypt
+
+
 .. Please give at least the offset from GMT, but ideally also the timezone
 .. name so we aren't surprised by any differences around daylight savings
 .. time, which don't all line up in different parts of the world.
 
-FILLME
->>>>>>> c9ae48fb18ba96274483bb4ef645efb1fe67b330
+
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-<<<<<<< HEAD
 Yes.
 
-**Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
-Sunday-Thursday 8am-4pm UTC.
-=======
+
+
 .. It need not be a problem to have other commitments during Summer of Code,
 .. but if we don't know about them in advance we can't make sure you have
 .. the support you need.
 
-FILLME
+
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -191,8 +198,8 @@ FILLME
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-FILLME
->>>>>>> c9ae48fb18ba96274483bb4ef645efb1fe67b330
+
+Sunday-Thursday 8am-4pm UTC.
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -370,16 +377,15 @@ For the avoidance of doubt this includes all contributions to our wiki, mailing
 lists and documentation, including anything you write in your project's wiki
 pages.
 
-<<<<<<< HEAD
+
 I do!
 
-=======
->>>>>>> c9ae48fb18ba96274483bb4ef645efb1fe67b330
+
 .. For more details, including the rationale for this with respect to code,
 .. please see the "License grant" section of our developer guide:
 .. https://xapian-developer-guide.readthedocs.io/en/latest/contributing/contributing-changes.html#license-grant
 
-FILLME
+
 
 Use of Existing Code
 --------------------
@@ -387,16 +393,12 @@ Use of Existing Code
 **If you already know about existing code you plan to incorporate or libraries
 you plan to use, please give details.**
 
-<<<<<<< HEAD
+
 I don't know yet.
 
-=======
->>>>>>> c9ae48fb18ba96274483bb4ef645efb1fe67b330
 .. Code reuse is often a desirable thing, but we need to have a clear
 .. provenance for the code in our repository, and to ensure any dependencies
 .. don't have conflicting licenses.  So if you plan to use or end up using code
 .. which you didn't write yourself as part of the project, it is very important
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
-
-FILLME

@@ -38,23 +38,16 @@
 .. which ideas underpin your project, and how you've had to develop them
 .. further to make them practical for Xapian.
 ..
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> 4796b82fbb1bae0c98771cd84755919605805518
+
 .. For academic research, it's helpful to include a URL if the paper is
 .. freely available online (via an author's website or preprint server,
 .. for instance). Not all Xapian contributors have free access to academic
 .. publishers. You should still provide all the normal information used
 .. when citing academic papers.
 ..
-<<<<<<< HEAD
->>>>>>> c9ae48fb18ba96274483bb4ef645efb1fe67b330
-=======
 
->>>>>>> 4796b82fbb1bae0c98771cd84755919605805518
+
 .. You're welcome to include diagrams or other images if you think they're
 .. helpful - for how to do this see:
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#images
@@ -100,8 +93,9 @@ About You
 
 	Hey, I am Boda, Computer Engineering student from Egypt.
 	I have a great passion for Competitve programming, I have praticipated in many
-	`ACM  <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>`_.  contests
-	Last year we came in third in local contest and qualified to next round.
+	`ACM  <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>`_ contests
+	Last year we came in third in local contest and qualified to next round. I praticipated in Google Hash Code this year, and came in #31 on Egypt.
+
 
 Background Information
 ----------------------
@@ -141,9 +135,12 @@ didn't build for me due to combatibility issues, so I `adapted them and get them
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-In college we took many Software related Courses, starting from MIPS processors and its assembly, c, c++, OOP with c++, DS and algorithms.
-I have dived a little bit deeper in DS and algorithms due to my interest in compettive programming.
+I took many Software related Courses in college like:
 
+	* MIPS processor and its assembly.
+ 	* c, c++, OOP with c++. I did some college projects like `Equations-solver <https://github.com/BodaSadalla98/Equations-Solver/>`_.
+	* Data structures and algorithms.
+	I have dived a little bit deeper in DS and algorithms due to my interest in compettive programming.
 
 **What development platforms, tools and methods do you prefer to use?**
 
@@ -237,15 +234,8 @@ Project Details
 **Describe any existing work and concepts on which your project is based.**
 
 
-I am still trying to see if we can utilize the N-gram algorithm to help on this task.
-
-
-.. **MY research so far**
-.. https://docs.google.com/document/d/1yXdnAhtNKWcODLLBy2hB2pluQ2nr3EfZJP2_F1XIpDs/edit
-
-
-
-
+I am still trying to see if we can utilize the N-gram algorithm to help on this task.I made a google `doc <https://docs.google.com/document/d/1yXdnAhtNKWcODLLBy2hB2pluQ2nr3EfZJP2_F1XIpDs/edit
+/>`_ that I keep updated with results I reached so far.
 
 
 **Do you have any preliminary findings or results which suggest that your
@@ -282,27 +272,32 @@ It would still produce better estimates as we reduced the number of documents we
 Project Timeline
 ----------------
 
-Three Weeks of Bonding:
+* Three Weeks of Bonding:
 
- Get more familiar with the code base, especially the Matcher code.
+ 	* Get more familiar with the code base, especially the Matcher code.
 
- Build some tests on debug mode to see how functions are invoked.
+ 	* Build some tests on debug mode to see how functions are invoked.
 
- Search more for ways to tackle this task.
+ 	* Search more for ways to tackle this task.
 
-Two Weeks: Working on OP_AND, OP_OR, and OP_AND_NOT (Code, testing, and doumentation)
+* Two Weeks: Working on OP_AND, OP_OR, and OP_AND_NOT (Code, testing, and doumentation)
 
-One and half Week: Working on OP_XOR,and OP_AND_MAYBE (Code, testing, and doumentation.)
 
-Two Weeks: Working on OP_FILTER, OP_NEAR, and OP_PHRASE (Code, testing, and doumentation.)
+* One and half Week: Working on OP_XOR,and OP_AND_MAYBE (Code, testing, and doumentation.)
 
-Two Weeks: Working on OP_VALUE_RANGE, OP_VALUE_LE, OP_VALUE_LT, OP_VALUE_GE, and OP_VAUE_GT (Code, testing, and doumentation).
 
-Two Weeks: Working on OP_SCALE_WEIGHT,and OP_ELITE_LIST (Code, testing, and doumentation.)
+10 June : Final exams (this is an estimate,official schedule isn't announced yet.)
 
-One Weeks: Working on OP_SYNONYM,and OP_MAX (Code, testing, and doumentation.)
 
-One Weeks: Working on OP_WILDCARD,and OP_INVALID (Code, testing, and doumentation.)
+* Two Weeks: Working on OP_FILTER, OP_NEAR, and OP_PHRASE (Code, testing, and doumentation.)
+
+* Two Weeks: Working on OP_VALUE_RANGE, OP_VALUE_LE, OP_VALUE_LT, OP_VALUE_GE, and OP_VAUE_GT (Code, testing, and doumentation).
+
+* Two Weeks: Working on OP_SCALE_WEIGHT,and OP_ELITE_LIST (Code, testing, and doumentation.)
+
+* One Weeks: Working on OP_SYNONYM,and OP_MAX (Code, testing, and doumentation.)
+
+* One Weeks: Working on OP_WILDCARD,and OP_INVALID (Code, testing, and doumentation.)
 
 This could be done in a shorter amount of time. If so, i can start work on other projects.
 

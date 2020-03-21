@@ -67,27 +67,28 @@
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
+GSOC 2020 - PROPOSAL
 ======================================
 
 About You
 =========
 
- * Name: FILLME
+ * Name: S SRINIVAS YADAV
 
- * E-mail address: FILLME
+ * E-mail address: vasu.srinivasvasu.14@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): srinivasyadav227
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: NIL
 
- * github URL: FILLME
+ * github URL: https://github.com/srinivasyadav18
 
  * Biography:
 
 .. Tell us a bit about yourself.
 
-FILLME
+I am srinivas , an 18 year old second year undergraduate student from Keshav Memorital Institute of Technology ,Hyderabad, India.
+I am a tech enthusiast and a person who loves sports.
 
 Background Information
 ----------------------
@@ -102,31 +103,47 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+No
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+I dont not have any previous experience with xapian or any other indexed text search.
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+There is a software Barrier,an Open source KVM Software where you can use one keyboard and mouse 
+on different computers nearby when all are connected to same network..I was trying their source code 
+and have implemented few small c programs in linux for capturing device events from one computer and 
+sending to other system in the local network with known IP address.
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+I have taken course on Machine Learning and its science applications where I have learnt the basics of machine learning 
+and deep learning and have worked with Convolutional Neural Networks and facial recongnition,
+a course on C programming and assembly language where I have learnt how C code gets compiled and 
+to use inline assembly in C for 8086 microcontroller, I am familiar with cuda and parallel programming. 
+I have worked with small scale electronics  and IoT projects(with raspberry,arduino).
+I love problem solving and I keep learning different algorithms and datastructures.
+My hobbies are playing cricket and exploring new places. 
+
+
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+I prefer Visual Studio Code when I'm learning a new language becuase it provides auto-completion and gives information like 
+what that particular class or function is about, when I get the basics I switch 
+to vim ,the editor I use for more focus , speed and accuracy. 
+I use Docker for testing in linux and recently started using Travis CI . 
+I prefer Guake terminal for fast switching between code and terminal.
+
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+No 
 
 **What timezone will you be in during the coding period?**
 
@@ -134,7 +151,7 @@ FILLME
 .. name so we aren't surprised by any differences around daylight savings
 .. time, which don't all line up in different parts of the world.
 
-FILLME
+GMT+5.30 (IST) 
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
@@ -143,7 +160,7 @@ program?**
 .. but if we don't know about them in advance we can't make sure you have
 .. the support you need.
 
-FILLME
+Yes , Summer of Code is my main focus this summer.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -162,7 +179,7 @@ FILLME
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-FILLME
+Monday–Saturday 5am-4pm UTC 
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -171,24 +188,27 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+No
 
-Your Project
-============
+Implement Bindings for Go
+==========================
 
 Motivations
 -----------
 
 **Why have you chosen this particular project?**
 
-FILLME
+My main areas of interest includes C++ and Go. They provide greater flexibility and concurrency.
+I have previously  used cgo and swig in small projects.
+So I feel I am elgible for this project.
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+As Go lang is emerging now a days rapidly and its being used in servers and distributed systems,
+providing a Go API for the people who want to use xapian search engine in thier servers would be a huge benefit. 
 
 Project Details
 ---------------
@@ -197,27 +217,32 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+I have done some intial implementation of go bindings for xapian which are available in my git repository (currently working on linux and unix systems).
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+Yes, my intial work on bindings definitly show that bindings can be implementend in go with c++ shared libraries.
+For time being they are working on Linux and Unix systems. I consider expanding them to work on other platforms is not a difficult job. 
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+Initially I was able to provide bindings after installation of the shared library on the host system
+, but then I have realised that before installing the core we need to build the bindings and I was using 
+pkg-config , later I started using flags from configure as one of my mentor (olly) suggested.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+I need to have a closer look at iterator classes of xapian for Implementing bindings in go.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+I am confident enough that the project would be implemented and completed properly on time.
+If in case some thing goes wrong , I would continue my work after GSoC timeline as I am very much 
+interested in this project and love to contribute to xapian. 
 
 Project Timeline
 ----------------
@@ -267,8 +292,69 @@ Project Timeline
 .. If you will have other commitments during the project time (for example,
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
+In this summer I would like to do three things:
 
-FILLME
+    1. Make the go bindings compatible with the xapian build system.
+
+    2.  Provide bindings in go and complete API reference (as it is provided for C++)
+        using godoc,Go lang's official documentation tool where any one can look at the 
+        documentation if they just have go installed.The user can view the xapian 
+        documentation by just running go doc xapian from the terminal or command prompt.
+        And the documentation would be providied in godoc official website 
+        and xapian.org.
+        I have divided this part of work into to 10 weeks.
+
+    3.  Provide the go get feature for using xapian bindings in go with 
+        proper guide lines regarding whether the xapian core is installed
+        or not.
+
+
+Before May 18,2020 :
+I would finish up the build system part of work for go bindings that 
+are generated purely from xapian-headers.i and xapian-head.i such that
+these can be used like any other bindings and in any platform that other xapian bindings can be used in.
+
+Each week for first 3 days I would work on provding API , that is writing swig interface 
+for the functions and classes which aren't generated from 
+existing swig interfaces(xapian-headers.i and xapian-head.i) with typemaps and other features of swig in go.i.
+Next 2 days documenting the code with examples and the last day for testing.
+I have grouped different classes for each week.
+
+
+First Month : 
+
+  Week1 :
+        Work on Document , Registry , Query , Stem implementation , Stem classes.
+  Week2 :
+        Work on PositionIterators , PostingIterator , TermTterator , ValueIterators
+        
+  Week3 :
+        Work Eset , Mset , Rset , EsetIterator , MsetIterator classes.
+       
+  Week4 :
+        Work on MatchDecider , Enquire , ExapandDecider , ExapandDeciderAnd ,
+        ExapandDeciderFilterPrefix , ExapandDeciderFilterTerms , KeyMaker ,MultiValueKeyMaker ,
+        Stopper classes.
+     
+Second Month :
+  Week5 :
+        Work on all the Derived classes on RangeProcessor.
+  Week6 :
+        Work on all Weight classes.
+  Week7 :
+        Work on all the Derived classes of Posting Source.
+  Week8 :
+        Work on all the Derived classes of Matchspy classes and classes related to Latlong.
+
+Third Month : 
+  Week9 :
+        Work on Database class.
+  Week10 :
+        Work on Exceptions.
+  Week11 :
+        Implementing go get feature.
+  Week12 :
+        Windup everything and Testing. 
 
 Previous Discussion of your Project
 -----------------------------------
@@ -282,7 +368,10 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-FILLME
+So far we have discussed mainly about the build system of xapian for bindings in go.
+And a feature, go get to install xapian-bindings.I have made a PR (https://github.com/xapian/xapian/pull/292) where one of my mentor (olly)
+suggested for somechanges
+and I have done most of it.
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -298,7 +387,7 @@ pages.
 .. please see the "License grant" section of our developer guide:
 .. https://xapian-developer-guide.readthedocs.io/en/latest/contributing/contributing-changes.html#license-grant
 
-FILLME
+Yes, I agree.
 
 Use of Existing Code
 --------------------
@@ -313,4 +402,5 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-FILLME
+I am using the existing xapian-headers.i and xapian-head.i from xapian ,
+apart from them I am not using any other.

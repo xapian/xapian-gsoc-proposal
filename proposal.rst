@@ -67,27 +67,27 @@
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
+WEIGHTING SCHEMES
 ======================================
 
 About You
 =========
 
- * Name: FILLME
+ * Name: DIPANSHU GARG
 
- * E-mail address: FILLME
+ * E-mail address: dipanshu@iitk.ac.in , dipanshugargbnl@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): dipanshu
 
  * Any personal websites, blogs, social media, etc: FILLME
 
- * github URL: FILLME
+ * github URL: dipanshu124@github.com
 
  * Biography:
 
 .. Tell us a bit about yourself.
 
-FILLME
+I am a Computer Science student of Indian Institute of Technology ,Kanpur,INDIA.I am proficient in C and C++ .As a hobby ,I practice Competitive Programming . Apart from programming, I am also very fond of Mathematics.
 
 Background Information
 ----------------------
@@ -102,31 +102,31 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+No,This is the first time.
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+Before intending to apply for gsoc,I didn't have much experience.Now I have been using Xapian since the past 2 months.I am familiar with its indexed text search and also with the implementation of current Weighting schemes(the part where I intend to work).
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+No prior experience
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+I have taken courses in C and C++ .I have also taken mathematics course in Linear Algebra and Number Theory. 
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+I use Ubuntu 18.10 as my OS .I am familiar with git and github.
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+No,this is the first time.
 
 **What timezone will you be in during the coding period?**
 
@@ -134,8 +134,7 @@ FILLME
 .. name so we aren't surprised by any differences around daylight savings
 .. time, which don't all line up in different parts of the world.
 
-FILLME
-
+IST(GMT+5:30)
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
@@ -143,7 +142,7 @@ program?**
 .. but if we don't know about them in advance we can't make sure you have
 .. the support you need.
 
-FILLME
+YES,I won't have any other major activity during the program.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -162,7 +161,7 @@ FILLME
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-FILLME
+Monday-Friday 9am-5pm IST
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -171,7 +170,7 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+NO.
 
 Your Project
 ============
@@ -181,14 +180,14 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+This project is suitable for my skills.Moreover,I am also eager to see how my search results differ on using different weighting schemes. 
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+Anybody using Xapian will have more choices regarding which weighting scheme to use .Particularly,it would be very beneficial for students of Information Retrieval their studies.
 
 Project Details
 ---------------

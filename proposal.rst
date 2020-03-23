@@ -67,27 +67,26 @@
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
+Evaluation Suite
 ======================================
 
 About You
 =========
 
- * Name: FILLME
+ * Name: Alexander Slesarev
 
- * E-mail address: FILLME
+ * E-mail address: alexander.g.slesarev@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): alexander_slesarev
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: -
 
- * github URL: FILLME
+ * github URL: https://github.com/slesarev-hub
 
  * Biography:
 
-.. Tell us a bit about yourself.
-
-FILLME
+I am a third course bachelor student at Saint-Petersburg State University. Involved into the `PosDB <https://dbdb.io/db/posdb>`_ project (not open source) as a coursework. Co-author of an `article <http://ceur-ws.org/Vol-2372/SEIM_2019_paper_52.pdf>`_ on DBMS architecture. 
+Besides databases I am interested in Machine learning.
 
 Background Information
 ----------------------
@@ -102,31 +101,31 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+`Russian Association for Artificial Intelligence Summer School <http://school-raai.org/>`_ 2019 
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+I have tried to enroll in Xapian project last year, but I found GSoC for several days before deadline.
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+Only as a user.
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+I had Information retrieval and Data science basic courses at University.
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+Ubuntu, VSCode
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+During my work with PosDB I got some experience with data storages and Unix api.
 
 **What timezone will you be in during the coding period?**
 
@@ -134,7 +133,7 @@ FILLME
 .. name so we aren't surprised by any differences around daylight savings
 .. time, which don't all line up in different parts of the world.
 
-FILLME
+Saint Petersburg, Russia is GMT/UTC + 3
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
@@ -143,7 +142,7 @@ program?**
 .. but if we don't know about them in advance we can't make sure you have
 .. the support you need.
 
-FILLME
+Yes
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -162,7 +161,7 @@ FILLME
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-FILLME
+Monday–Friday 7am-1am UTC, but I can move it if needed.
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -171,7 +170,7 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+I am applying only for Xapian.
 
 Your Project
 ============
@@ -181,14 +180,14 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+It is interesting to me to benchmark ranking algorithms on big databases.
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+Project I want to do assumes that there will be tool for evaluating Letor on different datasets and compare its performance, so it useful for users wich want to understand Xapian abilities.
 
 Project Details
 ---------------
@@ -197,27 +196,27 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+There are several ranking algorithms with pretty same api implemented in Letor. So I think manager class should be developed to evaluate ranking and logging results. It will better to integrate it with testing classes, because it makes possible to develop suite for perfomance rating, wich will useful not only for ranking, but for all test cases. 
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+I worked with Xapian test harness, it has BackendManager class wich makes testing databases api easier. I believe ranking benchmark should be done in similar way. 
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+Another way is to create ranking suite as part of Letor, but it is not clear enough how to develop performance measurement api in this case.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+Databases could be too big to store them on local machine, or too big for memory, which could cause inaccuracies in performance tests, because of reading from disk. Also I don't know how different ranking algorithms are, so it could impact timeline.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+If the new utilities cannot be integrated sufficiently, there will be at least tests on more complex data as now.
 
 Project Timeline
 ----------------
@@ -268,7 +267,29 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
+* Weeks of bonding: get familiar with ranking algorithms, search for suitable datasets, assessment of the complexity of integrating large databases, and performance tests.
+
+In each next position assumes that testing and writing cross-platform part is included.
+
+* 1 Week - integrate datasets 
+
+* 2 Weeks of exams (situation with exams is very unstable now in my University, so I timeline may change in this case)
+
+* 1 Week - solve possible problems with the size of datasets
+
+* 3 Weeks - implement ListMLE, ListNet and SVM evaluation api
+
+If no troubles appeared, I can try to develop suite for performance testing:
+
+* 1 Week - get familiar with data indexing and searching api
+
+* 1.5 Weeks - tests for indexing
+
+* 1.5 Weeks - tests for searching
+
+* 1 Week - solving problems and integrate tests to build system
+
+Remaining time - contingency reserved
 
 Previous Discussion of your Project
 -----------------------------------
@@ -282,7 +303,7 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-FILLME
+I had discuss with James Aylett and Olly Betts in IRC.
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -298,7 +319,7 @@ pages.
 .. please see the "License grant" section of our developer guide:
 .. https://xapian-developer-guide.readthedocs.io/en/latest/contributing/contributing-changes.html#license-grant
 
-FILLME
+I agree.
 
 Use of Existing Code
 --------------------
@@ -313,4 +334,4 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-FILLME
+I don't know exactly, maybe some third-party api for interacting with big datasets will be needed.

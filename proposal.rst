@@ -224,17 +224,17 @@ The implementation of new normalisations and evaluation is similar to those alre
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-I also wanted to implement the "sum","cosine","max" and "fourth" normalization described by SMART for 3rd parameter.But unlike those I have chosen to implement ,these require the visibility of the weights of other terms.Since the other term weight are internal to the scheme ,these stats can't be 
+I also wanted to implement the "sum","cosine","max" and "fourth" normalization described by SMART for 3rd parameter.But unlike those I have chosen to implement ,these require the visibility of the weights of other terms.Since the other term weight are internal to the scheme ,these stats can't be directly fed to our Weighting scheme.So these can't be implemented in our current weighting framework AFAICS.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+I don't think there are any possibilities of uncertainties in this project.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+Just in case things don't go as planned,the work would still be useful.This project involves the implementation of different normalisations.Their implementation is not dependent directly on each other.Even if some normalisations are left, those implemented will be in perfect working conditions.
 
 Project Timeline
 ----------------
@@ -299,7 +299,7 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-FILLME
+I have discussed it at IRC.
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -315,7 +315,7 @@ pages.
 .. please see the "License grant" section of our developer guide:
 .. https://xapian-developer-guide.readthedocs.io/en/latest/contributing/contributing-changes.html#license-grant
 
-FILLME
+I have already agreed to that when I made my first contribution with Xapian.
 
 Use of Existing Code
 --------------------
@@ -330,4 +330,4 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-FILLME
+I would be using Weight.h ,Weight::Internal ,tfidfweight subclass.I would also be using xapian-evaluation .

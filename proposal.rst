@@ -79,7 +79,7 @@ About You
 
  * IRC nickname(s): dipanshu
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: https://www.facebook.com/profile.php?id=100004662888280
 
  * github URL: dipanshu124@github.com
 
@@ -87,7 +87,7 @@ About You
 
 .. Tell us a bit about yourself.
 
-I am a Computer Science student of Indian Institute of Technology ,Kanpur,INDIA.I am proficient in C and C++ .As a hobby ,I practice Competitive Programming . Apart from programming, I am also very fond of Mathematics.
+I am a Computer Science student of Indian Institute of Technology , Kanpur,INDIA.I am proficient in C and C++ .As a hobby ,I practice Competitive Programming . Apart from programming, I am also very fond of Mathematics.
 
 Background Information
 ----------------------
@@ -107,7 +107,7 @@ No,This is the first time.
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-Before intending to apply for gsoc,I didn't have much experience.Now I have been using Xapian since the past 2 months.I am familiar with its indexed text search and also with the implementation of current Weighting schemes(the part where I intend to work).
+Before intending to apply for gsoc,I didn't have much experience.Now I have been using Xapian since the past 1 month.I am familiar with its indexed text search and also with the implementation of current Weighting schemes(the part where I intend to work).
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
@@ -201,7 +201,9 @@ Project Details
 
 Xapian already supports the Vector space model used in Tf-idf Weighting Schemes.It has some normalisation (described by SMART) already implemented by sub classing WEIGHT.We can add more normalizations if we made some more statistics available to our Weighting Schemes. For example ,getting the max-tf would enable us to implement the "aug-norm" and "max-norm" described in SMART normalisation.
 
-I would also be implementing the following normalizations (described in the below mentioned research papers http://www.kolda.net/publication/ornl-tm-13756.pdf)- Entropy,Global frequency IDF,Changed-coefficient ATF1,Augmented average term frequency,Augmented log,Square root,Log-global frequency IDF,Incremented global frequency IDF,Square root global frequency IDF.These normalisations have proven to be more effective than other popular weighting schemes in certain cases.(For details ,please refer the research paper.)
+I would also be implementing the following normalizations (described in the below mentioned research papers http://www.kolda.net/publication/ornl-tm-13756.pdf)- Entropy,Global frequency IDF,Changed-coefficient ATF1,Augmented average term frequency,Augmented log,Square root,Log-global frequency IDF,Incremented global frequency IDF,Square root global frequency IDF.
+
+These normalisations have proven to be more effective than other popular weighting schemes in certain cases.(For details ,please refer the research paper.)
 
 The above mentioned normalizations dont need any other extra statistics,i.e, all the required stats are already available.So, only a small patch is required for each.
 
@@ -230,7 +232,7 @@ The implementation of new normalisations and evaluation is similar to those alre
 
 I also wanted to implement the "sum","cosine","max" and "fourth" normalization described by SMART for 3rd parameter.But unlike those I have chosen to implement ,these require the visibility of the weights of other terms.Since the other term weight are internal to the scheme ,these stats can't be directly fed to our Weighting scheme.So these can't be implemented in our current weighting framework AFAICS.
 
-Another approach to add support in xapian-evaluation was to simply add code without using Weight::create().That would not be useful as the information of separate weighting schemes and parameters can be avoided.
+Another approach to add support in xapian-evaluation was to simply add code without using Weight::create().That would not be useful as the the step of providing information of separate weighting schemes and parameters can be avoided.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**

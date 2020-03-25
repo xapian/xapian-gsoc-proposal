@@ -112,7 +112,7 @@ Before intending to apply for gsoc,I didn't have much experience.Now I have been
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-No prior experience
+No prior experience other than Xapian.
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
@@ -121,7 +121,7 @@ I have taken courses in C and C++ .I have also taken mathematics course in Linea
 
 **What development platforms, tools and methods do you prefer to use?**
 
-I use Ubuntu 18.10 as my OS .I am familiar with git and github.
+I use Ubuntu 18.10 as my OS .I am familiar with github.
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
@@ -135,6 +135,7 @@ No,this is the first time.
 .. time, which don't all line up in different parts of the world.
 
 IST(GMT+5:30)
+
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
@@ -180,14 +181,16 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-This project is suitable for my skills.Moreover,I am also eager to see how my search results differ on using different weighting schemes. 
+This project is suitable for my skills.Moreover,I am also eager to compare the effectiveness of using different weighting schemes. 
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-Anybody using Xapian will have more choices regarding which weighting scheme to use .Particularly,it would be very beneficial for students of Information Retrieval their studies.
+Anybody using Xapian will have more choices regarding which weighting scheme to use .There are many other Weighting Schemes which are worth implementing in Xapian some because they're potentially more effective than BM25(the default scheme for Xapian), others because they're of interest for Information Retrieval students and academics.
+
+The use of Weight::create() in Xapian-evaluation would  help to establish a standard format for specifying the weighting scheme, which is helpful for users.
 
 Project Details
 ---------------
@@ -196,19 +199,21 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-Currently Xapian uses a variety of Weighting Schemes such as  BM25, the "traditional" probabilistic weighting formulae (which is essentially a special case of BM25), BM25+, several TF/IDF schemes, many of the Divergence from Randomness (DfR) family of models, coordinate matching, and Unigram Language Modelling.
-If we want to improve the way documents are scored in Xapian during retrieval then we can directly do that by simply making changes to the weighting schemes in use in it.
-There are many other Weighting Schemes which are worth implementing in Xapian some because they're potentially more effective than BM25(the default scheme for Xapian), others because they're of interest for Information Retrieval students and academics.
-
 Xapian already supports the Vector space model used in Tf-idf Weighting Schemes.It has some normalisation (described by SMART) already implemented by sub classing WEIGHT.We can add more normalizations if we made some more statistics available to our Weighting Schemes. For example ,getting the max-tf would enable us to implement the "aug-norm" and "max-norm" described in SMART normalisation.
 
-I would be implementing the following normalizations (described in the below mentioned research papers http://www.kolda.net/publication/ornl-tm-13756.pdf)- Entropy,Global frequency IDF,Changed-coefficient ATF1,Augmented average term frequency,Augmented log,Square root,Log-global frequency IDF,Incremented global frequency IDF,Square root global frequency IDF.These normalisations have proven to be more effective than other popular weighting schemes in certain cases.(For details ,please refer the research paper.)
+I would also be implementing the following normalizations (described in the below mentioned research papers http://www.kolda.net/publication/ornl-tm-13756.pdf)- Entropy,Global frequency IDF,Changed-coefficient ATF1,Augmented average term frequency,Augmented log,Square root,Log-global frequency IDF,Incremented global frequency IDF,Square root global frequency IDF.These normalisations have proven to be more effective than other popular weighting schemes in certain cases.(For details ,please refer the research paper.)
 
 The above mentioned normalizations dont need any other extra statistics,i.e, all the required stats are already available.So, only a small patch is required for each.
 
 I would also be implemented the "aug-norm" and "max-norm" described in SMART normalisation.For that we need "max-tf" to be made visible to our Weighting Scheme.This can be done By using the Weight ::Internal subclass.It has a map  (named termfreqs) which has the required information.
 
-It would also be very useful to see how the different schemes compare for speed and retrieval effectiveness, so can offer solid advice to users wondering which to use.So, for this we can use https://github.com/samuelharden/xapian-evaluation to evaluate and compare modified weighting functions with their counterparts to access their speed and retrieval effectiveness. 
+It would also be very useful to see how the different schemes compare for speed and retrieval effectiveness, so can offer solid advice to users wondering which to use.So, for this we can use https://github.com/samuelharden/xapian-evaluation to evaluate and compare modified weighting functions with their counterparts to access their speed and retrieval effectiveness.
+
+Currently the code in xapian evaluations requires some cleanup.Currently we need to provide separate information for different weighting schemes and their parameters.This is a lot of extra work.All of this can be avoided by using Weight::create().For using Weight::create(),we can change the config_value  string  input.Instead of providing just the name of Weighting scheme ,we can use a string with weight scheme name followed by its parameters (same as used in Weight ::create()).Then we wont require to write extra code for parameters.We will also make changes in trec_search.Now it would be simple as we won't need to make separate checks for implementing different schemes.We would simple use Weight::create() and feed it with the string used earlier.
+
+Then I would be adding support for the newly inplemented normalistions in Weight::create().This requires some changes in Registry .A few additions in the map implemented there would do.
+
+ Finally I would be comparing the effectiveness of different normalisations using Xapian evaluations. 
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -219,22 +224,24 @@ approach is possible and likely to succeed?**
 
 Th first paper suggests that the new normalisations are more effective than other popular weighting schemes in certain cases.Since this paper is a little too old, for that I have mentioned the second paper which is more recent. It also talks about the Weighting schemes mentioned in the previos paper.Third paper is about the SMART normalisations which are popular.
 
-The implementation of new normalisations and evaluation is similar to those already implemented,So that won't be a problem either.
+The implementation of new normalisations and evaluation is similar to those already implemented ,So that won't be a problem either.
 
-**What other approaches have you considered, and why did you reject those in
-favour of your chosen approach?**
+**What other approaches have you considered, and why did you reject those in favour of your chosen approach?**
 
 I also wanted to implement the "sum","cosine","max" and "fourth" normalization described by SMART for 3rd parameter.But unlike those I have chosen to implement ,these require the visibility of the weights of other terms.Since the other term weight are internal to the scheme ,these stats can't be directly fed to our Weighting scheme.So these can't be implemented in our current weighting framework AFAICS.
+
+Another approach to add support in xapian-evaluation was to simply add code without using Weight::create().That would not be useful as the information of separate weighting schemes and parameters can be avoided.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
 I don't think there are any possibilities of uncertainties in this project.
 
-**How useful will your results be when not everything works out exactly as
-planned?**
+**How useful will your results be when not everything works out exactly as planned?**
 
 Just in case things don't go as planned,the work would still be useful.This project involves the implementation of different normalisations.Their implementation is not dependent directly on each other.Even if some normalisations are left, those implemented will be in perfect working conditions.
+
+Also the changes in Xapian evaluation to use Weight::create() is an independent sub project as well.
 
 Project Timeline
 ----------------

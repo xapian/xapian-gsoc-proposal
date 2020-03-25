@@ -20,7 +20,10 @@
 .. us by forking the git repository containing this file, filling in where
 .. it says "FILLME", committing your changes and pushing them to your fork,
 .. then opening a pull request to request us to review your draft proposal.
-.. You can do this even before applications officially open.
+.. Please pick a useful title for the pull request - "My application" may
+.. be meaningful to you, but isn't helpful to those reviewing.  Using the
+.. title of the project is a good.  You can open a pull request even before
+.. applications officially open.
 .. 
 .. IMPORTANT: Your application is only valid is you upload a PDF of your
 .. proposal to the GSoC website at https://summerofcode.withgoogle.com/ - you

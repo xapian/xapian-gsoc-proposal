@@ -213,7 +213,7 @@ Currently the code in xapian evaluations requires some cleanup.Currently we need
 
 Then I would be adding support for the newly inplemented normalistions in Weight::create().This requires some changes in Registry .A few additions in the map implemented there would do.
 
- Finally I would be comparing the effectiveness of different normalisations using Xapian evaluations. 
+Finally I would be comparing the effectiveness of different normalisations using Xapian evaluations. 
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -292,8 +292,48 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
-
+**Community bonding** (4 MAY-31 MAY)
+ Week 1(4 MAY-10 MAY)
+     Going through weight files again in full detail and discussing doubts on IRC.
+ Week 2(11 MAY-17 MAY)
+     Understanding the writing of Automated test cases.
+ Week 3(18 MAY-24 MAY)
+     Going through Xapian Evaluation files in detail.
+ Week 4(25 MAY-31 MAY)
+     Time for any other discussion needed prior to coding.
+  
+ **Coding**
+  Week 1(1 JUN-6 JUN)
+      - implement Entropy(1 day)
+      - implement Global frequency IDF(1 day)
+      - write test case for Entropy (2 days)
+      - write test case for Global frequency IDF(2 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+  Week 2(7 JUN-13 JUN)
+      - implement Changed-coefficient ATF1(1 day)
+      - implement Augmented average term frequency(1 day)
+      - write test case for Changed-coefficient ATF1 (2 days)
+      - write test case for Augmented average term frequency(2 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+  Week 3(14 JUN-20 JUN)
+      - implement Augmented log(1 day)
+      - implement square root(1 day)
+      - write test case for Augmented log(2 days)
+      - write test case for square root(2 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+  Week 4(21 JUN-27 JUN)
+      - implement Log-global frequency IDF(1 day)
+      - implement Incremented global frequency IDF(1 day)
+      - write test case for Log-global frequency IDF(2 days)
+      - write test case for Incremented global frequency IDF(2 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+  Week 5(28 JUN-4 JUN) [Evaluation 1]
+      - Submit evaluation .
+      - implement Square root global frequency IDF(1 day)
+      - write test case for Square root global frequency IDF(2 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+      
+  
 Previous Discussion of your Project
 -----------------------------------
 
@@ -306,7 +346,7 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-I have discussed it at IRC.
+I have discussed it on IRC.
 
 Licensing of your contributions to Xapian
 -----------------------------------------

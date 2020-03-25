@@ -28,10 +28,10 @@
 .. IMPORTANT: Your application is only valid is you upload a PDF of your
 .. proposal to the GSoC website at https://summerofcode.withgoogle.com/ - you
 .. can generate a PDF of this proposal using "make pdf".  You can update the
-.. PDF proposal right up to the deadline by just uploading a new file, so don't
-.. leave it until the last minute to upload a version.  The deadline is
-.. strictly enforced by Google, with no exceptions no matter how creative your
-.. excuse.
+.. "final" PDF proposal as many times as you want right up to the deadline by
+.. just uploading a new file, so don't leave it until the last minute to upload
+.. a version.  The deadline is strictly enforced by Google, with no exceptions
+.. no matter how creative your excuse.
 .. 
 .. If there is additional information which we haven't explicitly asked for
 .. which you think is relevant, feel free to include it. For instance, since

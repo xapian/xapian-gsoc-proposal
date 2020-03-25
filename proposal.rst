@@ -1,8 +1,4 @@
 .. This document is written in reStructuredText, a simple and unobstrusive
-.. markup language.  For an introduction to reStructuredText see:
-.. 
-.. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-.. 
 .. Lines like this which start with `.. ` are comments which won't appear
 .. in the generated output.
 .. 
@@ -10,7 +6,11 @@
 .. Placeholder text for where you're expected to write something says "FILLME"
 .. - search for this in the generated PDF to check you haven't missed anything.
 .. 
-.. See our GSoC Project Ideas List for some suggested project ideas:
+.. See our GSoC Project Ideas List for some suggested project 
+.. markup language.  For an introduction to reStructuredText see:
+.. 
+.. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+.. ideas:
 .. https://trac.xapian.org/wiki/GSoCProjectIdeas
 ..
 .. You are also most welcome to propose a project based on your own ideas.
@@ -393,4 +393,4 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-I would be using Weight.h ,Weight::Internal ,tfidfweight subclass.I would also be using xapian-evaluation .
+I would be using Xapian::Weight and its subclasses.I would also be using Xapian evaluations.

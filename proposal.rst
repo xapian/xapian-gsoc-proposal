@@ -209,7 +209,7 @@ I would also be implemented the "aug-norm" and "max-norm" described in SMART nor
 
 It would also be very useful to see how the different schemes compare for speed and retrieval effectiveness, so can offer solid advice to users wondering which to use.So, for this we can use https://github.com/samuelharden/xapian-evaluation to evaluate and compare modified weighting functions with their counterparts to access their speed and retrieval effectiveness.
 
-Currently the code in xapian evaluations requires some cleanup.Currently we need to provide separate information for different weighting schemes and their parameters.This is a lot of extra work.All of this can be avoided by using Weight::create().For using Weight::create(),we can change the config_value  string  input.Instead of providing just the name of Weighting scheme ,we can use a string with weight scheme name followed by its parameters (same as used in Weight ::create()).Then we wont require to write extra code for parameters.We will also make changes in trec_search.Now it would be simple as we won't need to make separate checks for implementing different schemes.We would simple use Weight::create() and feed it with the string used earlier.
+Currently the code in xapian evaluations requires some cleanup.Currently we need to provide separate information for different weighting schemes and their parameters.This is a lot of extra work.All of this can be avoided by using Weight::create().First we make changes in config_file.cc and config_file.h .For using Weight::create(),we can change the config_value  string  input.Instead of providing just the name of Weighting scheme ,we can use a string with weight scheme name followed by its parameters (same as used in Weight ::create()).Then we wont require to write extra code for parameters.We will also make changes in trec_search.Now it would be simple as we won't need to make separate checks for implementing different schemes.We would simple use Weight::create() and feed it with the string used earlier.
 
 Then I would be adding support for the newly inplemented normalistions in Weight::create().This requires some changes in Registry .A few additions in the map implemented there would do.
 
@@ -304,35 +304,51 @@ Project Timeline
   
  **Coding**
   Week 1(1 JUN-6 JUN)
-      - implement Entropy(1 day)
-      - implement Global frequency IDF(1 day)
-      - write test case for Entropy (2 days)
-      - write test case for Global frequency IDF(2 days)
-      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+      - implement Entropy and Global frequency IDF (1 day)
+      - write test cases for Entropy and Global frequency IDF (3 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
   Week 2(7 JUN-13 JUN)
-      - implement Changed-coefficient ATF1(1 day)
-      - implement Augmented average term frequency(1 day)
-      - write test case for Changed-coefficient ATF1 (2 days)
-      - write test case for Augmented average term frequency(2 days)
-      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+      - implement Changed-coefficient ATF1 and Augmented average term frequency (1 day)
+      - write test cases for Changed-coefficient ATF1 and Augmented average term frequency (3 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
   Week 3(14 JUN-20 JUN)
-      - implement Augmented log(1 day)
-      - implement square root(1 day)
-      - write test case for Augmented log(2 days)
-      - write test case for square root(2 days)
-      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+      - implement Augmented log and square root (1 day)
+      - write test cases for Augmented log and square root (3 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
   Week 4(21 JUN-27 JUN)
-      - implement Log-global frequency IDF(1 day)
-      - implement Incremented global frequency IDF(1 day)
-      - write test case for Log-global frequency IDF(2 days)
-      - write test case for Incremented global frequency IDF(2 days)
-      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
+      - implement Log-global frequency IDF and Incremented global frequency IDF (1 day)
+      - write test cases for Log-global frequency IDF and Incremented global frequency IDF (2 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
   Week 5(28 JUN-4 JUN) [Evaluation 1]
       - Submit evaluation .
-      - implement Square root global frequency IDF(1 day)
-      - write test case for Square root global frequency IDF(2 days)
-      - make PR for these changes and getting it reviewed and completing documentation simultaneously(1 day)
-      
+      - implement Square root global frequency IDF (1 day)
+      - write test cases for Square root global frequency IDF (2 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
+  Week 6(5 JUN-11 JUN)
+      - get max-tf from Weight::Internal (2 days)
+      - implement "max-norm" and "aug-norm" (1 day)
+      - write test cases for max-tf (2 days)
+  Week 7(12 JUN-18 JUN)
+      - write test cases for "max-norm" and "aug-norm (3 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously(2 day)
+  Week 8(19 JUN-25 JUN)
+      - Add support for the new normalisations in Weight::create().This includes the changes to be made in Registry(3 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
+      - Rest of days are kept free to complete back log if any.
+  Week 9(26 JUN-1 AUG)[Evaluation 2]
+      - submit evaluation.
+      - make changes in config_file.cc (2 days)
+      - make changes in config_file.h (1 day)
+      - make changes in trec_search.cc (2 days)
+  Week 10(2 AUG-8 AUG)
+      - write test cases for these changes (3 days)
+      - make PR for these changes and getting it reviewed and completing documentation simultaneously (2 days)
+  Week 11(9 AUG-15 AUG)
+      - Compare effectiveness of different normalisations .
+      - make documentation for these results.
+  Week 12(16 AUG-22 AUG)
+  
+This week is kept as buffer week.Also due to the COVID-19 outbreak in my country,Our exams have been rescheduled but the dates aren't decided.So there is a possibility that I might have exams during the coding period.But they wont last more than a week.
   
 Previous Discussion of your Project
 -----------------------------------

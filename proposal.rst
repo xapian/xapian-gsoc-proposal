@@ -25,7 +25,7 @@
 .. be meaningful to you, but isn't helpful to those reviewing.  Using the
 .. title of the project is a good.  You can open a pull request even before
 .. applications officially open.
-.. 
+..
 .. IMPORTANT: Your application is only valid is you upload a PDF of your
 .. proposal to the GSoC website at https://summerofcode.withgoogle.com/ - you
 .. can generate a PDF of this proposal using "make pdf".  You can update the
@@ -33,7 +33,7 @@
 .. just uploading a new file, so don't leave it until the last minute to upload
 .. a version.  The deadline is strictly enforced by Google, with no exceptions
 .. no matter how creative your excuse.
-.. 
+..
 .. If there is additional information which we haven't explicitly asked for
 .. which you think is relevant, feel free to include it. For instance, since
 .. work on Xapian often draws on academic research, it's important to cite
@@ -247,8 +247,8 @@ I plan to divide my project into several modules. Here is a description of what 
 
 **Module 1: Getting Familiar with Xapian's development workflow**
 
-  *Identify a small project-specific issue that would help in improving the functionality. Work on completing this issue and submitting a pull request. By getting this pull request merged, the goal is to learn how to communicate with the members and understand the workflow that is going to be useful for the rest of project.
-  *Understand what coding styles are preferred/used and how testing and documentation works in Xapian’s development.
+  * Identify a small project-specific issue that would help in improving the functionality. Work on completing this issue and submitting a pull request. By getting this pull request merged, the goal is to learn how to communicate with the members and understand the workflow that is going to be useful for the rest of project.
+  * Understand what coding styles are preferred/used and how testing and documentation works in Xapian’s development.
 
 
 **Module 2: Identifying Libraries that the Xapian Community considers Important**
@@ -359,6 +359,7 @@ Project Timeline
 .. in your project timeline.
 
 
+
 **Community Bonding Period: (May 4 - June 1) Module 1,2**
 
   * Get to know the community and interact with its members over the entire bonding period.
@@ -371,6 +372,7 @@ Project Timeline
   * Discuss and finalize the structure of the code such as where it will be added and what tests and documentation are necessary. (2 days)
 
 
+
 **Phase 1: (June 1 - June 29) Module 3**
 
   * Create a handler which is a process used by omindex to access the library. (5 days)
@@ -381,9 +383,11 @@ Project Timeline
   * Submit Evaluation for Phase 1.
 
 
+
 **Phase 2: (June 29 - July 27)**
 
   * Add support for other libraries. (Under discussion. To be filled)
+
 
 
 **Phase 3: (July 27 - August 24)**
@@ -391,9 +395,12 @@ Project Timeline
   * Add support for other libraries. (Under discussion. To be filled)
 
 
+
 **Final Week: (August 24 - August 31)**
 
   * This is buffer week to complete any pending tasks that may be left over.
+
+
 
 Previous Discussion of your Project
 -----------------------------------

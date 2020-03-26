@@ -244,22 +244,13 @@ divide the term frequnecy(from term_freq_est() function) by the database size. B
 (last - first +1), and we use that range instead of the whole database size.
 
 Take for example AND_NOT:
-Now it number of results is calculated by multiplying the probability of the l_pl times the inverse probability of the r_pl
-(1 - probability of the l_pl) times the db_size.
 
-But, with the use of the concept stated above, we can do better:
+	Let's say  L AND_NOT R
 
-We would start by calculating ranges for the l_pl, r_pl, and the total AND_NOT range.
+	now thanks to the new implementation, we have the range for L and R.
 
-l_pl range  would be equal to (last-first+1) for left child.
+	The range which we sould consider is only (L range - overlapped range between L and R)
 
-r_pl range would be equal to (dp_size - (last-first+1)) where last, and first are for the right child
-
-The total AND_NOT range would be equal to the r_pl range.
-
-Now the estimate would be probability of l_pl times probability of the inverse of the r_pl  times the total AND_NOT range.
-
-To sum up, it would be the same as the old estimate, but but changing the l_pl, r_pl, and the total ranges by the new ranges.
 
 
 
@@ -290,7 +281,7 @@ Project Timeline
 The main goal of this project is to improve the estimation of the total number of results buy making use of the
 the new feature that gives the first and last docids for each term.
 
-The task is to improve the Xapian::MSet::get_matches_estimated() method for 17 operators, but OP_AND and OP_OR are almost done, so that leave us with 15 operators.
+The task is to improve the Xapian::MSet::get_matches_estimated() method for the  operators, but OP_AND and OP_OR are almost done.
 
 AND_NOT :
 

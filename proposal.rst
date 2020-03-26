@@ -20,16 +20,20 @@
 .. us by forking the git repository containing this file, filling in where
 .. it says "FILLME", committing your changes and pushing them to your fork,
 .. then opening a pull request to request us to review your draft proposal.
-.. You can do this even before applications officially open.
-..
+
+.. Please pick a useful title for the pull request - "My application" may
+.. be meaningful to you, but isn't helpful to those reviewing.  Using the
+.. title of the project is a good.  You can open a pull request even before
+.. applications officially open.
+.. 
 .. IMPORTANT: Your application is only valid is you upload a PDF of your
 .. proposal to the GSoC website at https://summerofcode.withgoogle.com/ - you
 .. can generate a PDF of this proposal using "make pdf".  You can update the
-.. PDF proposal right up to the deadline by just uploading a new file, so don't
-.. leave it until the last minute to upload a version.  The deadline is
-.. strictly enforced by Google, with no exceptions no matter how creative your
-.. excuse.
-..
+.. "final" PDF proposal as many times as you want right up to the deadline by
+.. just uploading a new file, so don't leave it until the last minute to upload
+.. a version.  The deadline is strictly enforced by Google, with no exceptions
+.. no matter how creative your excuse.
+.. 
 .. If there is additional information which we haven't explicitly asked for
 .. which you think is relevant, feel free to include it. For instance, since
 .. work on Xapian often draws on academic research, it's important to cite

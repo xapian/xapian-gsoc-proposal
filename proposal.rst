@@ -241,37 +241,33 @@ There was already a GSoC project which added support for multiple file formats t
 
 I plan to divide my project into several modules. Here is a description of what these modules will be about. Each of these modules will largely be decoupled.
 
-**Module 1**
+**Module 1: Getting Familiar with Xapian's development workflow**
 
-  * Get Familiar with Xapian's code base
-  * Understanding the testing framework
-  * Understand which libraries were added last year and why
-  * How to documentation and testing works in Xapian
-  * How text extraction libraries are added into Xapian code base
+  *Identify a small project-specific issue that would help in improving the functionality. Work on completing this issue and submitting a pull request. By getting this pull request merged, the goal is to learn how to communicate with the members and understand the workflow that is going to be useful for the rest of project.
+  *Understand what coding styles are preferred/used and how testing and documentation works in Xapian’s development.
 
 
-**Module 2**
+**Module 2: Identifying Libraries that the Xapian Community considers Important**
 
-  * Researching and identifying what other file formats can be added and what libraries are necessary and have not been included in Xapian in discussion with the community.
-  * How to provide indexing capabilities to extract text from various file formats.
-  * Understand where these shared libraries are in the code base.
-
-  For eg, `https://www.documentliberation.org/projects/#import-libs` has number of libraries for various file formats. Many such libraries are available, so the goal is to identify which libraries are important to the users and how we can include them in the code base.
-
-
-**Module 3**
-
-  Omega already uses zlib to read gzip compressed Abiword files. Addition of a zip file reading library would further cover several popular formats.
-  The goal of this module will be to identify such libraries in discussion with the community, Implement code to add library to the project , Test codes and fix issues and write proper documentation for it.
-
-  (To be further improved)
+  * Text-Extraction Libraries (TEL) such as Poppler,Tesseract were added in last year's GSoC project. For eg : Poppler was used for PDF files. Which libraries were chosen, why they were chosen and how they were added is crucial to understanding which ones the Xapian community finds important now and have not yet been added.
+  * Specifically, research different libraries for reading various compressed file formats such as libarchive, libzip, etc. This includes but is not necessarily limited to the formats given in the following resources : `https://www.documentliberation.org/projects/#import-libs` and `http://djvu.sourceforge.net/`
+  * After discussions with the members, decide on how to provide indexing capabilities to extract text from these various file formats.
+  * Discuss and identify how support for the text extraction integrates within the existing codebase. This includes which files and directories to write the code into.
 
 
-**Module 4**
+**Module 3: Integrating the First Library: LibArchive**
 
-  * Adding support for other file formats that have been discussed in module 2 (atleast 4).
-  * Testing and documentation
+  * Omega already uses zlib to read gzip compressed Abiword files. Addition of a zip file reading library would further cover several popular formats.
+  * Define the process to access the library from inside omnidex.
+  * Update the build system.
+  * Add support for workers to use the library.
+  * Compile, build, test, and document.
 
+
+**Module 4: Integrate the other Libraries for Compressed File Formats**
+
+  * This will broadly follow the steps from Module 3. The preference is to use shared libraries for the purpose of extracting texts, but if found necessary, we may also instead use an external filter.
+  * Verify the speed up in indexing capabilities due to this new support for various file formats.
 
 **Module 5 (Stretch goal)**
 
@@ -359,41 +355,41 @@ Project Timeline
 .. in your project timeline.
 
 
-**Community Bonding Period: (May 4 - June 1) Module 1,2 **
+**Community Bonding Period: (May 4 - June 1) Module 1,2**
 
-  * Get to know the community and interact with its members
-  * Understand Xapian Code Base, coding conventions and all relevant classes
-  * Understand how the code I am going to add will be structured and what kind of tests i will have to write
-  * Understand which file formats were chosen for previous year's project and why and understand how they were integrated
-  * Discuss with community, other than zip, which file formats are important and are needed to be added to omega.
-
-
-**Coding Weeks 1-3(June 1 - June 20) Module 3**
-
-  * Research about different zip file reading libraries- eg libarchive,libzip ( Compare them and discuss with the community which is the most appropriate)
-  * Implement code to add support for the library
-  * Test code. Fix Issues if any.
-  * Write proper documentation and publish changes to the project
+  * Get to know the community and interact with its members over the entire bonding period.
+  * Discuss and find a minor issue directly related to the project that needs to be fixed. (2 days)
+  * Identify a solution to the issue and discuss with members. (2 days)
+  * Write code to fix the issue, write relevant tests and documentation as necessary. Familiarize with the development workflow. (3 days)
+  * Submit a PR, write tests/documentation and work with mentors to get PR merged. (4 days)
+  * Read `https://www.documentliberation.org/projects/#import-libs` and `http://djvu.sourceforge.net/` to draw a list of potential libraries that can be added to Xapian. (3 days)
+  * Present list to mentors and discuss which libraries are crucial and which ones to focus on for this project. (4 days)
+  * Discuss and finalize the structure of the code such as where it will be added and what tests and documentation are necessary. (2 days)
 
 
-**Coding Weeks 4-11(June 22 - Aug 14) Module 4**
+**Phase 1: (June 1 - June 29) Module 3**
 
-During this period I will pick modules one by one and add support for the chosen file format. Each format is estimated to require between 1 and 2 weeks within which the following activities will be carried out:
+  * Create a handler which is a process used by omindex to access the library. (5 days)
+  * Update the build system. (6 days)
+  * Add a new worker for the MIME type to omindex. If modifications are correct, after compiling we will find a new executable omindex_libarchive in the working directory. (3 days)
+  * Testing and documentation. (2 days)
+  * Submit PR, make changes as per discussion and merge. (4 days)
+  * Submit Evaluation for Phase 1.
 
-  * Research about different available libraries (Discuss with the community regarding which is the most effective one)
-  * Implement code to add support for the library
-  * Test code. Fix Issues if any.
-  * Write proper documentation and publish changes to the project.
 
-Support for atleast 5 formats will be added during this period. However, I believe I will be able to add more in the given time frame.
+**Phase 2: (June 29 - July 27)**
 
-A week has been kept free as a buffer in case of any delay in any of the modules.
+  * Add support for other libraries. (Under discussion. To be filled)
 
-By the first evaluation (July 29 - July 3), I will hopefully complete module 3
 
-By the second evaulation (July 27 - July 31), I plan to complete adding support for 2 more file formats.
+**Phase 3: (July 27 - August 24)**
 
-And by Aug 24, I will add support for 2 more, Hopefully I will be able to add support for more file formats as discussed(Module 5)
+  * Add support for other libraries. (Under discussion. To be filled)
+
+
+**Final Week: (August 24 - August 31)**
+
+  * This is buffer week to complete any pending tasks that may be left over.
 
 Previous Discussion of your Project
 -----------------------------------

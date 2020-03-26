@@ -77,7 +77,7 @@ Improve estimated total number of results
 About You
 =========
 
- * Name: Andelrahman Atef Mohamed
+ * Name: Abdelrahman Atef Mohamed
 
  * E-mail address: boda998@yahoo.com
 
@@ -91,10 +91,10 @@ About You
 
 
 
-	Hey, I am Boda, Computer Engineering student from Egypt.
-	I have a great passion for Competitve programming, I have praticipated in many
-	`ACM  <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>`_ contests
-	Last year we came in third in local contest and qualified to next round. I praticipated in Google Hash Code this year, and came in #31 on Egypt.
+Hey, I am Boda, Computer Engineering student from Egypt.
+I have a great passion for Competitive programming, I have participated in many
+`ACM  <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>`_ contests
+Last year we came in third in local contest and qualified to next round. I participated in Google Hash Code this year, and came in #31 on Egypt.
 
 
 Background Information
@@ -149,7 +149,7 @@ Right now, I develope on Ubuntu, I use vscode and geany.
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-I have worked on many projects, but not related to information retreval nor idexed search.
+I have worked on many projects, but not related to information retrieval nor indexed search.
 
 **What timezone will you be in during the coding period?**
 
@@ -168,10 +168,6 @@ GMT+2, Cairo,Egypt
 program?**
 
 Yes.
-
-
-
-
 .. It need not be a problem to have other commitments during Summer of Code,
 .. but if we don't know about them in advance we can't make sure you have
 .. the support you need.
@@ -234,8 +230,8 @@ Project Details
 **Describe any existing work and concepts on which your project is based.**
 
 
-I am still trying to see if we can utilize the N-gram algorithm to help on this task.I made a google `doc <https://docs.google.com/document/d/1yXdnAhtNKWcODLLBy2hB2pluQ2nr3EfZJP2_F1XIpDs/edit
-/>`_ that I keep updated with results I reached so far.
+The core idea about this optimization, is to make use of the new last, and first docids for each term in the query tree.
+Utilizing that, we can get better estimated results, as we reduces the search range from the total db_size to shorter range.
 
 
 **Do you have any preliminary findings or results which suggest that your
@@ -247,7 +243,25 @@ Example: for the "MultiAndPostList", we would mutiply the probability of each te
 divide the term frequnecy(from term_freq_est() function) by the database size. But now we can get the range from the first docid to the last docid
 (last - first +1), and we use that range instead of the whole database size.
 
-As for now, I am trying to come by a better approach for this task.
+Take for example AND_NOT:
+Now it number of results is calculated by multiplying the probability of the l_pl times the inverse probability of the r_pl
+(1 - probability of the l_pl) times the db_size.
+
+But, with the use of the concept stated above, we can do better:
+
+We would start by calculating ranges for the l_pl, r_pl, and the total AND_NOT range.
+
+l_pl range  would be equal to (last-first+1) for left child.
+
+r_pl range would be equal to (dp_size - (last-first+1)) where last, and first are for the right child
+
+The total AND_NOT range would be equal to the r_pl range.
+
+Now the estimate would be probability of l_pl times probability of the inverse of the r_pl  times the total AND_NOT range.
+
+To sum up, it would be the same as the old estimate, but but changing the l_pl, r_pl, and the total ranges by the new ranges.
+
+
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
@@ -262,7 +276,8 @@ and take huge space.
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-I am still not sure if we can come up with better approach. Or how better the result would be for approach using the first and last doc ids
+We still assume independance in calculating the estimates.
+I am still not sure if we can come up with better approach.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
@@ -272,34 +287,138 @@ It would still produce better estimates as we reduced the number of documents we
 Project Timeline
 ----------------
 
-* Three Weeks of Bonding:
+The main goal of this project is to improve the estimation of the total number of results buy making use of the
+the new feature that gives the first and last docids for each term.
 
- 	* Get more familiar with the code base, especially the Matcher code.
+The task is to improve the Xapian::MSet::get_matches_estimated() method for 17 operators, but OP_AND and OP_OR are almost done, so that leave us with 15 operators.
 
- 	* Build some tests on debug mode to see how functions are invoked.
+AND_NOT :
 
- 	* Search more for ways to tackle this task.
+	implementing get_used_docid_range().
 
-* Two Weeks: Working on OP_AND, OP_OR, and OP_AND_NOT (Code, testing, and doumentation)
+	let's say  L AND_NOT R :
 
+	if L and R doesn't overlap, then we can just return estimated number for L.
 
-* One and half Week: Working on OP_XOR,and OP_AND_MAYBE (Code, testing, and doumentation.)
+	if they do overlap, then our range would be (L range - intersection of L and R).
 
+	then we calculate the probability.
+
+XOR :
+
+	implementing get_used_docid_range().
+
+	let's say L XOR R :
+
+	if l and R doesn't overlap then it would be like OP_OR.
+
+	if they do, then we would add the two ranges and  then subtract the overlapped range
+
+	then we calculate according to that range.
+
+AND_MAYBE :
+
+	implementing get_used_docid_range().
+
+	This is treated like AND
+
+	let's say L AND_MAYBE Right
+
+	then we just return the estimated number of L
+
+FILTER :
+
+	implementing get_used_docid_range().
+
+	This is treated like MULTI_AND
+
+	let's say L FILTER Right
+
+	then we just return probability of L times the probability of R times the total range, which would be the union of the two ranges.
+
+NEAR, and PHRASE :
+
+	No work needed on this.
+
+VALUE_RANGE :
+
+	We can make use of the fact that we have the first and last docids, to reduce the total range to be the overlapped range of the
+	begin and end ranges, instead of the slot_freq reange.
+
+VALUE_GT, VALUE_LT, VALUE_LE, VALUE_GE :
+
+	implementing get_used_docid_range().
+
+	We can just return the range of the first, and last docids.
+
+ELITE_SET :
+
+	implementing get_used_docid_range().
+
+	Get the elite set of N terms, then treat it like MULTI_OR
+
+SYNONYM :
+
+	implementing get_used_docid_range().
+
+	treated like OP_OR
+MAX :
+
+	implementing get_used_docid_range();
+
+	treated like OP_OR
+
+WILDCARD, EDIT_DISTANCE :
+
+	implementing get_used_docid_range().
+
+	This would return the matches terms along with them ranges,then we can calucate as OP_OR;
+
+INVALID, LEAF_TERM, LEAF_POSTING_SOURCE, LEAF_MATCH_ALL,LEAF_MATCH_NOTHING, OP_SCALE_WEIGHT :
+
+	Unrelated.
+
+|
+
+My initial plan is as follow:
+
+	**Every week would be 3 days of coding, 2 days of testing and documenting.**
+
+	**BY the end of every week, new edits should be ready to be merged.**
+|
+
+First three weeks of bonding :
+
+	week one and two : get familiar with the Xapian::matcher code base.
+
+	week three : setup debug environment, and how to test project parts, read c++ concepts on developers guide.
+week 1 : Work on OP_AND_NOT
+
+week 2 : Work on OP_XOR
+
+week 3 : Work on OP_AND_MAYBE
+
+week 4 : Work on OP_FILTER
 
 10 June : Final exams (this is an estimate,official schedule isn't announced yet.)
 
+First Evaluation
 
-* Two Weeks: Working on OP_FILTER, OP_NEAR, and OP_PHRASE (Code, testing, and doumentation.)
+week 5 : Work on OP_ELITE_SET
 
-* Two Weeks: Working on OP_VALUE_RANGE, OP_VALUE_LE, OP_VALUE_LT, OP_VALUE_GE, and OP_VAUE_GT (Code, testing, and doumentation).
+week 6 : Work on OP_SYNONYM
 
-* Two Weeks: Working on OP_SCALE_WEIGHT,and OP_ELITE_LIST (Code, testing, and doumentation.)
+week 7 : Work on OP_MAX
 
-* One Weeks: Working on OP_SYNONYM,and OP_MAX (Code, testing, and doumentation.)
+week 8 : Work on OP_WILDCARD, and OP_EDIT_DISTANCE
 
-* One Weeks: Working on OP_WILDCARD,and OP_INVALID (Code, testing, and doumentation.)
+Second Evaluation
 
-This could be done in a shorter amount of time. If so, i can start work on other projects.
+week 9 : Work on OP_VALUE_RANGE
+
+week 10 : Work on OP_VALUE_GT, OP_VALUE_GE, OP_VALUE_LT, and OP_VALUE_LE
+
+week 11 , 12 : Review, see if anything need to change.
 
 .. We want you to think about the order you will work on your project, and
 .. how long you think each part will take.  The parts should be AT MOST a

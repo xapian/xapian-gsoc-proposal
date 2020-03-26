@@ -67,7 +67,7 @@
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-GSOC 2020 - PROPOSAL
+GSOC 2020 - XAPIAN GO BINDINGS
 ======================================
 
 About You
@@ -179,7 +179,7 @@ Yes , Summer of Code is my main focus this summer.
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-Monday–Saturday 5am-4pm UTC 
+Monday–Saturday 5am-3pm UTC 
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -198,9 +198,16 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-My main areas of interest includes C++ and Go. They provide greater flexibility and concurrency.
-I have previously  used cgo and swig in small projects.
-So I feel I am elgible for this project.
+My main areas of interest includes C++ and Go.I like the thread support provided in  go and c++.
+As go achieves concurrency in two ways one using goroutines and other using channels . goroutines are often called 
+light-weight threads as they occupy very less stack space(8KB) compared to posix threads(1-2MB) and more over many go threads can be multiplexed
+to one os thread where as pthreads occupy one OS thread that could be huge performance boost 
+when dealing with millions of go threads which are going to perform tiny tasks(go routines) 
+(here is an intresting article on go threads vs java threads https://rcoh.me/posts/why-you-can-have-a-million-go-routines-but-only-1000-java-threads/).
+I have previously used cgo and swig in small projects(Implementing fourier transformations in Go using C as backend for as 
+fourier transformation is used heavly on larger data sets in machine learning).
+Docker and Kubernetes are the two famous projects written in golang and are widely used. So I would like to provide support for 
+xapian in Go.
 
 **Who will benefit from your project and in what ways?**
 
@@ -208,7 +215,8 @@ So I feel I am elgible for this project.
 .. do and how your project will improve things for them.
 
 As Go lang is emerging now a days rapidly and its being used in servers and distributed systems,
-providing a Go API for the people who want to use xapian search engine in thier servers would be a huge benefit. 
+providing a Go API for the people who want to use Xapian search engine in thier servers would be a huge benefit.
+It would be benificial for Golang community ,Swig and Xapian. 
 
 Project Details
 ---------------
@@ -217,13 +225,16 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-I have done some intial implementation of go bindings for xapian which are available in my git repository (currently working on linux and unix systems).
+I have done some intial implementation of go bindings from the existing swig base wrappers written (in /xapian/xapian-bindings)
+which are available in my git repository.
+I have a small prototype on how re-wrapping is done in github repo mentioned at the bottom.
+
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
 Yes, my intial work on bindings definitly show that bindings can be implementend in go with c++ shared libraries.
-For time being they are working on Linux and Unix systems. I consider expanding them to work on other platforms is not a difficult job. 
+For time being they are working on Linux systems. I would expand them to work properly on all the linux systems.
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
@@ -235,14 +246,15 @@ pkg-config , later I started using flags from configure as one of my mentor (oll
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-I need to have a closer look at iterator classes of xapian for Implementing bindings in go.
+Compatiblilty of using libtool with the go build system.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
 I am confident enough that the project would be implemented and completed properly on time.
-If in case some thing goes wrong , I would continue my work after GSoC timeline as I am very much 
-interested in this project and love to contribute to xapian. 
+If in case some thing goes wrong , I would continue the work on go bindings after GSoC timeline as I am very much 
+interested in this project and love to contribute to xapian and woud like to maintain xapian go bindings if Im allowed to.
+
 
 Project Timeline
 ----------------
@@ -294,7 +306,7 @@ Project Timeline
 .. in your project timeline.
 In this summer I would like to do three things:
 
-    1. Make the go bindings compatible with the xapian build system.
+    1.  Make the bindings in Go compatible with the Xapian build system.
 
     2.  Provide bindings in go and complete API reference (as it is provided for C++)
         using godoc,Go lang's official documentation tool where any one can look at the 
@@ -302,59 +314,164 @@ In this summer I would like to do three things:
         documentation by just running go doc xapian from the terminal or command prompt.
         And the documentation would be providied in godoc official website 
         and xapian.org.
-        I have divided this part of work into to 10 weeks.
 
     3.  Provide the go get feature for using xapian bindings in go with 
         proper guide lines regarding whether the xapian core is installed
         or not.
 
+Plan :
+      * Go is Statically-typed language and each variable can only be of one type.
+        
+        Example :
+        /*
+        type Integer int
+            
+        var VarA Integer =10;
+        var VarB int = 20
 
-Before May 18,2020 :
-I would finish up the build system part of work for go bindings that 
-are generated purely from xapian-headers.i and xapian-head.i such that
-these can be used like any other bindings and in any platform that other xapian bindings can be used in.
+        func example(x int) */
 
-Each week for first 3 days I would work on provding API , that is writing swig interface 
-for the functions and classes which aren't generated from 
-existing swig interfaces(xapian-headers.i and xapian-head.i) with typemaps and other features of swig in go.i.
-Next 2 days documenting the code with examples and the last day for testing.
-I have grouped different classes for each week.
+        This produces an error when  VarA is passed to func.
+        Even though internally Integer is an int but both are different types.
+        Code and error here (https://pastebin.com/bvz5QLZJ).
 
+        The way swig wraps the enums is not that natural and there should type conversions before passing to appropriate 
+        function for proper functioning. (https://pastebin.com/X8K1q9Rh)
+
+        Rewrap the go code(which does conversions before passing to the that particular function)
+        in to wrapper for enums using swig %insert(go_wrapper).(https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/example.i#L51)
+      
+      * Go does not support constructors but this can be done with an extra helper function that takes slice of interfaces
+        which swig does by default during the wrapping but this should be done explicitly when re-wrapped.
+        interface{} in golang means any type. Slice of interfaces mean collection of interfaces(resizable array).
+        Go supports variable number of arguments of different type to functions as func myfun(a ...interface{}) which is used during 
+        constructor and function overloading.
+         
+      * Go supports Iterators by natural syntax using channels and convential methods such as Iter.Next().
+        
+        1. Using channels one could use for-range construct.
+
+        for i := range container.Iter(){
+          i.GetData() // methods to get information from the iterator at that position.
+        }
+
+        2. Using methods such as Iter.Next() as used in Go lang standard library (Container List https://golang.org/pkg/container/list/).
+         
+        Both standard method /* for iter.Next(){ ... code } */ and /* for-range construct would be made available for user
+        (these are just like auto-ranged based loops in c++) */
+         
+        Go support multiple return values , therefore rewrapping the interfaces which return iterators to both 
+        begin and end iterators in one function call as below.
+        /* start,end := doc.Termlist() */ 
+
+      * Go supports errors as return values . A language like c++ have try catch block Go has three constructs for dealing
+        with exceptions, they are panic defer and recover.A Panic is similar to an exception which can occur an runtime exception.
+        C++ exceptions can be handled in go from swig wrappers as follows(https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/example.i#L16).
+        Which ever class function throws an exception in c++ , the wrapped function in Go returns the error as value.
+
+      * Go has its own documentation tool for generating documentation for the go code . Providing documentation for the classes each week
+        that I work on particular week.
+        Most of the classes require rewrapping to provide a simple interface as SWIG generated 
+        interfaces is not that simple to use.
+      
+      * Go has its own test package for testing the packages which would be put in Makefile.
+        (https://golang.org/pkg/testing/)
+
+      * In month April, First Two weeks - Understand go build system deeper and work on it if it can be integrated with libtool or 
+        possibly prepare a plan to create a new separate build system with only auto tools.
+      * Next Two weeks - Understand Xapian implementation of existing bindings and Xapian classes more.
+        (Im not quite familiar with classes related to latlong, MatchSpy, KeyMaker).
+
+Community Bonding Period :
+      * Implement the build system properly for bindings in go using the existing wrapper(for linux) and review it with the mentors.
+      * Understand Xapian bindings for other implemented languages.
 
 First Month : 
+  June 1st-6th  :
+      * Support Iterators (Position, Posting, Term, Value).
 
-  Week1 :
-        Work on Document , Registry , Query , Stem implementation , Stem classes.
-  Week2 :
-        Work on PositionIterators , PostingIterator , TermTterator , ValueIterators
-        
-  Week3 :
-        Work Eset , Mset , Rset , EsetIterator , MsetIterator classes.
-       
-  Week4 :
-        Work on MatchDecider , Enquire , ExapandDecider , ExapandDeciderAnd ,
-        ExapandDeciderFilterPrefix , ExapandDeciderFilterTerms , KeyMaker ,MultiValueKeyMaker ,
-        Stopper classes.
-     
+      * Change all the function names which are to be exported to PascalCase.(1 day)
+
+        (Go uses Pascal Case when exporting functions from a package and camelCase for unexported functions.)
+      
+      * Rewrapping of the wrapped interface generated by SWIG by defining a struct that includes the swig-wrapped object
+        and adding necessory go code using %insert(go_wrapper) in go.i swig interface file.(4 days)
+
+      * Document the iterators interface using godoc and reStructuredText file.(1 day)
+  
+  June 8th-13th :
+      * Rewrap the Database class for providing errors(as return values) to the functions that throw errors.(3 days)
+      
+      * Rewrap the Document class for rewrapped iterator interfaces.(2 days)
+      
+      * Document both the classes.(1 day)
+  June 15th-20th :
+      * Rewrap the QueryParser , Query class for enums type conversions and provide return error for the methods for corresponding
+        functions which throw exception in c++.(2 days)
+
+      * Adding additional code for constructors and overloaded functions becuase of rewrapping.(2 days)
+      
+      * Document these classes.(2 days)   
+  June 22nd-27th :
+      * Support EsetIterator , MsetIterator classes by rewrapping the swig generated interfaces and adding additional go code 
+        for iteration.(2 days)
+      
+      * Document EsetIterator,MsetIterator,ESet,MSet,RSet classes using godoc and reStructuredText.(2 days)
+      
+      * Providing tests for classes so far implemented with go test package and edit Makefile for adding new tests.(2 days)
+   
+  June 29th :
+      * Phase 1 Evaluation.
+
 Second Month :
-  Week5 :
-        Work on all the Derived classes on RangeProcessor.
-  Week6 :
-        Work on all Weight classes.
-  Week7 :
-        Work on all the Derived classes of Posting Source.
-  Week8 :
-        Work on all the Derived classes of Matchspy classes and classes related to Latlong.
+  July 29th-4th :
+      * Rewrap the Enquire class and all the overloaded functions,constructors(2 days) and
+        functions which return the iterators to the interface which will be provided in go  
+        with multiple return values at once(two iterators).(2 days)
+      
+      * Document Enquire class and provide small code examples (2 days).
+  July 6th-11th :
+      * Rewrap the Stem class and Writable Database class and provide errors as return values for the functions which throw.(3 days)
+      
+      * Code for constructors and overloaded functions becuase of rewrapping.(2 days)
+      
+      * Document both the classes.(1 day)
+  July 13th-18th :
+      * Rewrap the TermGenerator class and provide the type conversions for enum.(3 days)
+      
+      * Code for constructors and overloaded functions becuase of rewrapping.(2 days)
+
+      * Document the TermGenerator class.(1 day)
+  July 20th-25th:
+      * Support Range Processors and Field Processors.(2 days)
+      
+      * Document both the Classes and demonstrate the usage of derived classes.(2 days)
+      
+      * Review the work done so far and fix the bugs if any.(1 day)
+      
+      * Provide tests far classes implementend so far with go test(package) and edit the Makefile for adding new tests. (1 day)
+  July 27th:
+      * Phase 2 Evaluation.
 
 Third Month : 
-  Week9 :
-        Work on Database class.
-  Week10 :
-        Work on Exceptions.
-  Week11 :
-        Implementing go get feature.
-  Week12 :
-        Windup everything and Testing. 
+  August 3rd-8th :
+      * Support for Exapand Decider, all the derived classes of Exapand Decider are 
+        embedded inside another interface provided by swig.(4 days)
+        In go lang inheritence is achieved by embeddeding one interface in another.
+      
+      * Document for usage of Exapand Decider and its derived classes.(2 days)
+  August 10th-15th :
+      * Since erros are values and they would be returned to the respective function so far,
+        now provide all the errors except.i file.(3 days)
+      
+      * Provide the standard examples in docs (simple index, simple search).(3 days)
+  August 17th-22nd :
+      * Implementation of go get feature.(3 days)
+      
+      * Providing tests far classes implementend so far with go test(package) and edit the Makefile for adding new tests 
+        and provide tests for go get.(3 days)
+  August 24th-31st : Final Week.
+      * Evaluation Week and submission.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -402,5 +519,23 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-I am using the existing xapian-headers.i and xapian-head.i from xapian ,
-apart from them I am not using any other.
+I am using the existing xapian-headers.i and xapian-head.i from xapian.
+
+References :
+    Sample prototype for how rewrapping is done - https://github.com/srinivasyadav18/xapian-gsoc-plan
+
+    Iterator Pattern used in Golang Standard library - https://golang.org/pkg/container/list/
+
+    Iterator Pattern (for-range) - http://www.golangpatterns.info/object-oriented/iterators
+
+    Errors in Golang - https://blog.golang.org/error-handling-and-go
+
+    Swig Support for Golang - http://www.swig.org/Doc4.0/Go.html
+
+    Swig Insertion of Additional Go code into wrapper - http://www.swig.org/Doc4.0/Go.html#Go_adding_additional_code
+
+    Cgo documentation - https://golang.org/cmd/cgo/
+
+    Go Testing package - https://golang.org/pkg/testing/
+
+    Go doc tool - https://blog.golang.org/godoc

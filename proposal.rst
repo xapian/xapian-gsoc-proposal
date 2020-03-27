@@ -342,7 +342,8 @@ Plan :
         in to wrapper for enums using swig %insert(go_wrapper).(https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/example.i#L51)
       
       * Go does not support constructors but this can be done with an extra helper function that takes slice of interfaces
-        which swig does by default during the wrapping but this should be done explicitly when re-wrapped.
+        which swig does by default during the wrapping, but little extra code need to be added for constructors and
+        functions when overloaded as they take slice of interfaces in ellipse syntax.
         interface{} in golang means any type. Slice of interfaces mean collection of interfaces(resizable array).
         Go supports variable number of arguments of different type to functions as func myfun(a ...interface{}) which is used during 
         constructor and function overloading.
@@ -351,8 +352,8 @@ Plan :
         
         1. Using channels one could use for-range construct.
 
-        for i := range container.Iter(){
-          i.GetData() // methods to get information from the iterator at that position.
+        for i := range doc.terms(){
+          i.GetTerm() // methods to get term from the iterator at that position.
         }
 
         2. Using methods such as Iter.Next() as used in Go lang standard library (Container List https://golang.org/pkg/container/list/).
@@ -362,7 +363,7 @@ Plan :
          
         Go support multiple return values , therefore rewrapping the interfaces which return iterators to both 
         begin and end iterators in one function call as below.
-        /* start,end := doc.Termlist() */ 
+        /* begin,end := doc.Terms() */ 
 
       * Go supports errors as return values . A language like c++ have try catch block Go has three constructs for dealing
         with exceptions, they are panic defer and recover.A Panic is similar to an exception which can occur an runtime exception.
@@ -409,7 +410,7 @@ First Month :
       * Rewrap the QueryParser , Query class for enums type conversions and provide return error for the methods for corresponding
         functions which throw exception in c++.(2 days)
 
-      * Adding additional code for constructors and overloaded functions becuase of rewrapping.(2 days)
+      * Adding additional code for constructors and overloaded functions becuase of rewrapping, rewrap the functions which return iterators in Go idomatic way.(2 days)
       
       * Document these classes.(2 days)   
   June 22nd-27th :

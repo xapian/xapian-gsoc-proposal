@@ -424,7 +424,7 @@ First Month :
       * Phase 1 Evaluation.
 
 Second Month :
-  July 29th-4th :
+  June 29th - July 4th :
       * Rewrap the Enquire class and all the overloaded functions,constructors(2 days) and
         functions which return the iterators to the interface which will be provided in go  
         with multiple return values at once(two iterators).(2 days)

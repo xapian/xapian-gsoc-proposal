@@ -267,8 +267,9 @@ and take huge space.
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-We still assume independance in calculating the estimates.
-I am still not sure if we can come up with better approach.
+If the first and last docids happend to be the first and last in the db, then our range would be same (db_size), and the estimate would be the same.
+
+we can try to use some data on correlated terms, but not sure if that would be efficient in respect to data size.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
@@ -281,9 +282,16 @@ Project Timeline
 The main goal of this project is to improve the estimation of the total number of results buy making use of the
 the new feature that gives the first and last docids for each term.
 
-The task is to improve the Xapian::MSet::get_matches_estimated() method for the  operators, but OP_AND and OP_OR are almost done.
+The task is to improve the Xapian::MSet::get_matches_estimated() method for the PostList subclasses , but OP_AND and OP_OR are almost done.
 
-AND_NOT :
+
+multiandpostlist, orpostlist, postlisttree :
+
+	Almost done by Olly.
+boolorpostlist:
+
+	Same as OP_OR.
+AND_NOT(andnotpostlist) :
 
 	implementing get_used_docid_range().
 
@@ -295,7 +303,7 @@ AND_NOT :
 
 	then we calculate the probability.
 
-XOR :
+XOR(multixorpostlist) :
 
 	implementing get_used_docid_range().
 
@@ -307,7 +315,7 @@ XOR :
 
 	then we calculate according to that range.
 
-AND_MAYBE :
+AND_MAYBE(andmaybepostlist) :
 
 	implementing get_used_docid_range().
 
@@ -327,16 +335,18 @@ FILTER :
 
 	then we just return probability of L times the probability of R times the total range, which would be the union of the two ranges.
 
-NEAR, and PHRASE :
+NEAR(nearpostlist), PHRASE(phrasepostlist), and exactphrasepostlist :
 
-	No work needed on this.
+	implementing get_used_docid_range().
 
-VALUE_RANGE :
+	I think we can treat it like MULTI_AND, and the divide that estimate by constant like what we doing now.
+
+VALUE_RANGE(valuerangepostlist) :
 
 	We can make use of the fact that we have the first and last docids, to reduce the total range to be the overlapped range of the
 	begin and end ranges, instead of the slot_freq reange.
 
-VALUE_GT, VALUE_LT, VALUE_LE, VALUE_GE :
+VALUE_GT(valuegtpostlist), VALUE_LT(valueltpostlist), VALUE_LE, VALUE_GE(valuegepostlist) :
 
 	implementing get_used_docid_range().
 
@@ -353,7 +363,8 @@ SYNONYM :
 	implementing get_used_docid_range().
 
 	treated like OP_OR
-MAX :
+
+MAX(maxpostlist) :
 
 	implementing get_used_docid_range();
 
@@ -363,9 +374,10 @@ WILDCARD, EDIT_DISTANCE :
 
 	implementing get_used_docid_range().
 
-	This would return the matches terms along with them ranges,then we can calucate as OP_OR;
+	This would return the matches terms along with them ranges,then we can calucate as MULTI_OR;
 
-INVALID, LEAF_TERM, LEAF_POSTING_SOURCE, LEAF_MATCH_ALL,LEAF_MATCH_NOTHING, OP_SCALE_WEIGHT :
+INVALID, LEAF_TERM, LEAF_POSTING_SOURCE, LEAF_MATCH_ALL,LEAF_MATCH_NOTHING, OP_SCALE_WEIGHT(extraweightpostlist),
+deciderpostlist, externalpostlist, orpospostlist, selectpostlist, wrapperpostlist  :
 
 	Unrelated.
 
@@ -385,7 +397,7 @@ First three weeks of bonding :
 	week three : setup debug environment, and how to test project parts, read c++ concepts on developers guide.
 week 1 : Work on OP_AND_NOT
 
-week 2 : Work on OP_XOR
+week 2 : Work on OP_XOR,  boolorpostlist.
 
 week 3 : Work on OP_AND_MAYBE
 
@@ -397,9 +409,9 @@ First Evaluation
 
 week 5 : Work on OP_ELITE_SET
 
-week 6 : Work on OP_SYNONYM
+week 6 : Work on OP_SYNONYM, OP_MAX
 
-week 7 : Work on OP_MAX
+week 7 : Work on : NEAR, PHRASE, and exactphrasepostlist.
 
 week 8 : Work on OP_WILDCARD, and OP_EDIT_DISTANCE
 
@@ -409,7 +421,11 @@ week 9 : Work on OP_VALUE_RANGE
 
 week 10 : Work on OP_VALUE_GT, OP_VALUE_GE, OP_VALUE_LT, and OP_VALUE_LE
 
-week 11 , 12 : Review, see if anything need to change.
+week 11 , 12 : stretch goal : start a research on whether we can use a standard language datasets to calculate correlation between terms
+and use it to tweak the estimates. Initial idea, to start with only strong correlated terms, and see how much improvement would that make.
+
+I think,we would finish the main goal before the tenth week, and we would have more time for the stretch goal. I think we would't be able to finish this stretch goals
+by Gsoc end date, but by then if we found positive feedback from this approach, we can continue work on it.
 
 .. We want you to think about the order you will work on your project, and
 .. how long you think each part will take.  The parts should be AT MOST a

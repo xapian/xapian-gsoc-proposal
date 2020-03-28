@@ -355,7 +355,7 @@ Plan :
         for i := range doc.terms(){
           i.GetTerm() // methods to get term from the iterator at that position.
         }
-
+	(sample code how channels are used for iteration with for-range construct https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/channel.go#L35)
         2. Using methods such as Iter.Next() as used in Go lang standard library (Container List https://golang.org/pkg/container/list/).
          
         Both standard method /* for iter.Next(){ ... code } */ and /* for-range construct would be made available for user
@@ -529,6 +529,8 @@ References :
 
     Iterator Pattern (for-range) - http://www.golangpatterns.info/object-oriented/iterators
 
+    Iterator using channels - https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/channel.go#L35
+
     Errors in Golang - https://blog.golang.org/error-handling-and-go
 
     Swig Support for Golang - http://www.swig.org/Doc4.0/Go.html
@@ -540,3 +542,4 @@ References :
     Go Testing package - https://golang.org/pkg/testing/
 
     Go doc tool - https://blog.golang.org/godoc
+    

@@ -217,6 +217,15 @@ Then I would be adding support for the newly inplemented normalistions in Weight
 
 Finally I would be comparing the effectiveness of different normalisations using Xapian evaluations. 
 
+**Stretch Goals**
+
+If time permits, we can also implement the following:
+
+Providing exact value of unique terms: Currently the number of unique terms is not exact. We can get an exact value of unique terms by storing unique terms values like we store the document length.
+
+There are more weighting schemes which we can add.Some of them are developed using genetic programming.They have shown to outperform BM25 in some cases.For details ,please refer http://www.genetic-programming.org/hc2007/07-Cummins/Cummins-JIR-2006.pdf
+
+
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
@@ -350,7 +359,8 @@ Project Timeline
       - make documentation for these results.
   Week 12(16 AUG-22 AUG)
   
-This week is kept as buffer week.Also due to the COVID-19 outbreak in my country,Our exams have been rescheduled but the dates aren't decided.So there is a possibility that I might have exams during the coding period.But they wont last more than a week.
+  This week is kept as buffer week.Also due to the COVID-19 outbreak in my country,Our exams have been rescheduled but the
+ dates aren't decided.So there is a possibility that I might have exams during the coding period.But they wont last more than a week.If I have time,I can work for Stretch goals.
   
 Previous Discussion of your Project
 -----------------------------------

@@ -337,9 +337,13 @@ FILTER :
 
 NEAR(nearpostlist), PHRASE(phrasepostlist), and exactphrasepostlist :
 
-	implementing get_used_docid_range().
+	Most of the work done by MultiAndPostList.
 
-	I think we can treat it like MULTI_AND, and the divide that estimate by constant like what we doing now.
+	I think we can do better than just divide the estimate number by constant.
+
+	We can get a list by words that most likely to come next to each other, like: "the" + "noun".
+
+	This would help most in exactphrasepostlist, where we search for words that make a sentence (terms right next to each other)
 
 VALUE_RANGE(valuerangepostlist) :
 

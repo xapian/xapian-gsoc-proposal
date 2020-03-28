@@ -314,39 +314,39 @@ Project Timeline
      Time for any other discussion needed prior to coding.
   
  **Coding**
-  Week 1(1 JUN-6 JUN)
+  Week 1(1 JUNE-6 JUNE)
       - implement Entropy and Global frequency IDF (1 day)
       - write test cases for Entropy and Global frequency IDF (3 days)
       - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
-  Week 2(7 JUN-13 JUN)
+  Week 2(7 JUNE-13 JUNE)
       - implement Changed-coefficient ATF1 and Augmented average term frequency (1 day)
       - write test cases for Changed-coefficient ATF1 and Augmented average term frequency (3 days)
       - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
-  Week 3(14 JUN-20 JUN)
+  Week 3(14 JUNE-20 JUNE)
       - implement Augmented log and square root (1 day)
       - write test cases for Augmented log and square root (3 days)
       - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
-  Week 4(21 JUN-27 JUN)
+  Week 4(21 JUNE-27 JUNE)
       - implement Log-global frequency IDF and Incremented global frequency IDF (1 day)
       - write test cases for Log-global frequency IDF and Incremented global frequency IDF (2 days)
       - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
-  Week 5(28 JUN-4 JUN) [Evaluation 1]
+  Week 5(28 JUNE-4 JULY) [Evaluation 1]
       - Submit evaluation .
       - implement Square root global frequency IDF (1 day)
       - write test cases for Square root global frequency IDF (2 days)
       - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
-  Week 6(5 JUN-11 JUN)
+  Week 6(5 JULY-11 JULY)
       - get max-tf from Weight::Internal (2 days)
       - implement "max-norm" and "aug-norm" (1 day)
       - write test cases for max-tf (2 days)
-  Week 7(12 JUN-18 JUN)
+  Week 7(12 JULY-18 JULY)
       - write test cases for "max-norm" and "aug-norm (3 days)
       - make PR for these changes and getting it reviewed and completing documentation simultaneously(2 day)
-  Week 8(19 JUN-25 JUN)
+  Week 8(19 JULY-25 JULY)
       - Add support for the new normalisations in Weight::create().This includes the changes to be made in Registry(3 days)
       - make PR for these changes and getting it reviewed and completing documentation simultaneously (1 day)
       - Rest of days are kept free to complete back log if any.
-  Week 9(26 JUN-1 AUG)[Evaluation 2]
+  Week 9(26 JULY-1 AUG)[Evaluation 2]
       - submit evaluation.
       - make changes in config_file.cc (2 days)
       - make changes in config_file.h (1 day)
@@ -359,8 +359,8 @@ Project Timeline
       - make documentation for these results.
   Week 12(16 AUG-22 AUG)
   
-  This week is kept as buffer week.Also due to the COVID-19 outbreak in my country,Our exams have been rescheduled but the
- dates aren't decided.So there is a possibility that I might have exams during the coding period.But they wont last more than a week.If I have time,I can work for Stretch goals.
+      - This week is kept as buffer week.Also due to the COVID-19 outbreak in my country,Our exams have been rescheduled but the dates aren't decided.So there is a possibility that I might have exams during the coding period.But they wont last more than a week.
+      - If I have time,I can work for Stretch goals.
   
 Previous Discussion of your Project
 -----------------------------------

@@ -377,10 +377,29 @@ Project Timeline
 
   * Create a handler which is a process used by omindex to access the library. (5 days)
   * Update the build system. (6 days)
-  * Add a new worker for the MIME type to omindex. If modifications are correct, after compiling we will find a new executable omindex_libarchive in the working directory. (3 days)
-  * Testing and documentation. (2 days)
-  * Submit PR, make changes as per discussion and merge. (4 days)
-  * Submit Evaluation for Phase 1.
+    * Modifying 'configure.ac'
+      * Check if the library is available or not using 'PKG_CHECK_MODULES', which is a macro that provides an easy way to check for the presence of a given package in the system.
+      * Other macros that may be useful are : 
+        * 'AC_CHECK_HEADERS', which defines a 'HAVE_header-file' if the header-file provided in arguments exists.
+        * 'AC_DEFINE', which is used to define a C preprocessor symbol that will indicate the results of a feature test.
+        * 'AC_COMPILE_IFELSE', which is used to check a syntax feature of a particular language's compiler, or to simply try some library feature.
+        * 'AC_LINK_IFELSE', which is used to compile test programs to test for functions and global variables.
+    * Modifying 'Makefile.am'
+      * Add the program to 'EXTRA_PROGRAMS'
+      * Define variables if necessary :
+        * 'omindex_yourlibrary_SOURCES'
+        * 'omindex_yourlibrary_LDADD'
+        * 'omindex_yourlibrary_CPPFLAGS'
+  * Add a new worker for the MIME type to omindex. (3 days)
+    * This can be done on the function 'add_default_libreries' at 'index_file.cc'.
+    * The compilation variable defined in 'configure.ac', 'HAVE_header-file', will be used here. If the variable is defined, a new worker will be created.
+    * Compile the code to make sure that everything is okay. If the modifications are correct, a new executable 'omindex_yourlibrary' will be present in the working directory.
+  * Testing and Evaluation (6 days)
+    * Add unit tests and individual tests for the library, Unit testing here means that I will find some zip files that have a license to freely distribute and verify that the shared library handler works well on it.
+    * Testing Omega. Omega's testsuite can be run in a similar way to that of xapian-core, 'make check' within the 'omega' directory. It runs several small tests such as 'atomparsetest', 'htmlparsetest', 'utf8convertest', etc.
+    * Make changes based on feedback and discussion during each of the above steps.
+    * Submit PR and merge.
+    * Submit Evaluation for Phase 1.
 
 
 

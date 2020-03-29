@@ -161,7 +161,7 @@ Yes
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-Monday–Friday 7am-1am UTC, but I can move it if needed.
+Monday–Friday 7am-1pm UTC, but I can move it if needed.
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -180,39 +180,57 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-It is interesting to me to benchmark ranking algorithms on big databases.
+Information Retrieval is interesting to me as application of statistics. This project allows me to broaden horizons with practical examples. Also programming practice and communicating with mentors are very important to me.
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-Project I want to do assumes that there will be tool for evaluating Letor on different datasets and compare its performance, so it useful for users wich want to understand Xapian abilities.
+Project I want to do assumes that there will be tool for evaluating Letor on different datasets and compare its performance. If it is completed successfully, there free suite with several ranking algorithms and features will available for users. It is useful not only for future developers, but for participants IR contests like TREC. Also it is possible to implement automated configuration choose using score classes.  
 
 Project Details
 ---------------
 
-.. Please go into plenty of detail in this section.
-
 **Describe any existing work and concepts on which your project is based.**
 
-There are several ranking algorithms with pretty same api implemented in Letor. So I think manager class should be developed to evaluate ranking and logging results. It will better to integrate it with testing classes, because it makes possible to develop suite for perfomance rating, wich will useful not only for ranking, but for all test cases. 
+There are several ranking algorithms with pretty same api implemented in Letor. So I think manager class should be developed to evaluate ranking and logging results. It will better to integrate it with Letor classes. Additional task is to improve perftest suite by running it on real data, wich will useful not only for ranking benchmark, but for all test cases. More detailed:
+
+* Implement class for preparing data, i.e. download it and convert to suitable form. The most convenient dataset is `FIRE <http://fire.irsi.res.in/fire/static/data>`_ and `TREC <https://trec.nist.gov/data/t2002_filtering.html>`_. It is hard to fully generalize this case, so I prefer to implement parser for each dataset:
+
+	* FIRE queries stored in inappropriate format, they should be transformed to use them in Xapian; It will possible to use English language corpus, because Eglish stemmer exists in Xapian.
+
+	* TREC dataset has big enough amount of documents, it is possible to combine some of them during pasing to create more complex queries.
+
+* Implement evaluator. According to xapian-letor/tests/api_letor.cc it is no big difference in applying rankers to data, it should just apply algorithms and return scores, so it could be another one class in xapian/letor. It would be nice to be able to call it same way as make check.
+
+* Write suite for combining documents. TREC dataset has big corpus of small documents. To get more content small documents could be merged. Also queries and qrels have to be transformed. After that evaluation could be done using Xapian API logic operations for queries. Since it is not needed for every Letor run, it should be separate tool, like xapian-letor/bin/xapian-prepare-trainingfile.cc. 
+
+* It is possible to use Wikipedia dumps as data for perftest. `Wikipedia <https://dumps.wikimedia.org/enwiki/latest/>`_ corpus just stores XML file with links to articles and some info, so it each document should be downloaded and indexed individually. Also plain text `extractor <https://github.com/RaRe-Technologies/gensim/blob/develop/gensim/corpora/wikicorpus.py>`_ and query fabricator needed.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-I worked with Xapian test harness, it has BackendManager class wich makes testing databases api easier. I believe ranking benchmark should be done in similar way. 
+I worked with Xapian test harness in `#758 <https://trac.xapian.org/ticket/758>`_, it has BackendManager class wich makes testing databases api easier. I believe ranking benchmark should be done in similar way.
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-Another way is to create ranking suite as part of Letor, but it is not clear enough how to develop performance measurement api in this case.
+I have discussed the possibility of using web datasets like INEX, but there are several reasons to store dataset locally:
+
+* Most of Web-API datasets requires an account creation, which is not suitable for Xapian users.
+
+* All data should be stored locally at least in parts to be indexed.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-Databases could be too big to store them on local machine, or too big for memory, which could cause inaccuracies in performance tests, because of reading from disk. Also I don't know how different ranking algorithms are, so it could impact timeline.
+Databases indexing time could be big enouth, in connection with this, difficulties may arise during implementation.
+ 
+Current state of SVM ranker is not clear, tests from master branch passes with valgrind and no bugs mentioned in pr #278.
 
+Fixing SVM ranker bugs can take indefinite time.
+ 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
@@ -267,29 +285,29 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-* Weeks of bonding: get familiar with ranking algorithms, search for suitable datasets, assessment of the complexity of integrating large databases, and performance tests.
 
-In each next position assumes that testing and writing cross-platform part is included.
+* Weeks of bonding: Get more familiar with ranking algorithms, select specific suitable parts of the above datasets, discuss what is wrong with `#278 <https://github.com/xapian/xapian/pull/278>`_.
 
-* 1 Week - integrate datasets 
+* 1 Week - FIRE dataset integration. Each user have to download it by themself, because of 
+registration required. Implement training process using Letor API.  
 
-* 2 Weeks of exams (situation with exams is very unstable now in my University, so I timeline may change in this case)
+* 2 Weeks of exams (situation with exams is very unstable now in my University, so I timeline may change in this case).
 
-* 1 Week - solve possible problems with the size of datasets
+* 1 Week - add function for selecting scorer and ranker. It would be nice to write API allows user to select default sets of queries to run and run specified queries. For that purpose update build system to be able to run suite from terminal.
 
-* 3 Weeks - implement ListMLE, ListNet and SVM evaluation api
+* 1 Week - TREC dataset integration. It has similar format to FIRE, it should not be problem to integrate it. Start writing tool for combine docs.
 
-If no troubles appeared, I can try to develop suite for performance testing:
+* 1 Week - combine tool API should support plain logical operations, it could take time to implement them.
 
-* 1 Week - get familiar with data indexing and searching api
+* 1 Week - prepare tool for text data extracting from Wikipedia.
 
-* 1.5 Weeks - tests for indexing
+* 1 Week - add functionallity to perftest to drop system cache for more accurate results and run one case multiple times to get average time consuming.
 
-* 1.5 Weeks - tests for searching
+* 1 Week - implement Wikipedia data loader and queries for it, write performance tests for filling db with documents, iterating over documents.
 
-* 1 Week - solving problems and integrate tests to build system
+* 1 Week - add perftest to autotools srcipt, as it advised in `#107 <https://trac.xapian.org/ticket/107>`_. If time is left, add function to fork test case in new process and measure it memory usage.
 
-Remaining time - contingency reserved
+* 2 Weeks - extra time if something goes wrong.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -334,4 +352,4 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-I don't know exactly, maybe some third-party api for interacting with big datasets will be needed.
+Third-party tools not needed.

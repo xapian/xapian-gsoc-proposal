@@ -337,13 +337,7 @@ FILTER :
 
 NEAR(nearpostlist), PHRASE(phrasepostlist), and exactphrasepostlist :
 
-	Most of the work done by MultiAndPostList.
-
-	I think we can do better than just divide the estimate number by constant.
-
-	We can get a list by words that most likely to come next to each other, like: "the" + "noun".
-
-	This would help most in exactphrasepostlist, where we search for words that make a sentence (terms right next to each other)
+	Most of the work done by MultiAndPostList. Based on the last three weeks' research, we would know, if we can calculate better estimate.
 
 VALUE_RANGE(valuerangepostlist) :
 
@@ -415,17 +409,15 @@ week 5 : Work on OP_ELITE_SET
 
 week 6 : Work on OP_SYNONYM, OP_MAX
 
-week 7 : Work on : NEAR, PHRASE, and exactphrasepostlist.
+week 7 : Work on OP_WILDCARD, and OP_EDIT_DISTANCE
 
-week 8 : Work on OP_WILDCARD, and OP_EDIT_DISTANCE
+week 8 : Work on OP_VALUE_RANGE
 
 Second Evaluation
 
-week 9 : Work on OP_VALUE_RANGE
+week 9 : Work on OP_VALUE_GT, OP_VALUE_GE, OP_VALUE_LT, and OP_VALUE_LE
 
-week 10 : Work on OP_VALUE_GT, OP_VALUE_GE, OP_VALUE_LT, and OP_VALUE_LE
-
-week 11 , 12 : stretch goal : start a research on whether we can use a standard language datasets to calculate correlation between terms
+week 10, 11 , 12 : stretch goal : start a research on whether we can use a standard language datasets to calculate correlation between terms
 and use it to tweak the estimates. Initial idea, to start with only strong correlated terms, and see how much improvement would that make.
 
 I think,we would finish the main goal before the tenth week, and we would have more time for the stretch goal. I think we would't be able to finish this stretch goals

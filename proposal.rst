@@ -378,13 +378,17 @@ Plan :
       * Go has its own test package for testing the packages which would be put in Makefile.
         (https://golang.org/pkg/testing/)
 
+      * Summary and code for each part in https://github.com/srinivasyadav18/xapian-gsoc-plan
+
       * In month April, First Two weeks - Understand go build system deeper and work on it if it can be integrated with libtool or 
         possibly prepare a plan to create a new separate build system with only auto tools.
+      
       * Next Two weeks - Understand Xapian implementation of existing bindings and Xapian classes more.
         (Im not quite familiar with classes related to latlong, MatchSpy, KeyMaker).
 
 Community Bonding Period :
       * Implement the build system properly for bindings in go using the existing wrapper(for linux) and review it with the mentors.
+      
       * Understand Xapian bindings for other implemented languages.
 
 First Month : 
@@ -474,6 +478,18 @@ Third Month :
   August 24th-31st : Final Week.
       * Evaluation Week and submission.
 
+Stretch Goals:
+      * If time permits support for Stem Implementation , Stopper class , Weight class.
+      
+      * Provide benchmarking tests in Go (with help of go test package).
+      
+      * Research on Providing bindings in Rust.
+      
+Project Deliverable:
+
+      * A well documented Xapian bindings in Go with automated tests, examples and go get command
+        for installation of bindings in Go. 
+
 Previous Discussion of your Project
 -----------------------------------
 
@@ -488,8 +504,7 @@ Previous Discussion of your Project
 
 So far we have discussed mainly about the build system of xapian for bindings in go.
 And a feature, go get to install xapian-bindings.I have made a PR (https://github.com/xapian/xapian/pull/292) where one of my mentor (olly)
-suggested for somechanges
-and I have done most of it.
+suggested for somechanges and I have done most of it.
 
 Licensing of your contributions to Xapian
 -----------------------------------------

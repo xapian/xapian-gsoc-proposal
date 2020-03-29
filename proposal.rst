@@ -355,7 +355,7 @@ Project Timeline
       - write test cases for these changes (3 days)
       - make PR for these changes and getting it reviewed and completing documentation simultaneously (2 days)
   Week 11(9 AUG-15 AUG)
-      - Compare effectiveness of different normalisations .
+      - Compare effectiveness of different normalisations. We will use FIRE database for this.
       - make documentation for these results.
   Week 12(16 AUG-22 AUG)
   This week is kept as buffer week.Also due to the COVID-19 outbreak in my country,Our exams have been rescheduled but the dates aren't decided.So there is a possibility that I might have exams during the coding period.But they wont last more than a week.If I have time,I can work for Stretch goals.

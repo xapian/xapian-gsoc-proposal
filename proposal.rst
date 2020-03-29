@@ -262,21 +262,37 @@ I plan to divide my project into several modules. Here is a description of what 
 **Module 3: Integrating the First Library: LibArchive**
 
   * Omega already uses zlib to read gzip compressed Abiword files. Addition of a zip file reading library would further cover several popular formats.
-  * Define the process to access the library from inside omnidex.
+  * Define the process to access the library from inside omindex.
   * Update the build system.
   * Add support for workers to use the library.
   * Compile, build, test, and document.
 
 
-**Module 4: Integrate the other Libraries for Compressed File Formats**
+**Module 4: Integrate the other Libraries**
 
-  * This will broadly follow the steps from Module 3. The preference is to use shared libraries for the purpose of extracting texts, but if found necessary, we may also instead use an external filter.
-  * Verify the speed up in indexing capabilities due to this new support for various file formats.
+  * In this overview of the omega documentation and functionality (`https://xapian.org/docs/omega/overview.html`), the Section: Omindex Operation lists the various file formats that are already supported in Omega. Some of these such as Microsoft Visio that uses libvisio overlap with the list of formats in the Document Liberation Project. Going over this list, it suggests that there is wide support for office-based document products such as MS Word, Apple Keynote, etc. However, there is no support for drawing and graphics related file formats and e-book formats. I propose to improve Omega’s functionality along these lines.
+  * Drawing/Graphics based file formats:
+
+    * CorelDRAW
+    * Zoner Callisto/Draw
+    * Adobe FreeHand
+
+  * E-book/Publishing based file formats:
+
+    * libe-book (epub, PalmDoc, zvr, etc)
+    * Adobe PageMaker
+
+  * This will broadly follow the steps from Module 3.
+  * References:
+
+    * `https://www.documentliberation.org/projects/#import-libs`
+    * `https://wiki.documentfoundation.org/DLP/Libraries#Import_Libs`
+
+
 
 **Module 5 (Stretch goal)**
 
-  * If time permits, add next set of libraries which are necessary.
-  * Testing and Documentation
+  * If time permits, I will like to work on  `Add omindextest to Omega #280 <https://github.com/xapian/xapian/pull/280>`_ . Based on discussions with the author of the PR, I believe the PR is ready to be merged with few changes. I will try and understand the state of the PR and will work on getting the required changes done and getting it merged in discussion with the community.
 
 
 **Do you have any preliminary findings or results which suggest that your
@@ -293,7 +309,7 @@ Support for various file formats has been added during this project successfully
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+In this project, I will particularly focus on adding shared libraries for various file formats as compared to external filters. External filters can also be used to extract text from various file formats but doing so will add a overhead of running the filter and thus slow up indexing.
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
@@ -375,43 +391,74 @@ Project Timeline
 
 **Phase 1: (June 1 - June 29) Module 3**
 
-  * Create a handler which is a process used by omindex to access the library. (5 days)
+  * Create a handler, which is a process used by omindex to access a library. (5 days)
+
+    * Create a file 'handler_yourlibrary.cc', this will include 'handler.h' and will define function 'extract' (declared in 'xapian-applications/omega/handler.h').
+    * Use the library to get necessary information and store it in corresponding arguments such as 'dump', 'title', 'author', etc.
+
   * Update the build system. (6 days)
+
     * Modifying 'configure.ac'
+
       * Check if the library is available or not using 'PKG_CHECK_MODULES', which is a macro that provides an easy way to check for the presence of a given package in the system.
-      * Other macros that may be useful are : 
+      * Other macros that may be useful are :
+
         * 'AC_CHECK_HEADERS', which defines a 'HAVE_header-file' if the header-file provided in arguments exists.
         * 'AC_DEFINE', which is used to define a C preprocessor symbol that will indicate the results of a feature test.
         * 'AC_COMPILE_IFELSE', which is used to check a syntax feature of a particular language's compiler, or to simply try some library feature.
         * 'AC_LINK_IFELSE', which is used to compile test programs to test for functions and global variables.
+
     * Modifying 'Makefile.am'
+
       * Add the program to 'EXTRA_PROGRAMS'
       * Define variables if necessary :
+
         * 'omindex_yourlibrary_SOURCES'
         * 'omindex_yourlibrary_LDADD'
         * 'omindex_yourlibrary_CPPFLAGS'
+
   * Add a new worker for the MIME type to omindex. (3 days)
-    * This can be done on the function 'add_default_libreries' at 'index_file.cc'.
+
+    * This can be done on the function 'add_default_libraries' at 'index_file.cc'.
     * The compilation variable defined in 'configure.ac', 'HAVE_header-file', will be used here. If the variable is defined, a new worker will be created.
     * Compile the code to make sure that everything is okay. If the modifications are correct, a new executable 'omindex_yourlibrary' will be present in the working directory.
+
   * Testing and Evaluation (6 days)
+
     * Add unit tests and individual tests for the library, Unit testing here means that I will find some zip files that have a license to freely distribute and verify that the shared library handler works well on it.
     * Testing Omega. Omega's testsuite can be run in a similar way to that of xapian-core, 'make check' within the 'omega' directory. It runs several small tests such as 'atomparsetest', 'htmlparsetest', 'utf8convertest', etc.
     * Make changes based on feedback and discussion during each of the above steps.
-    * Submit PR and merge.
-    * Submit Evaluation for Phase 1.
+
+  * Submit PR and merge.
+
+  * Submit Evaluation for Phase 1.
 
 
 
 **Phase 2: (June 29 - July 27)**
 
-  * Add support for other libraries. (Under discussion. To be filled)
+  * Libarchive adds support for a variety of file extensions including gzip, bzip2, xz, lzip, etc. This shows the versatility and utility of adding libarchive. As explained in the Modules section of the proposal, I noticed that there is little support for e-book and publishing file formats. Libe-books supports various file extensions such as .epub, .pdb, .fb2, .zvr, etc. This wiki (`https://wiki.documentfoundation.org/DLP/Libraries#Import_Libs`) provides the complete list.
+  * Libraries proposed :
+
+    * `libe-book <https://sourceforge.net/projects/libebook/>`_ : It is a library and a set of tools for reading and converting various reflowable e-book formats such as Broad Band ebook, eReader .pdb, ZVR (simple compressed text format).
+    * `libfreehand <https://wiki.documentfoundation.org/DLP/Libraries/libfreehand>`_ : It  is a library that parses the file format of Aldus/Macromedia/Adobe FreeHand documents.
+
+  * Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner
+
 
 
 
 **Phase 3: (July 27 - August 24)**
 
-  * Add support for other libraries. (Under discussion. To be filled)
+* In this phase, I will focus on adding support libraries related to file-formats for digital drawing and graphics. Specifically, I intend to focus on libzmf, libfreehand, and libcdr. The choice of these libraries is subject to approval from the community during the initial bonding and discussion phase.
+* The procedure to add support for these libraries is understood to be similar to each other and should follow the same method as described in detail in Phase 1 for libarchive.
+* Libraries proposed :
+
+  * `libcdr <https://wiki.documentfoundation.org/DLP/Libraries/libcdr>`_ : This is for CorelDRAW. This includes  file formats like .cdr, .cmx (8 days)
+  * `libfreehand <https://wiki.documentfoundation.org/DLP/Libraries/libfreehand>`_  : This is used for Adobe FreeHand (6 days)
+  * `libzmf <https://wiki.documentfoundation.org/DLP/Libraries/libzmf>`_ : Zoner Callisto/Draw import library.  This includes file extensions such as .zmf (6 days)
+
+* Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner
 
 
 

@@ -70,27 +70,37 @@
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
+Text-Extraction Libraries
 ======================================
 
 About You
 =========
 
- * Name: FILLME
+ * Name: Kalpit Kothari
 
- * E-mail address: FILLME
+ * E-mail address: kkothari1999@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): kalpitk
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: https://www.linkedin.com/in/kalpitk/
 
- * github URL: FILLME
+ * github URL: https://github.com/kalpitk
 
  * Biography:
 
-.. Tell us a bit about yourself.
+I am a third-year undergraduate at IIT Indore, Indore. I started programming
+three years back when I joined university.
 
-FILLME
+I actively participate in Competitive Programming contests involving algorithmic
+, and geometry problems. I am also selected to represent the country at the
+ICPC World Finals 2020, the most renowned collegiate algorithmic competition
+across the globe.
+
+I have been involved in open-source software development for quite some time now.
+I have a few course projects ranging from Database Management, Algorithms,
+Optimization, Parallel Computing, and Computer Graphics. Other than that, I have
+a few hobby projects on GitHub. Most of the programming is done in languages: 
+C++ and Python.
 
 Background Information
 ----------------------
@@ -105,31 +115,46 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+Yeah. I participated in GSoC 2019 with 'Software Heritage'. The project involved
+security, web development and testing. It was a great experience working with a
+community spread across different countries. I was able to achieve the targets
+set in the beginning.
+
+Though the mentors were very responsive, I did not get much feedback from the
+other community members during the coding period.
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+I have a fair bit of knowledge about text search in SQL systems. However, I do
+not have any practical experience with indexed text search.
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+I have worked with various Open-Source libraries in my course projects. This
+includes linux socket, multithreading libraries and computer graphics libraries.
+
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+I have completed courses of Operating Systems, Database Management Systems, Data
+Structure & Algorithm, Parallel Computing, and Optimization in my university. I
+have a few hobby projects on GitHub like high performance HTTP/1.1 server in pure
+C++.
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+    * Operating System: Ubuntu 18.04 LTS
+    * CPU: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+    * IDE: Visual Studio Code
+
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+As mentioned above, I worked on GSoC 2019 project with Software Heritage.
 
 **What timezone will you be in during the coding period?**
 
@@ -137,7 +162,7 @@ FILLME
 .. name so we aren't surprised by any differences around daylight savings
 .. time, which don't all line up in different parts of the world.
 
-FILLME
+GMT+5:30
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
@@ -146,7 +171,7 @@ program?**
 .. but if we don't know about them in advance we can't make sure you have
 .. the support you need.
 
-FILLME
+Yes, Summer of Code project will be my main focus during the period.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -165,7 +190,7 @@ FILLME
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-FILLME
+Monday-Friday 6:30am-2:00pm UTC
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -174,7 +199,7 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+Yes. I am applying to CERN-HSF project also.
 
 Your Project
 ============
@@ -184,14 +209,18 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+The project involves coding in C++ which I use the most while programming and
+would help me increase my knowledge about Linux.
+
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+This project removes dependencies on external software, adds support where it
+may not be present, and speed up the indexing process. This would help all the
+users, and software using Xapian.
 
 Project Details
 ---------------
@@ -200,27 +229,39 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+The project is based on the GSoC 2019 project for adding Text Extraction
+Libraries by Bruno Baruffaldi. Support for archive formats like Office Open XML
+by Microsoft and OpenDocument (ODT), is yet to be added.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+The documentation about adding support for new MIME types from the last GSoC
+project, demonstrates that the process of adding support for new languages is
+quite plausible.
+I went through the basic documentation of libarchive on GitHub
+(https://github.com/libarchive/libarchive). According to the page, it has
+support for various archive formats and can work with streaming archives.
+I have tried running sample libarchive codes after its installation. 
+Everything seems to be working as intended.
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+None
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+The number of formats to support will depend on community feedback. I aim for
+six new handlers.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+It is possible, for some file types we have issues fetching the content.
+In that case, we'll lack support for few formats which may be fulfilled in the
+future.
 
 Project Timeline
 ----------------
@@ -271,7 +312,34 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
+Community Bonding Period (May 4 - May 31)
+    * Interact with mentors, introduce myself to the community.
+    * Get familiar with Xapian’s development style. Understand expected coding, documentation, and testing standards set by Xapian.
+    * Start working on some issues to familiarise with the codebase. (Not necessarily related to the project)
+    * Discuss and prepare a list of various MIME types that need to be worked on.
+    * Read documentation relating to the required libraries.
+
+First Coding Period (June 1 - June 28)
+    * Implement first handler, update build system, and add new worker to omindex. (7 days)
+    * Look for issues, take feedback, improve performance. (6 days)
+    * Document the code. (4 days)
+    * Finalise the PR and merge. (2 days)
+
+Second Coding Period (July 6 - July 27)
+    For two types:
+        * Add support for a new type. (4 days)
+        * Take feedback, improve code. (3 days)
+        * Document changes and merge. (2 days)
+
+Third Coding Period (August 3 - August 31)
+    For three types:
+        * Add support for a new type. (3 days)
+        * Take feedback, improve code. (2 days)
+        * Document changes and merge. (2 days)
+
+Final Evaluation Week (August 31 - September 7)
+    * Document all the work done for future work.
+    * Prepare the final report.
 
 Previous Discussion of your Project
 -----------------------------------
@@ -285,7 +353,8 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-FILLME
+No, I have not discussed the project on irc or mailing list. However, I have
+carefully read project idea on the wiki page and agree with the ideas.
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -301,7 +370,8 @@ pages.
 .. please see the "License grant" section of our developer guide:
 .. https://xapian-developer-guide.readthedocs.io/en/latest/contributing/contributing-changes.html#license-grant
 
-FILLME
+I agree to dual-license all my contributions to Xapian under the GNU GPL version 2
+ans all later versions, and the MIT/X licence.
 
 Use of Existing Code
 --------------------
@@ -316,4 +386,6 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-FILLME
+As mentioned on GSoC Ideas page, for reading the archives 'libarchive' would be used
+which has a compatible licence with GPL version 2 and all later versions, and the
+MIT/X licence.

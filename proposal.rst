@@ -359,12 +359,13 @@ Plan :
             tm.Set_stemming_strategy(xapian.TermGeneratorSTEM_NONE(xapian.TermGeneratorSTEM_SOME))
 
             fmt.Println(tm)
-            
+
             }
  
         OUTPUT(WHEN FAILED) :
-              /root/xapian-enum.go:8:26:
-              cannot use xapian.TermGeneratorSTEM_NONE (type int) as type xapian.XapianTermGeneratorStem_strategy in argument to tm.Set_stemming_strategy
+            /root/xapian-enum.go:8:26:
+
+            cannot use xapian.TermGeneratorSTEM_NONE (type int) as type xapian.XapianTermGeneratorStem_strategy in argument to tm.Set_stemming_strategy
 
 
         The way swig wraps the enums is not that natural and there should type conversions before passing to appropriate 
@@ -399,41 +400,62 @@ Plan :
         begin and end iterators in one function call as below.
         /* begin,end := doc.Terms() */ 
 
-        /*  code : 
+        code : 
 
 
-        %rename (Wrapped_Document) Document;
-        %insert(go_wrapper) %{
-    
-        //rewrapping the Document interface currently adding only extra method Terms() to show how term iterator can be 
-        //used with go for-range construct
-              type Document struct {
-                      Obj Wrapped_Document
-              }
+          %rename (Wrapped_Document) Document;
 
-              func (d *Document) Terms()<-chan string {
-                      ch := make(chan string)
-                      begin := d.Obj.Termlist_begin()
-                      end := d.Obj.Termlist_end()
-                      go func() {
-                              for !begin.Equals(end) {
-                                      ch <- begin.Get_term()
-                                      begin.Next()
-                              }
-                              close(ch)
-                      }()
-                      return ch
-                      }
-          %}
-          */    
-          Usage in main.go 
-          /*
+          %insert(go_wrapper) %{
+      
+          //rewrapping the Document interface currently adding only extra method Terms() to show how term iterator can be 
 
-          for term := range myDoc.Terms() {
-		          fmt.Println(term)
-	        }
+          //used with go for-range construct
 
-          */
+                type Document struct {
+
+                        Obj Wrapped_Document
+
+                }
+
+                func (d *Document) Terms()<-chan string {
+
+                        ch := make(chan string)
+
+                        begin := d.Obj.Termlist_begin()
+                        
+                        end := d.Obj.Termlist_end()
+
+                        go func() {
+
+                                for !begin.Equals(end) {
+
+                                        ch <- begin.Get_term()
+
+                                        begin.Next()
+
+                                }
+
+                                close(ch)
+
+                        }()
+
+                        return ch
+
+                        }
+
+            %}
+
+            */    
+            Usage in main.go 
+            /*
+
+            for term := range myDoc.Terms() {
+
+                fmt.Println(term)
+                
+            }
+
+            */
 
       * Go supports errors as return values . A language like c++ have try catch block Go has three constructs for dealing
         with exceptions, they are panic defer and recover.A Panic is similar to an exception which can occur an runtime exception.

@@ -335,27 +335,26 @@ Plan :
         Even though internally Integer is an int but both are different types.
         Code and error here (https://pastebin.com/bvz5QLZJ).
 
-        /* code :
+        code :
  
-        func main(){
-        tm := xapian.NewTermGenerator()
-        // tm.Set_stemming_strategy(xapian.TermGeneratorSTEM_NONE) --> fails
- 
-        // for Stem Startegy enum in TermGenerator class
-        // swig defines a type XapianTermGeneratorStem_strategy int
-        // and for each element in  enum a type is created as
-        // type TermGeneratorSTEM_SOME int is created.
-        // so before passing to the functions converion should happen
-        // even both hold the same internal type.
-       
-        tm.Set_stemming_strategy(xapian.TermGeneratorSTEM_NONE(xapian.TermGeneratorSTEM_SOME))
-        fmt.Println(tm)
-        }
+            func main(){
+            tm := xapian.NewTermGenerator()
+            // tm.Set_stemming_strategy(xapian.TermGeneratorSTEM_NONE) --> fails
+    
+            // for Stem Startegy enum in TermGenerator class
+            // swig defines a type XapianTermGeneratorStem_strategy int
+            // and for each element in  enum a type is created as
+            // type TermGeneratorSTEM_SOME int is created.
+            // so before passing to the functions converion should happen
+            // even both hold the same internal type.
+          
+            tm.Set_stemming_strategy(xapian.TermGeneratorSTEM_NONE(xapian.TermGeneratorSTEM_SOME))
+            fmt.Println(tm)
+            }
  
         OUTPUT(WHEN FAILED) :
-        /root/xapian-enum.go:8:26: cannot use xapian.TermGeneratorSTEM_NONE (type int) as type xapian.XapianTermGeneratorStem_strategy in argument to tm.Set_stemming_strategy
-        
-        */
+              /root/xapian-enum.go:8:26:
+              cannot use xapian.TermGeneratorSTEM_NONE (type int) as type xapian.XapianTermGeneratorStem_strategy in argument to tm.Set_stemming_strategy
 
 
         The way swig wraps the enums is not that natural and there should type conversions before passing to appropriate 
@@ -496,18 +495,24 @@ Plan :
 
       * Summary and code for each part in https://github.com/srinivasyadav18/xapian-gsoc-plan
 
-      * In month April, First Two weeks - Understand go build system deeper and work on it if it can be integrated with libtool or 
-        possibly prepare a plan to create a new separate build system with only auto tools.
+      * In month April :
+
+        * Swig does not provide natural Go API , so most the classes need rewrapping ,
+          so work on implementation of automated script to generate rewrapped interfaces as show above.
+        
+        * Understand go build system deeper and work on it if it can be integrated with libtool or 
+          possibly prepare a plan to create a new separate build system with only auto tools.
       
-      * Next Two weeks - Understand Xapian implementation of existing bindings and Xapian classes more.
-        (Im not quite familiar with classes related to latlong, MatchSpy, KeyMaker).
+        * Next Two weeks - Understand Xapian implementation of existing bindings and Xapian classes more.
+          (Im not quite familiar with classes related to latlong, MatchSpy, KeyMaker).
 
 Community Bonding Period :
+
+      * Work on implementation of automated script to generate rewrapped interfaces.
+
       * Implement the build system properly for bindings in go using the existing wrapper(for linux) and review it with the mentors.
       
       * Understand Xapian bindings for other implemented languages.
-
-      * Automated script for handling exceptions in golang.
 
 First Month : 
   June 1st-6th  :

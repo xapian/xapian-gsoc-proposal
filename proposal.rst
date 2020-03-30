@@ -335,6 +335,29 @@ Plan :
         Even though internally Integer is an int but both are different types.
         Code and error here (https://pastebin.com/bvz5QLZJ).
 
+        /* code :
+ 
+        func main(){
+        tm := xapian.NewTermGenerator()
+        // tm.Set_stemming_strategy(xapian.TermGeneratorSTEM_NONE) --> fails
+ 
+        // for Stem Startegy enum in TermGenerator class
+        // swig defines a type XapianTermGeneratorStem_strategy int
+        // and for each element in  enum a type is created as
+        // type TermGeneratorSTEM_SOME int is created.
+        // so before passing to the functions converion should happen
+        // even both hold the same internal type.
+       
+        tm.Set_stemming_strategy(xapian.TermGeneratorSTEM_NONE(xapian.TermGeneratorSTEM_SOME))
+        fmt.Println(tm)
+        }
+ 
+        OUTPUT(WHEN FAILED) :
+        /root/xapian-enum.go:8:26: cannot use xapian.TermGeneratorSTEM_NONE (type int) as type xapian.XapianTermGeneratorStem_strategy in argument to tm.Set_stemming_strategy
+        
+        */
+
+
         The way swig wraps the enums is not that natural and there should type conversions before passing to appropriate 
         function for proper functioning. (https://pastebin.com/X8K1q9Rh)
 
@@ -355,8 +378,9 @@ Plan :
         for i := range doc.terms(){
           i.GetTerm() // methods to get term from the iterator at that position.
         }
-	(sample code how channels are used for iteration with for-range construct https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/go.i#L43)
-        https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/main.go#L31
+	      (sample code how channels are used for iteration with for-range construct 
+        https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/go.i#L43
+        https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/main.go#L31)
         2. Using methods such as Iter.Next() as used in Go lang standard library (Container List https://golang.org/pkg/container/list/).
          
         Both standard method /* for iter.Next(){ ... code } */ and /* for-range construct would be made available for user
@@ -366,6 +390,40 @@ Plan :
         begin and end iterators in one function call as below.
         /* begin,end := doc.Terms() */ 
 
+        /*  code : 
+        %rename (Wrapped_Document) Document;
+        %insert(go_wrapper) %{
+    
+        //rewrapping the Document interface currently adding only extra method Terms() to show how term iterator can be 
+        //used with go for-range construct
+              type Document struct {
+                      Obj Wrapped_Document
+              }
+
+              func (d *Document) Terms()<-chan string {
+                      ch := make(chan string)
+                      begin := d.Obj.Termlist_begin()
+                      end := d.Obj.Termlist_end()
+                      go func() {
+                              for !begin.Equals(end) {
+                                      ch <- begin.Get_term()
+                                      begin.Next()
+                              }
+                              close(ch)
+                      }()
+                      return ch
+                      }
+          %}
+          */    
+          Usage in main.go 
+          /*
+
+          for term := range myDoc.Terms() {
+		          fmt.Println(term)
+	        }
+
+          */
+
       * Go supports errors as return values . A language like c++ have try catch block Go has three constructs for dealing
         with exceptions, they are panic defer and recover.A Panic is similar to an exception which can occur an runtime exception.
         C++ exceptions can be handled in go from swig wrappers as follows(https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/example.i#L16).
@@ -374,6 +432,53 @@ Plan :
         https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/main.go#L36
         error (pastebin) - https://pastebin.com/AuFpiRdQ
         Way errors are handled in OS package of Go standard library - https://golang.org/pkg/os/
+        /*
+        %exception {
+          try {
+                  $action;
+          } catch (Xapian::DatabaseOpeningError & e){
+                  //calls the panic in go
+                  _swig_gopanic(e.get_error_string());
+          }
+          catch (std::exception & e){
+                  _swig_gopanic(e.what());
+          }
+        }
+
+        //Example for Error handling for database class
+        %rename (Wrapped_Database) Database;
+        %go_import("fmt")
+        %insert (go_wrapper) %{
+
+            type Database struct {
+                    Obj Wrapped_Database
+            }
+
+            func NewDatabase(a ...interface{}) (db Database,err error){
+                    defer catch(&err)
+                    db.Obj = NewWrapped_Database(a...)
+                    return
+            }
+
+            func catch(err *error){
+                    if r := recover(); r != nil {
+                    *err = fmt.Errorf("error %v",r)
+                    }
+            }
+        %}
+        //usage in main.go 
+        db, err := xp.NewDatabase("/no_database")
+	      if err != nil {
+		      fmt.Println(err)
+		      os.Exit(2)
+	      }
+
+        OUTPUT:
+        error No such file or directory
+        exit status 2
+
+        */
+
 
       * Go has its own documentation tool for generating documentation for the go code . Providing documentation for the classes each week
         that I work on particular week.

@@ -369,6 +369,9 @@ Plan :
         with exceptions, they are panic defer and recover.A Panic is similar to an exception which can occur an runtime exception.
         C++ exceptions can be handled in go from swig wrappers as follows(https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/example.i#L16).
         Which ever class function throws an exception in c++ , the wrapped function in Go returns the error as value.
+        Database error handling - https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/go.i#L77
+        https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/main.go#L36
+        error (pastebin) - https://pastebin.com/AuFpiRdQ
 
       * Go has its own documentation tool for generating documentation for the go code . Providing documentation for the classes each week
         that I work on particular week.

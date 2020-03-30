@@ -452,7 +452,7 @@ Plan :
             for term := range myDoc.Terms() {
 
                 fmt.Println(term)
-                
+
             }
 
             */
@@ -467,52 +467,83 @@ Plan :
         Way errors are handled in OS package of Go standard library - https://golang.org/pkg/os/
         /*
 
+        code : 
 
-        %exception {
-          try {
-                  $action;
-          } catch (Xapian::DatabaseOpeningError & e){
-                  //calls the panic in go
-                  _swig_gopanic(e.get_error_string());
-          }
-          catch (std::exception & e){
-                  _swig_gopanic(e.what());
-          }
-        }
+            %exception {
 
-        //Example for Error handling for database class
-        %rename (Wrapped_Database) Database;
-        %go_import("fmt")
-        %insert (go_wrapper) %{
+              try {
 
-            type Database struct {
-                    Obj Wrapped_Database
+                      $action;
+
+              } catch (Xapian::DatabaseOpeningError & e){
+
+                      //calls the panic in go
+
+                      _swig_gopanic(e.get_error_string());
+
+              }
+              catch (std::exception & e){
+
+                      _swig_gopanic(e.what());
+              }
+
             }
 
-            func NewDatabase(a ...interface{}) (db Database,err error){
-                    defer catch(&err)
-                    db.Obj = NewWrapped_Database(a...)
-                    return
+            //Example for Error handling for database class
+
+            %rename (Wrapped_Database) Database;
+
+            %go_import("fmt")
+
+            %insert (go_wrapper) %{
+
+                type Database struct {
+
+                        Obj Wrapped_Database
+
+                }
+
+                func NewDatabase(a ...interface{}) (db Database,err error){
+
+                        defer catch(&err)
+
+                        db.Obj = NewWrapped_Database(a...)
+
+                        return
+
+                }
+
+                func catch(err *error){
+
+                        if r := recover(); r != nil {
+
+                        *err = fmt.Errorf("error %v",r)
+
+                        }
+
+                }
+
+            %}
+
+
+            //usage in main.go 
+
+            db, err := xp.NewDatabase("/no_database")
+
+            if err != nil {
+
+              fmt.Println(err)
+
+              os.Exit(2)
+
             }
-
-            func catch(err *error){
-                    if r := recover(); r != nil {
-                    *err = fmt.Errorf("error %v",r)
-                    }
-            }
-        %}
-
-
-        //usage in main.go 
-        db, err := xp.NewDatabase("/no_database")
-	      if err != nil {
-		      fmt.Println(err)
-		      os.Exit(2)
-	      }
 
         OUTPUT:
+
         error No such file or directory
+
         exit status 2
+        
 
         */
 

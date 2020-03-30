@@ -471,7 +471,7 @@ Plan :
             }
         %}
 
-        
+
         //usage in main.go 
         db, err := xp.NewDatabase("/no_database")
 	      if err != nil {
@@ -506,6 +506,8 @@ Community Bonding Period :
       * Implement the build system properly for bindings in go using the existing wrapper(for linux) and review it with the mentors.
       
       * Understand Xapian bindings for other implemented languages.
+
+      * Automated script for handling exceptions in golang.
 
 First Month : 
   June 1st-6th  :

@@ -372,6 +372,7 @@ Plan :
         Database error handling - https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/go.i#L77
         https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/main.go#L36
         error (pastebin) - https://pastebin.com/AuFpiRdQ
+        Way errors are handled in OS package of Go standard library - https://golang.org/pkg/os/
 
       * Go has its own documentation tool for generating documentation for the go code . Providing documentation for the classes each week
         that I work on particular week.

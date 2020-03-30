@@ -317,50 +317,45 @@ Project Timeline
   Week 1(1 JUNE-6 JUNE)
       - implement Entropy and Global frequency IDF (1 day)
       - write test cases for Entropy and Global frequency IDF (3 days)
-      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously (1 day)
-  Week 2(7 JUNE-13 JUNE)
-      - Any changes in PR needed as suggested after review .(1 day)
       - implement Changed-coefficient ATF1 and Augmented average term frequency (1 day)
+  Week 2(7 JUNE-13 JUNE)
       - write test cases for Changed-coefficient ATF1 and Augmented average term frequency (3 days)
+      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously (2 days)
   Week 3(14 JUNE-20 JUNE)  
-      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously (2 day)
+      - Time for any changes in PR after review by mentors(2 days)
       - implement Augmented log and square root (1 day)
       - write test cases for Augmented log and square root (2 days)
   Week 4(21 JUNE-27 JUNE)
       - write more test cases for Augmented log and square root (1 day)
-      - make PR for these changes and getting it reviewed and completing documentation simultaneously (2 days)
       - implement Log-global frequency IDF and Incremented global frequency IDF (1 day)
+      - write test cases for Log-global frequency IDF and Incremented global frequency IDF (3 days)
   Week 5(28 JUNE-4 JULY) [Evaluation 1]
       - Submit evaluation .
-      - write test cases for Log-global frequency IDF and Incremented global frequency IDF (3 days)
-      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously (2 days)
+      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously (4 days)
   Week 6(5 JULY-11 JULY)
       - implement Square root global frequency IDF (1 day)
       - write test cases for Square root global frequency IDF (2 days)
-      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously (1 day)
-      - get max-tf from Weight::Internal (1 day)
+      - get max-tf from Weight::Internal (2 days)
   Week 7(12 JULY-18 JULY)
-      - get max-tf from Weight::Internal (1 day)
       - implement "max-norm" and "aug-norm" (1 day)
       - write test cases for max-tf (2 days)
-      - write test cases for "max-norm" and "aug-norm (1 day)
-  Week 8(19 JULY-25 JULY)
       - write test cases for "max-norm" and "aug-norm (2 days)
-      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously(3 day)
+  Week 8(19 JULY-25 JULY)
+      - write test cases for "max-norm" and "aug-norm (1 day)
+      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously(4 days)
   Week 9(26 JULY-1 AUG)[Evaluation 2]
       - submit evaluation.
       - Add support for the new normalisations in Weight::create().This includes the changes to be made in Registry(3 days)
-      - make PR for these changes and getting it reviewed and completing user guide documentation simultaneously (1 day)
   Week 10(2 AUG-8 AUG)
       - make changes in config_file.cc (2 days)
       - make changes in config_file.h (1 day)
       - make changes in trec_search.cc (2 days)
   Week 11(9 AUG-15 AUG)
-      - make PR for these changes (2 days)
+      - make PR for these changes (4 days)
       - Compare effectiveness of different normalisations. We will use FIRE database for this.
   Week 12(16 AUG-22 AUG)
       - make user guide documentation for these results.
-      - If I have time,I can work for Stretch goals.
+      - This week is kept as buffer week.Also due to the COVID-19 outbreak in my country,Our exams have been rescheduled but the dates aren't decided.So there is a possibility that I might have exams during the coding period.But they wont last more than a week.If I have time,I can work for Stretch goals.
   
   
 Previous Discussion of your Project

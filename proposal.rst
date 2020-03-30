@@ -99,7 +99,7 @@ across the globe.
 I have been involved in open-source software development for quite some time now.
 I have a few course projects ranging from Database Management, Algorithms,
 Optimization, Parallel Computing, and Computer Graphics. Other than that, I have
-a few hobby projects on GitHub. Most of the programming is done in languages: 
+a few hobby projects on GitHub. Most of the programming I did was in languages: 
 C++ and Python.
 
 Background Information
@@ -116,7 +116,7 @@ similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
 Yeah. I participated in GSoC 2019 with 'Software Heritage'. The project involved
-security, web development and testing. It was a great experience working with a
+security, web development, and testing. It was a great experience working with a
 community spread across different countries. I was able to achieve the targets
 set in the beginning.
 
@@ -133,13 +133,13 @@ not have any practical experience with indexed text search.
 other than Xapian.**
 
 I have worked with various Open-Source libraries in my course projects. This
-includes linux socket, multithreading libraries and computer graphics libraries.
+includes linux socket, multithreading libraries, and computer graphics libraries.
 
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-I have completed courses of Operating Systems, Database Management Systems, Data
+I have completed courses in Operating Systems, Database Management Systems, Data
 Structure & Algorithm, Parallel Computing, and Optimization in my university. I
 have a few hobby projects on GitHub like high performance HTTP/1.1 server in pure
 C++.
@@ -173,7 +173,7 @@ program?**
 
 Yes, Summer of Code project will be my main focus during the period.
 
-**Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
+**Expected work hours (e.g. Monday–Friday 9 am–5 pm UTC)**
 
 .. A common mistake is to think you can work a huge number of hours per week
 .. for the entire duration of Summer of Code. If you try, you run the risk of
@@ -218,9 +218,10 @@ would help me increase my knowledge about Linux.
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-This project removes dependencies on external software, adds support where it
-may not be present, and speed up the indexing process. This would help all the
-users, and software using Xapian.
+This project would add support for indexing a more extensive range of files.
+OpenDocument and Office Open XML formats are prevalent files in most users'
+systems. Typically educational institutes and workspaces use these formats in
+abundance.
 
 Project Details
 ---------------
@@ -231,14 +232,15 @@ Project Details
 
 The project is based on the GSoC 2019 project for adding Text Extraction
 Libraries by Bruno Baruffaldi. Support for archive formats like Office Open XML
-by Microsoft and OpenDocument (ODT), is yet to be added.
+by Microsoft and OpenDocument is yet to be added.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
 The documentation about adding support for new MIME types from the last GSoC
-project, demonstrates that the process of adding support for new languages is
-quite plausible.
+project demonstrates that the process of adding support for new languages is
+entirely plausible.
+
 I went through the basic documentation of libarchive on GitHub
 (https://github.com/libarchive/libarchive). According to the page, it has
 support for various archive formats and can work with streaming archives.
@@ -253,13 +255,18 @@ None
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-The number of formats to support will depend on community feedback. I aim for
-six new handlers.
+It is possible to work on Office Open XML formats side-by-side with OpenDocument
+formats. It will depend on the similarity between the two. For example, it is
+possible OpenDocument Text (ODT) and Office Open XML Document (DOCX) can be worked
+on together.
+
+Work on Pull Request: "Add omindextest to Omega" will depend on the research done in
+the bonding period.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-It is possible, for some file types we have issues fetching the content.
+It is possible, for some file types, we have issues fetching the content.
 In that case, we'll lack support for few formats which may be fulfilled in the
 future.
 
@@ -316,26 +323,30 @@ Community Bonding Period (May 4 - May 31)
     * Interact with mentors, introduce myself to the community.
     * Get familiar with Xapian’s development style. Understand expected coding, documentation, and testing standards set by Xapian.
     * Start working on some issues to familiarise with the codebase. (Not necessarily related to the project)
-    * Discuss and prepare a list of various MIME types that need to be worked on.
-    * Read documentation relating to the required libraries.
+    * Discuss ont the various MIME types that need to be worked on.
+    * Read documentation pertaining to the required libraries.
+    * Understand the current situation of Pull Request: "Add omindextest to Omega" (https://github.com/xapian/xapian/pull/280).
 
 First Coding Period (June 1 - June 28)
-    * Implement first handler, update build system, and add new worker to omindex. (7 days)
-    * Look for issues, take feedback, improve performance. (6 days)
-    * Document the code. (4 days)
-    * Finalise the PR and merge. (2 days)
+    * Set up code to extract files data using libarchive. (5 days)
+    * Implement handler for ODT (OpenDocument Text), update build system, and add a new worker to omindex. (7 days).
+    * Look for issues, start taking feedback, improve performance. (2 days)
+    * Document the code. (2 days)
+    * Document the procedure support for new formats based around ZIP-compressed XML-based contents extracted through libarchive. (2 days)
+    * Finalize the PR and merge. (2 days)
 
 Second Coding Period (July 6 - July 27)
-    For two types:
+    * For two types: { ODS(Spreadsheets), ODP(Presentations) } -
         * Add support for a new type. (4 days)
-        * Take feedback, improve code. (3 days)
-        * Document changes and merge. (2 days)
+        * Document changes. (2 days)
+        * Take feedback, improve code, and merge. (2 days)
 
 Third Coding Period (August 3 - August 31)
-    For three types:
-        * Add support for a new type. (3 days)
-        * Take feedback, improve code. (2 days)
-        * Document changes and merge. (2 days)
+    * For one type: { ODF(Formulae / Mathematical Equations) } -
+        * Add support for a new type. (4 days)
+        * Document changes. (2 days)
+        * Take feedback, improve code, and merge. (2 days)
+    * Work on "Adding omindextest to Omega" (https://github.com/xapian/xapian/pull/280) according to the research conducted in the bonding period. (7 days)
 
 Final Evaluation Week (August 31 - September 7)
     * Document all the work done for future work.
@@ -353,8 +364,8 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-No, I have not discussed the project on irc or mailing list. However, I have
-carefully read project idea on the wiki page and agree with the ideas.
+No, I have not discussed the project on the irc or mailing list. However, I have
+carefully read the project outline on the wiki page and agree with the ideas.
 
 Licensing of your contributions to Xapian
 -----------------------------------------

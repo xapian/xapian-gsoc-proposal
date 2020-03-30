@@ -391,6 +391,8 @@ Plan :
         /* begin,end := doc.Terms() */ 
 
         /*  code : 
+
+
         %rename (Wrapped_Document) Document;
         %insert(go_wrapper) %{
     
@@ -433,6 +435,8 @@ Plan :
         error (pastebin) - https://pastebin.com/AuFpiRdQ
         Way errors are handled in OS package of Go standard library - https://golang.org/pkg/os/
         /*
+
+
         %exception {
           try {
                   $action;
@@ -466,6 +470,8 @@ Plan :
                     }
             }
         %}
+
+        
         //usage in main.go 
         db, err := xp.NewDatabase("/no_database")
 	      if err != nil {

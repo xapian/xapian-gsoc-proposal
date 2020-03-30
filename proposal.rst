@@ -76,21 +76,20 @@ FILLME WITH THE TITLE OF YOUR PROPOSAL
 About You
 =========
 
- * Name: FILLME
+ * Name: Selin
 
- * E-mail address: FILLME
+ * E-mail address: seliin.kurttt@gmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): sselinkurt
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: https://sselinkurt.blogspot.com/
 
- * github URL: FILLME
+ * github URL: https://github.com/sselinkurt
 
  * Biography:
 
-.. Tell us a bit about yourself.
+    I was born in Istanbul, Turkey in 1998. I am a Computer Engineering student in Çanakkale Onsekiz Mart University, Turkey. Computer Engineering excites me a lot and I am glad to choose this department. I am interested in open source software development and participating GSoC is one of my biggest aim. I am doing windsurfing as an amateur for two years. I voluntarily participate in social projects which aims to help people.
 
-FILLME
 
 Background Information
 ----------------------
@@ -105,31 +104,32 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+	I have not take part in such projects.
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+	I didn't have enough time to contribute because I just met with Xapian. I will make good use of the time up to the student selection process and contribute to Xapian.
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+	I joined Hacktoberfest.
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+	I have learned Golang by myself and I worked with Golang in my internship. I worked on developing a web crawler with Go for 3 months in my internship. The programming languages ​​I learned at school are Python, C, and Java. I learned a little by studying C++ myself. I took many courses at school such as object oriented programming, operating systems, database management systems etc.(These are available in my transcript.)	
+
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+	I use Ubuntu and I do my daily works on the console. I use Vim for writing code. I use Git.
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+	I have never used SWIG but I heard a lot about it. I don't think that I worked on a such project but I'm familiar with Go and C so I think I can learn the other requirements quickly.
 
 **What timezone will you be in during the coding period?**
 
@@ -137,16 +137,13 @@ FILLME
 .. name so we aren't surprised by any differences around daylight savings
 .. time, which don't all line up in different parts of the world.
 
-FILLME
+	I will be GMT+03:00 timezone.
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
 
-.. It need not be a problem to have other commitments during Summer of Code,
-.. but if we don't know about them in advance we can't make sure you have
-.. the support you need.
+	My project will be the main focus for me. I am ready and willing to devote all my time to this project.
 
-FILLME
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -165,16 +162,13 @@ FILLME
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-FILLME
+	Monday-Friday 8a.m-4p.m UTC
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
 
-.. We understand students sometimes want to apply to more than one org and
-.. we don't have a problem with that, but it's helpful if we're aware of it
-.. so that we know how many backup choices we might need.
+	I did not apply for another project.
 
-FILLME
 
 Your Project
 ============
@@ -184,7 +178,8 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+	Preferably I have wanted to work with the project which uses Golang. I looked at which organizations have projects related to Go. I examined the organizations and I determined that your project is the most appropriate project for me. I have trusted myself that I could do and complete this project.
+
 
 **Who will benefit from your project and in what ways?**
 
@@ -200,27 +195,27 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+	I have studied with Golang in my internship. I worked on developing a software that makes web crawling.	I used PostgreSQL and Beego in this project.
+
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+-
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+	I thought of finding only the best fit for the approaches.
 
-**Please note any uncertainties or aspects which depend on further research or
-investigation.**
+**Please note any uncertainties or aspects which depend on further research or investigation.**
 
 FILLME
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+	I think my results will be useful because I don't lose motivation in a stress situation.
 
 Project Timeline
 ----------------
@@ -285,7 +280,7 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-FILLME
+	I haven't discuss my project.
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -301,7 +296,7 @@ pages.
 .. please see the "License grant" section of our developer guide:
 .. https://xapian-developer-guide.readthedocs.io/en/latest/contributing/contributing-changes.html#license-grant
 
-FILLME
+	Yes, I agree.
 
 Use of Existing Code
 --------------------
@@ -316,4 +311,5 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-FILLME
+	I can not give a clear answer to this question as I have not completed reviewing libraries.
+

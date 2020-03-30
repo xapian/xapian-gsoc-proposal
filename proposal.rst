@@ -356,6 +356,7 @@ Plan :
           i.GetTerm() // methods to get term from the iterator at that position.
         }
 	(sample code how channels are used for iteration with for-range construct https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/go.i#L43)
+        https://github.com/srinivasyadav18/xapian-gsoc-plan/blob/master/main.go#L31
         2. Using methods such as Iter.Next() as used in Go lang standard library (Container List https://golang.org/pkg/container/list/).
          
         Both standard method /* for iter.Next(){ ... code } */ and /* for-range construct would be made available for user

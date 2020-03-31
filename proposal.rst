@@ -91,8 +91,8 @@ About You
 I am a final-year undergraduate of Software Engineering at Southwest Jiaotong University, China.
 I will continue my Msc study in Computer Science at University of Copenhagen.
 
-I discoverd my interest of and start to learn programming when I was a junior architecture student.
-and manage to transformed my major officially at the begining of the third-year,and had a pretty
+I discoverd my interest of and start to learn programming when I was a junior architecture student,
+and manage to transformed my major officially at the begining of the third-year. I had a pretty
 condensed year after that:
 
  - Course projects from network programming to machine learning.
@@ -255,8 +255,9 @@ and improve their design through new findings.
  As suggested by the community, the heap structure no longer benefit after applied this optimization idea,
  and so do the PostListAndDocID struct.Thus, the sub-PLs shall be organized by simple list in descending termfrequency order.
 
- The **strech goal** of this project is to propose new optimization idea(s) after have more experience
- with matcher, and implement them.
+
+The **strech goal** of this project is to propose new optimization idea(s) after have more experience
+with matcher, and implement them.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -337,6 +338,7 @@ Project Timeline
 **Community bonding** (4 MAY-31 MAY)
 
 Week 1 · Learning & Experiencing
+
  - Consolidate concepts & knowledge about searching.
  - Experience using Xapian API, 
  - Understand the design and the process of building a PostListTree.
@@ -344,45 +346,50 @@ Week 1 · Learning & Experiencing
  - Keep in touch and get familier with the community.
 
 Week 2 · Catching up
+
  - Learn and practice the way to test and evaluate the performance of matcher
  - Track and go through the histroy and progress of targeted 3 tickets, understanding related codes.
  - Carefully review each line of key PostList.
  - Address questions and get them cleared.
 
 Week 3-4 · Dash Weeks for graduation preparation
- - --
+
+ - Follow up with irc and participate in discussions related to matcher positively.
 
 
 **Coding** (1 JUNE-2 AUG)
 
 Week 5-6 · Sketching
- - Draft the initial implementation plan of each optimazation idea, discuss with the community and mentor, finalize the first version of the plan.
- - Follow up with irc and participate in discussions related to matcher positively.
- - Clarify new confusions.
+
+ - Draft the initial implementation plan of each optimazation idea, discuss with the mentors, finalize the first version of the plan.
+ - Clarify confusions.
 
 Week 7-8 · Implementing idea #215
- - Implementing steps.
+
 Week 9-10 · Implementing idea #378
- - Implementing steps.
+
 Week 11-12 · Implementing idea #394
- - Implementing steps.
-Implementing Steps:
+
+ Implementing Steps:
+
  - 1.Code as planned.
  - 2.Run and pass the test. Fix bugs and optimize the algorithm.
  - 3.Evaluate the improvment on performance.
  - 4.Adjust design if necessary, back to 1.
  - 5.Make PR for the changes, reply comments, adjusting codes and retest.
- - 6.Update documents if needed.
+ - 6.Update documents.
 
 
 **Reflection and Extension** (3 AUG-24 AUG)
 
 Week 13-14
+
  - Organizing the codes and the performance evaluation outcomes
  - Follow comments and keep refining.
  - Try to propose new optimazation ideas.
 
 Week 15-16 · Buffer Weeks 
+
  - For implementing new optimazation ideas if everything goes well.
  - For any trouble encountered during implementing suggested 3 ideas.
  - For unexpected stalemate with graduation project.

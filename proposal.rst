@@ -116,6 +116,8 @@ Only as a user.
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
+I worked with Xapian test harness in `#758 <https://trac.xapian.org/ticket/758>`_, it allowed to get acquainted with Xapian architecture.
+
 I had Information retrieval and Data science basic courses at University.
 
 **What development platforms, tools and methods do you prefer to use?**
@@ -187,36 +189,46 @@ Information Retrieval is interesting to me as application of statistics. This pr
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-Project I want to do assumes that there will be tool for evaluating Letor on different datasets and compare its performance. If it is completed successfully, there free suite with several ranking algorithms and features will available for users. It is useful not only for future developers, but for participants IR contests like TREC. Also it is possible to implement automated configuration choose using score classes.  
+Project I want to do assumes that there will be tool for evaluating Letor ranking algorithms with different weighting schemes on real-world datasets and compare its performance. It is useful not only for future developers, but for participants IR contests like TREC. Also it is possible to implement automated configuration choose using score classes.  
 
 Project Details
 ---------------
 
 **Describe any existing work and concepts on which your project is based.**
 
-There are several ranking algorithms with pretty same api implemented in Letor. So I think manager class should be developed to evaluate ranking and logging results. It will better to integrate it with Letor classes. Additional task is to improve perftest suite by running it on real data, wich will useful not only for ranking benchmark, but for all test cases. More detailed:
+This articles suggest methods for determining a more effective search engine of the two given:
 
-* Implement class for preparing data, i.e. download it and convert to suitable form. The most convenient dataset is `FIRE <http://fire.irsi.res.in/fire/static/data>`_ and `TREC <https://trec.nist.gov/data/t2002_filtering.html>`_. It is hard to fully generalize this case, so I prefer to implement parser for each dataset:
+`A Comparison of Statistical Significance Tests for Information Retrieval Evaluation <https://ciir-publications.cs.umass.edu/getpdf.php?id=744>`_ 
 
-	* FIRE queries stored in inappropriate format, they should be transformed to use them in Xapian; It will possible to use English language corpus, because Eglish stemmer exists in Xapian.
+`Information Retrieval System Evaluation:
+Effort, Sensitivity, and Reliability <https://www.researchgate.net/profile/Mark_Sanderson3/publication/221300214_Information_retrieval_system_evaluation_effort_sensitivity_and_reliability/links/0c96052044b5291d08000000/Information-retrieval-system-evaluation-effort-sensitivity-and-reliability.pdf>`_
 
-	* TREC dataset has big enough amount of documents, it is possible to combine some of them during pasing to create more complex queries.
+`Statistical Significance Testing in Information Retrieval:
+An Empirical Analysis of Type I, Type II and Type III Errors <https://julian-urbano.info/files/publications/076-statistical-significance-testing-information-retrieval-empirical-analysis-type-i-type-ii-type-iii-errors.pdf>`_
 
-* Implement evaluator. According to xapian-letor/tests/api_letor.cc it is no big difference in applying rankers to data, it should just apply algorithms and return scores, so it could be another one class in xapian/letor. It would be nice to be able to call it same way as make check.
+There are several ranking algorithms with pretty same api implemented in xapian-letor. Also tools for preparing data and evaluation metric in xapian-evaluate, I want to expand xapian-evaluate by adding metrics and datasets at first, then implement test cases from papers above using rankers from xapian-letor. More detailed:
 
-* Write suite for combining documents. TREC dataset has big corpus of small documents. To get more content small documents could be merged. Also queries and qrels have to be transformed. After that evaluation could be done using Xapian API logic operations for queries. Since it is not needed for every Letor run, it should be separate tool, like xapian-letor/bin/xapian-prepare-trainingfile.cc. 
+* Implement class for preparing data. The most convenient dataset is `FIRE <http://fire.irsi.res.in/fire/static/data>`_ and `TREC <https://trec.nist.gov/data/t2002_filtering.html>`_. There are already done tools for TREC (parse HTML, index, get qrel, etc), so will not hard to also use FIRE dataset here, because of similar form of data and English language corpus in it since Xapian has English stemmer. Also I want to add corpus from `https://dumps.wikimedia.org/enwiki/20191201/ <Wikipedia dumps>`_, but there are some difficulties here: I have to add plain text `extractor <https://github.com/RaRe-Technologies/gensim/blob/develop/gensim/corpora/wikicorpus.py>`_ and fabricate about 50 queries with qrels, this amount is required by the algorithms from the articles.
 
-* It is possible to use Wikipedia dumps as data for perftest. `Wikipedia <https://dumps.wikimedia.org/enwiki/latest/>`_ corpus just stores XML file with links to articles and some info, so it each document should be downloaded and indexed individually. Also plain text `extractor <https://github.com/RaRe-Technologies/gensim/blob/develop/gensim/corpora/wikicorpus.py>`_ and query fabricator needed.
+* Add metrics. Academical papers requires availability of AP, MAP, P@N, NDCG and ERR. Some of them already implemented in xapian-letor or xapian-evaluate. It is good to have them more generalized as they are now, e.g. make template which will suite both inputs std::vector<FeatureVector> and (Xapian::MSet, Xapian::Query, Xapian::Database).
+
+* Add support of ranking. Currently rankers calsses implemented in xapian-letor, they needed in xapian-evaluate too. Evaluation algorithms suggests benchmark of two rankers, so config file should be restructured to have two rankers with weights specified for single run. 
+
+* Implement testing algorithms from papers: 
+   - Randomization test. Involves the calculation of the MAP for the mixed result of two systems. All count of cases equals to :math:`2^{|Q|}`, which could be time consuming, so this should be parameter in config file.
+   - Student’s Paired t-test. This approach also requires calculation of vector standart deviation and mean, which is not hard to implement.
+
+* Output valuation output as pivot table. Since it is not known exactly which ranker configuration is preferable for particular dataset, I would like to evaluate each possible pair for dataset and create table with results for both testing algorithms.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-I worked with Xapian test harness in `#758 <https://trac.xapian.org/ticket/758>`_, it has BackendManager class wich makes testing databases api easier. I believe ranking benchmark should be done in similar way.
+Selection of testing algorithms based on results from papers.
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-I have discussed the possibility of using web datasets like INEX, but there are several reasons to store dataset locally:
+I have discussed the possibility of using web datasets, but there are several reasons to store dataset locally:
 
 * Most of Web-API datasets requires an account creation, which is not suitable for Xapian users.
 
@@ -225,7 +237,7 @@ I have discussed the possibility of using web datasets like INEX, but there are 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-Databases indexing time could be big enouth, in connection with this, difficulties may arise during implementation.
+I have a dialog in IRC about how to test xapian-evaluate. Fully integrate test harness to it seem ambiguous. Another way is to put harness in a separate project, but it is does not fit with my project. Maybe I prefer to write tests without harness.
  
 Current state of SVM ranker is not clear, tests from master branch passes with valgrind and no bugs mentioned in pr #278.
 
@@ -234,7 +246,7 @@ Fixing SVM ranker bugs can take indefinite time.
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-If the new utilities cannot be integrated sufficiently, there will be at least tests on more complex data as now.
+If the utilities cannot be integrated sufficiently, there will be at least new evaluation cases.
 
 Project Timeline
 ----------------
@@ -291,21 +303,21 @@ Project Timeline
 * 1 Week - FIRE dataset integration. Each user have to download it by themself, because of 
 registration required. Implement training process using Letor API.  
 
-* 2 Weeks of exams (situation with exams is very unstable now in my University, so I timeline may change in this case).
+* 2 Weeks of exams. This does not mean that I would not work at all, so I prefer mix exams days with doing stuff from case above (situation with exams is very unstable now in my University, so I timeline may change in this case).
 
-* 1 Week - add function for selecting scorer and ranker. It would be nice to write API allows user to select default sets of queries to run and run specified queries. For that purpose update build system to be able to run suite from terminal.
+* 1 Week - improve existing xapian-evaluate metrics, add AP.
 
-* 1 Week - TREC dataset integration. It has similar format to FIRE, it should not be problem to integrate it. Start writing tool for combine docs.
+* 1 Week - re implement NDCG and ERR from xapian-letor, add P@N.
 
-* 1 Week - combine tool API should support plain logical operations, it could take time to implement them.
+* 1 Week - implement Randomization test.
 
-* 1 Week - prepare tool for text data extracting from Wikipedia.
+* 1 Week - implement t-test.
 
-* 1 Week - add functionallity to perftest to drop system cache for more accurate results and run one case multiple times to get average time consuming.
+* 1 Week - update configure file structure, add test cases for metrics and evaluation algorithms using small hand made datasets.
 
-* 1 Week - implement Wikipedia data loader and queries for it, write performance tests for filling db with documents, iterating over documents.
+* 1 Week - implement Wikipedia data loader and parser, writing queries and qrels.
 
-* 1 Week - add perftest to autotools srcipt, as it advised in `#107 <https://trac.xapian.org/ticket/107>`_. If time is left, add function to fork test case in new process and measure it memory usage.
+* 1 Week - finish task above, add pivot table case to build system.
 
 * 2 Weeks - extra time if something goes wrong.
 

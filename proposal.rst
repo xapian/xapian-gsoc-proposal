@@ -235,13 +235,13 @@ Project Details
 The theme of this project is the optimization of Matcher, and thus based primarily
 on Matcher's existing implementation. The way Matcher works is to build a tree structure
 with PostList nodes, based on the text to be searched.
+
 In a most common situation:
  - Each leaf PostList encapsulates a mapping from a term to a list of the ids of all documents containing that term, while virtual PostList as non-leaf nodes represents the layers of logical relationship among these terms or phrases.
  - Through a top-to-bottom passing and allocating of matching-weight threshold, and a bottom-to-top filtering and passing of document ids, matching documents are found one by one.
 
 The basic task of this projest is to implement three of the suggested optimization ideas.
- - Idea #215 is based on the current implementation of  BoolOrPostingList class(matcher/boolorpostlist.cc).It is a multi-way virual PostList node. The current docid is used as the key value to maintain the minimum heap of pointer array to the sub-PLs.
-Without using the optimazation idea, skip_to(target_id) is recursively called on each sub-PL that falls behind the target_id.
+ - Idea #215 is based on the current implementation of  BoolOrPostingList class(matcher/boolorpostlist.cc).It is a multi-way virual PostList node. The current docid is used as the key value to maintain the minimum heap of pointer array to the sub-PLs. Without using the optimazation idea, skip_to(target_id) is recursively called on each sub-PL that falls behind the target_id.
  - Idea #378 is based on the current implementation of  MultiAndPostList class(matcher/multiandpostlist.cc), also as a multi-way PostList node.In the current version, the weights are not calculated until all sub-PLs have settled on a same position. If we calculate the weights along with going through sub-PLs, We could judge and abort the query process of a unqualified docid in advance.
  - Idea #394 is based on phrase-settling-pond.patch(https://trac.xapian.org/attachment/ticket/394/phrase-settling-pond.patch).
 
@@ -249,10 +249,9 @@ Without using the optimazation idea, skip_to(target_id) is recursively called on
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
- For idea #215, as Olly suggested, if a term match with all the documents in the tree, none of the other PL need to be moved when skip_to() is called. If weights are coming from an external source, the optimazation becomes potentially much more profitable.
-Also, if skip_to() is called consecutively, this optimazation also saves duplicative skip_to() called on sub-PLs with lower termfrequency.
+For idea #215, as Olly suggested, if a term match with all the documents in the tree, none of the other PL need to be moved when skip_to() is called. If weights are coming from an external source, the optimazation becomes potentially much more profitable. Also, if skip_to() is called consecutively, this optimazation also saves duplicative skip_to() called on sub-PLs with lower termfrequency.
 
- For idea #378, according to the ticket, if we calculate the weights of sub-PLs along with checking them, we could judge and abort invalid query in advance, thus saves the cost on checking rest of the sub-PLs. This can apparently speed things up especially when some sub-PLs take more time to be checked(external posting sources / value ranges).Since this optimazation could be used in multiple kinds of PLs, it is likely bring more improvements on the overall performance.
+For idea #378, according to the ticket, if we calculate the weights of sub-PLs along with checking them, we could judge and abort invalid query in advance, thus saves the cost on checking rest of the sub-PLs. This can apparently speed things up especially when some sub-PLs take more time to be checked(external posting sources / value ranges).Since this optimazation could be used in multiple kinds of PLs, it is likely bring more improvements on the overall performance.
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**

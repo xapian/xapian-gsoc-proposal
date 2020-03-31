@@ -173,7 +173,6 @@ program?**
 .. the support you need.
 
 Currently, I am also working on my graduation project, which should be finished at late May.
-
 After that I can devote all my work time on GSOC project.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
@@ -212,8 +211,8 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-Because I am interested in studying searching/NLP, I aim it as the future theme 
-for my master degree. This particular idea enables me to access and learn most
+Because I am interested in studying searching/NLP, I aim this area as the future
+theme for my master degree. This particular idea enables me to access and learn most
 about the core algorithm and principles of searching.
 
 
@@ -241,17 +240,28 @@ In a most common situation:
  - Each leaf PostList encapsulates a mapping from a term to a list of the ids of all documents containing that term, while virtual PostList as non-leaf nodes represents the layers of logical relationship among these terms or phrases.
  - Through a top-to-bottom passing and allocating of matching-weight threshold, and a bottom-to-top filtering and passing of document ids, matching documents are found one by one.
 
-The basic task of this projest is to implement three of the suggested optimization ideas.
+The **basic goal** of this projest is to implement three of the suggested optimization ideas,
+and improve their design through new findings.
 
  - Idea #215 is based on the current implementation of  BoolOrPostingList class(matcher/boolorpostlist.cc).It is a multi-way virual PostList node. The current docid is used as the key value to maintain the minimum heap of pointer array to the sub-PLs. Without using the optimazation idea, skip_to(target_id) is recursively called on each sub-PL that falls behind the target_id.
  - Idea #378 is based on the current implementation of  MultiAndPostList class(matcher/multiandpostlist.cc), also as a multi-way PostList node.In the current version, the weights are not calculated until all sub-PLs have settled on a same position. If we calculate the weights along with going through sub-PLs, We could judge and abort the query process of a unqualified docid in advance.
  - Idea #394 is based on phrase-settling-pond.patch(https://trac.xapian.org/attachment/ticket/394/phrase-settling-pond.patch).
 
+ As a preliminary design, I would add a boolean member in BoolOrPostingList to track whether a skip_to()
+ is called before next(). I will alter the skip_to() function,to reasign sub-PLs list head pointer plist,
+ pointing to the first sub-PL that successfully moved to targeted docid, so that the first sub-PL is always
+ the up-te-date one after a skip_to().In next(), I'll add if clause to preprocess if a skip_to is called
+ before it, in which skip_to() are called on not-up-todate sub-PLs start from the second one.
+ As suggested by the community, the heap structure no longer benefit after applied this optimization idea,
+ and so do the PostListAndDocID struct.Thus, the sub-PLs shall be organized by simple list in descending termfrequency order.
+
+ The **strech goal** of this project is to propose new optimization idea(s) after have more experience
+ with matcher, and implement them.
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-For idea #215, as Olly suggested, if a term match with all the documents in the tree, none of the other PL need to be moved when skip_to() is called. If weights are coming from an external source, the optimazation becomes potentially much more profitable. Also, if skip_to() is called consecutively, this optimazation also saves duplicative skip_to() called on sub-PLs with lower termfrequency.
+For idea #215, as Olly suggested, if a term match with all the documents in the tree, none of the other PL need to be movedwhen skip_to() is called. If weights are coming from an external source, the optimazation becomes potentially much more profitable. Also, if skip_to() is called consecutively, this optimazation also saves duplicative skip_to() called on sub-PLs with lower termfrequency.
 
 For idea #378, according to the ticket, if we calculate the weights of sub-PLs along with checking them, we could judge and abort invalid query in advance, thus saves the cost on checking rest of the sub-PLs. This can apparently speed things up especially when some sub-PLs take more time to be checked(external posting sources / value ranges).Since this optimazation could be used in multiple kinds of PLs, it is likely bring more improvements on the overall performance.
 
@@ -370,12 +380,14 @@ Implementing Steps:
 Week 13-14
  - Organizing the codes and the performance evaluation outcomes
  - Follow comments and keep refining.
- - Try promote new optimazation ideas.
+ - Try to propose new optimazation ideas.
 
 Week 15-16 · Buffer Weeks 
- - For unexpected stalemate with graduation project.
- - For any trouble encountered during implementing suggested 3 ideas.
  - For implementing new optimazation ideas if everything goes well.
+ - For any trouble encountered during implementing suggested 3 ideas.
+ - For unexpected stalemate with graduation project.
+
+
 
 
 Previous Discussion of your Project

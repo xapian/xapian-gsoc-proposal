@@ -93,7 +93,7 @@ About You
 
 Hey, I am Boda, Computer Engineering student from Egypt.
 I have a great passion for Competitive programming, I have participated in many
-`ACM  <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>`_ contests
+`ACM  <https://en.wikipedia.org/wiki/International_Collegiate_Programming_Contest/>`_ contests.
 Last year we came in third in local contest and qualified to next round. I participated in Google Hash Code this year, and came in #31 on Egypt.
 
 
@@ -168,6 +168,7 @@ GMT+2, Cairo,Egypt
 program?**
 
 Yes.
+
 .. It need not be a problem to have other commitments during Summer of Code,
 .. but if we don't know about them in advance we can't make sure you have
 .. the support you need.
@@ -243,7 +244,7 @@ Example: for the "MultiAndPostList", we would mutiply the probability of each te
 divide the term frequnecy(from term_freq_est() function) by the database size. But now we can get the range from the first docid to the last docid
 (last - first +1), and we use that range instead of the whole database size.
 
-Take for example AND_NOT:
+Another example AND_NOT:
 
 	Let's say  L AND_NOT R
 
@@ -282,7 +283,7 @@ Project Timeline
 The main goal of this project is to improve the estimation of the total number of results buy making use of the
 the new feature that gives the first and last docids for each term.
 
-The task is to improve the Xapian::MSet::get_matches_estimated() method for the PostList subclasses , but OP_AND and OP_OR are almost done.
+The task is to improve the Xapian::MSet::get_matches_estimated() method for the PostList subclasses.
 
 
 multiandpostlist, orpostlist, postlisttree :
@@ -386,6 +387,8 @@ My initial plan is as follow:
 	**Every week would be 3 days of coding, 2 days of testing and documenting.**
 
 	**BY the end of every week, new edits should be ready to be merged.**
+|
+|
 |
 
 First three weeks of bonding :

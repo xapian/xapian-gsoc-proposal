@@ -144,11 +144,9 @@ My most related courses at college:
 
 **What development platforms, tools and methods do you prefer to use?**
 
-Operating System: Ubuntu 18.04 LTS
-
-CPU: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
-
-IDE: Visual Studio Code
+ - Operating System: Ubuntu 18.04 LTS
+ - CPU: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
+ - IDE: Visual Studio Code
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
@@ -251,7 +249,11 @@ Without using the optimazation idea, skip_to(target_id) is recursively called on
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-FILLME
+For idea #215, as Olly suggested, if a term match with all the documents in the tree, none of the other PL need to be moved when skip_to() is called. If weights are coming from an external source, the optimazation becomes potentially much more profitable.
+Also, if skip_to() is called consecutively, this optimazation also saves duplicative skip_to() called on sub-PLs with lower termfrequency.
+
+For idea #378, according to the ticket, if we calculate the weights of sub-PLs along with checking them, we could judge and abort invalid query in advance, thus saves the cost on checking rest of the sub-PLs. This can apparently speed things up especially when some sub-PLs take more time to be checked(external posting
+ sources / value ranges).Since this optimazation could be used in multiple kinds of PLs, it is likely bring more improvements on the overall performance.
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
@@ -340,7 +342,8 @@ Week 2 · Catching up
 Week 3-4 · Dash Weeks for graduation preparation
  - --
 
-**Coding**(1 JUNE-2 AUG)
+
+**Coding** (1 JUNE-2 AUG)
 
 Week 5-6 · Sketching
  - Draft the initial implementation plan of each optimazation idea, discuss with the community and mentor, finalize the first version of the plan.
@@ -348,13 +351,12 @@ Week 5-6 · Sketching
  - Clarify new confusions.
 
 Week 7-8 · Implementing idea #215
-
+ - Implementing steps.
 Week 9-10 · Implementing idea #378
-
+ - Implementing steps.
 Week 11-12 · Implementing idea #394
-
+ - Implementing steps.
 Implementing Steps:
-
  - 1.Code as planned.
  - 2.Run and pass the test. Fix bugs and optimize the algorithm.
  - 3.Evaluate the improvment on performance.
@@ -366,13 +368,11 @@ Implementing Steps:
 **Reflection and Extension** (3 AUG-24 AUG)
 
 Week 13-14
-
  - Organizing the codes and the performance evaluation outcomes
  - Follow comments and keep refining.
  - Try promote new optimazation ideas.
 
 Week 15-16 · Buffer Weeks 
-
  - For unexpected stalemate with graduation project.
  - For any trouble encountered during implementing suggested 3 ideas.
  - For implementing new optimazation ideas if everything goes well.

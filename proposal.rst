@@ -237,10 +237,12 @@ on Matcher's existing implementation. The way Matcher works is to build a tree s
 with PostList nodes, based on the text to be searched.
 
 In a most common situation:
+
  - Each leaf PostList encapsulates a mapping from a term to a list of the ids of all documents containing that term, while virtual PostList as non-leaf nodes represents the layers of logical relationship among these terms or phrases.
  - Through a top-to-bottom passing and allocating of matching-weight threshold, and a bottom-to-top filtering and passing of document ids, matching documents are found one by one.
 
 The basic task of this projest is to implement three of the suggested optimization ideas.
+
  - Idea #215 is based on the current implementation of  BoolOrPostingList class(matcher/boolorpostlist.cc).It is a multi-way virual PostList node. The current docid is used as the key value to maintain the minimum heap of pointer array to the sub-PLs. Without using the optimazation idea, skip_to(target_id) is recursively called on each sub-PL that falls behind the target_id.
  - Idea #378 is based on the current implementation of  MultiAndPostList class(matcher/multiandpostlist.cc), also as a multi-way PostList node.In the current version, the weights are not calculated until all sub-PLs have settled on a same position. If we calculate the weights along with going through sub-PLs, We could judge and abort the query process of a unqualified docid in advance.
  - Idea #394 is based on phrase-settling-pond.patch(https://trac.xapian.org/attachment/ticket/394/phrase-settling-pond.patch).

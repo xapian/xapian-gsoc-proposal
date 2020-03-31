@@ -83,7 +83,7 @@ About You
 
  * IRC nickname(s): exter-dg
 
- * Any personal websites, blogs, social media, etc:
+ * Any personal websites, blogs, social media, etc: None
 
  * github URL: https://github.com/Exter-dg
 
@@ -164,7 +164,7 @@ No, I have never worked on a project of such large scope.
 .. name so we aren't surprised by any differences around daylight savings
 .. time, which don't all line up in different parts of the world.
 
-UTC+05:30
+UTC+05:30 (IST)
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
@@ -175,7 +175,7 @@ program?**
 
 Yes this project will be my main focus during the program.
 However, due to Covid19 situation, there is a nation wide lockdown in India. Because of which, my exams will be postponed.
-The dates are uncertain but it will probably be held during 15-31st May. Whenever this happens, I might have to give little more time to exams some days but I will compensate in weeks prior to and after that.
+The dates are uncertain but it will probably be held during 15-31st May. Whenever this happens, I might have to give little more time to exams for some days but I will compensate in weeks prior to it and after that.
 
 Otherwise, This project will be my main focus in rest of the time period.
 
@@ -196,7 +196,7 @@ Otherwise, This project will be my main focus in rest of the time period.
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-Monday-Saturday 8am-2pm UTC+05:30
+Monday-Friday 8am-4pm UTC+05:30
 
 As mentioned above, if my examinations are postponed to may, during that week or two, work hours might be affected as I would have to give time to exams.
 
@@ -227,7 +227,7 @@ I have never worked with system with indexed text search, and am eager to learn 
 .. do and how your project will improve things for them.
 
 Given the wide variety of file formats that users use for their personal tasks, the ability to be able to extract text and have an easy interface to do that for whatever file format a user has is extremely useful.
-Support for multiple file formats was added a last year project. If a user has a new file format which he/she wants to index, he/she might not be able to do it with omega if there is no support or if it is not fast enough.
+Support for multiple file formats was added in a GSoC 2019 Project. If a user has a new file format which he/she wants to index, he/she might not be able to do it with omega if there is no support or if it is not fast enough.
 So this project focuses on making omega a one stop solution for users to use regardless of file formats.
 
 Project Details
@@ -238,7 +238,7 @@ Project Details
 **Describe any existing work and concepts on which your project is based.**
 
 The project is based on adding support for extracting data from various file formats using some external filters or shared libraries.
-There was already a GSoC project which added support for multiple file formats to omega last year. I will be building my project on the top of this project by adding supprt for a wide variety of additional formats other than the ones that have already been done.
+There was already a GSoC project which added support for multiple file formats to omega last year. I will be building my project on top of this project by adding supprt for a wide variety of additional formats other than the ones that have already been done.
 
 
 `Here is the link to the 2019 GSoC Project https://trac.xapian.org/wiki/GSoC2019/TextExtraction`
@@ -271,16 +271,16 @@ I plan to divide my project into several modules. Here is a description of what 
 **Module 4: Integrate the other Libraries**
 
   * In this overview of the omega documentation and functionality (`https://xapian.org/docs/omega/overview.html`), the Section: Omindex Operation lists the various file formats that are already supported in Omega. Some of these such as Microsoft Visio that uses libvisio overlap with the list of formats in the Document Liberation Project. Going over this list, it suggests that there is wide support for office-based document products such as MS Word, Apple Keynote, etc. However, there is no support for drawing and graphics related file formats and e-book formats. I propose to improve Omega’s functionality along these lines.
+  * E-book/Publishing based file formats:
+
+    * libe-book (epub, PalmDoc, zvr, etc)
+    * Adobe PageMaker
+
   * Drawing/Graphics based file formats:
 
     * CorelDRAW
     * Zoner Callisto/Draw
     * Adobe FreeHand
-
-  * E-book/Publishing based file formats:
-
-    * libe-book (epub, PalmDoc, zvr, etc)
-    * Adobe PageMaker
 
   * This will broadly follow the steps from Module 3.
   * References:
@@ -298,12 +298,12 @@ I plan to divide my project into several modules. Here is a description of what 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-In previous year's project, Bruno added support for multiple file formats using libraries and filters such as Poppler,Libe-book,Tesseract to omindex.
+In a `2019 GSoC project <https://trac.xapian.org/wiki/GSoC2019/TextExtraction>`_, Bruno added support for multiple file formats using libraries and filters such as Poppler,Libe-book,Tesseract to omindex.
 A documentation on how to add support for external filters and shared libraries to omindex has also been written.
 
 `Here is a link to the documentation https://github.com/xapian/xapian/blob/master/xapian-applications/omega/docs/newformat.rst`
 
-Support for various file formats has been added during this project successfully, so I believe this approach will work on adding new formats as well.
+Support for various file formats have been added during this project successfully, so I believe this approach will work on adding new formats as well.
 
 
 **What other approaches have you considered, and why did you reject those in
@@ -427,7 +427,8 @@ Project Timeline
 
     * Add unit tests and individual tests for the library, Unit testing here means that I will find some zip files that have a license to freely distribute and verify that the shared library handler works well on it.
     * Testing Omega. Omega's testsuite can be run in a similar way to that of xapian-core, 'make check' within the 'omega' directory. It runs several small tests such as 'atomparsetest', 'htmlparsetest', 'utf8convertest', etc.
-    * Make changes based on feedback and discussion during each of the above steps.
+
+  * Make changes based on feedback and discussion during each of the above steps.
 
   * Submit PR and merge.
 
@@ -440,8 +441,15 @@ Project Timeline
   * Libarchive adds support for a variety of file extensions including gzip, bzip2, xz, lzip, etc. This shows the versatility and utility of adding libarchive. As explained in the Modules section of the proposal, I noticed that there is little support for e-book and publishing file formats. Libe-books supports various file extensions such as .epub, .pdb, .fb2, .zvr, etc. This wiki (`https://wiki.documentfoundation.org/DLP/Libraries#Import_Libs`) provides the complete list.
   * Libraries proposed :
 
-    * `libe-book <https://sourceforge.net/projects/libebook/>`_ : It is a library and a set of tools for reading and converting various reflowable e-book formats such as Broad Band ebook, eReader .pdb, ZVR (simple compressed text format).
-    * `libfreehand <https://wiki.documentfoundation.org/DLP/Libraries/libfreehand>`_ : It  is a library that parses the file format of Aldus/Macromedia/Adobe FreeHand documents.
+    * `libe-book <https://sourceforge.net/projects/libebook/>`_ : It is a library and a set of tools for reading and converting various reflowable e-book formats such as Broad Band ebook, eReader .pdb, ZVR (simple compressed text format).(3 weeks)
+
+      * libe-book supports multiple formats so I expect it might require additional handling and thus have tried to give it more time as of now.
+      * Create a handler to access the library (3 days)
+      * Update the build system. (4 days)
+      * Add worker to omindex. (3 days)
+      * Compile, test, and document. (5 days)
+
+    * `libpagemaker <https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker>`_ : It is a library that parses the file format of Aldus/Adobe PageMaker documents. (1 week)
 
   * Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner
 
@@ -450,21 +458,22 @@ Project Timeline
 
 **Phase 3: (July 27 - August 24)**
 
-* In this phase, I will focus on adding support libraries related to file-formats for digital drawing and graphics. Specifically, I intend to focus on libzmf, libfreehand, and libcdr. The choice of these libraries is subject to approval from the community during the initial bonding and discussion phase.
-* The procedure to add support for these libraries is understood to be similar to each other and should follow the same method as described in detail in Phase 1 for libarchive.
-* Libraries proposed :
+  * In this phase, I will focus on adding support libraries related to file-formats for digital drawing and graphics. Specifically, I intend to focus on libzmf, libfreehand, and libcdr. The choice of these libraries is subject to approval from the community during the initial bonding and discussion phase.
+  * The procedure to add support for these libraries is understood to be similar to each other and should follow the same method as described in detail in Phase 1 for libarchive.
+  * Libraries proposed :
 
-  * `libcdr <https://wiki.documentfoundation.org/DLP/Libraries/libcdr>`_ : This is for CorelDRAW. This includes  file formats like .cdr, .cmx (8 days)
-  * `libfreehand <https://wiki.documentfoundation.org/DLP/Libraries/libfreehand>`_  : This is used for Adobe FreeHand (6 days)
-  * `libzmf <https://wiki.documentfoundation.org/DLP/Libraries/libzmf>`_ : Zoner Callisto/Draw import library.  This includes file extensions such as .zmf (6 days)
+    * `libcdr <https://wiki.documentfoundation.org/DLP/Libraries/libcdr>`_ : This is for CorelDRAW. This includes  file formats like .cdr, .cmx (8 days)
+    * `libfreehand <https://wiki.documentfoundation.org/DLP/Libraries/libfreehand>`_  : This is used for Adobe FreeHand (6 days)
+    * `libzmf <https://wiki.documentfoundation.org/DLP/Libraries/libzmf>`_ : Zoner Callisto/Draw import library.  This includes file extensions such as .zmf (6 days)
 
-* Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner
+    * Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner
 
 
 
 **Final Week: (August 24 - August 31)**
 
   * This is buffer week to complete any pending tasks that may be left over.
+  * Submit final evaluations and prepare final report.
 
 
 
@@ -480,7 +489,7 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-I have had discussions about the project on the irc with the community.
+I have had discussions about the project on the irc with the community. I gratefully acknowledge the discussions and useful feedback from James, Olly and Bruno.
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -511,4 +520,4 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-I would have to use external libraries. These libraries will belong to free software and be under licenses compatible with MIT/X license and GNU GPL version 2 and later.
+I would have to use external libraries. These libraries will belong to free software and be under licenses compatible with MIT/X license and GNU GPL version 2 and later. Few libraries that I have proposed belong to the `Mozilla Public License (MPL) version 2.0 <https://www.mozilla.org/en-US/MPL/2.0/FAQ/>`_. Omega already uses some libraries which belong to MPLv2 such as 'libvisio' and 'libmspub'. These proposed libraries are subject to change as per discussions with mentors and the community.

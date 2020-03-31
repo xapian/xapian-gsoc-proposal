@@ -249,11 +249,10 @@ Without using the optimazation idea, skip_to(target_id) is recursively called on
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
 
-For idea #215, as Olly suggested, if a term match with all the documents in the tree, none of the other PL need to be moved when skip_to() is called. If weights are coming from an external source, the optimazation becomes potentially much more profitable.
+ For idea #215, as Olly suggested, if a term match with all the documents in the tree, none of the other PL need to be moved when skip_to() is called. If weights are coming from an external source, the optimazation becomes potentially much more profitable.
 Also, if skip_to() is called consecutively, this optimazation also saves duplicative skip_to() called on sub-PLs with lower termfrequency.
 
-For idea #378, according to the ticket, if we calculate the weights of sub-PLs along with checking them, we could judge and abort invalid query in advance, thus saves the cost on checking rest of the sub-PLs. This can apparently speed things up especially when some sub-PLs take more time to be checked(external posting
- sources / value ranges).Since this optimazation could be used in multiple kinds of PLs, it is likely bring more improvements on the overall performance.
+ For idea #378, according to the ticket, if we calculate the weights of sub-PLs along with checking them, we could judge and abort invalid query in advance, thus saves the cost on checking rest of the sub-PLs. This can apparently speed things up especially when some sub-PLs take more time to be checked(external posting sources / value ranges).Since this optimazation could be used in multiple kinds of PLs, it is likely bring more improvements on the overall performance.
 
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**

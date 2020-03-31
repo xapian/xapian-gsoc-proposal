@@ -70,27 +70,34 @@
 .. https://teom.wordpress.com/2012/03/01/how-to-write-a-kick-ass-proposal-for-google-summer-of-code/
 
 ======================================
-FILLME WITH THE TITLE OF YOUR PROPOSAL
+Matcher Optimisations
 ======================================
 
 About You
 =========
 
- * Name: FILLME
+ * Name: Zhang Yuchen
 
- * E-mail address: FILLME
+ * E-mail address: whostheme@foxmail.com
 
- * IRC nickname(s): FILLME
+ * IRC nickname(s): 2727c
 
- * Any personal websites, blogs, social media, etc: FILLME
+ * Any personal websites, blogs, social media, etc: http://www.z2727c.com/
 
- * github URL: FILLME
+ * github URL: https://github.com/whostheme
 
  * Biography:
 
-.. Tell us a bit about yourself.
+I am a final-year undergraduate of Software Engineering at Southwest Jiaotong University, China.
+I will continue my Msc study in Computer Science at University of Copenhagen.
+I discoverd my interest of and start to learn programming when I was a junior architecture student.
+and manage to transformed my major officially at the begining of the third-year.
+I had a pretty condensed year after that:
+ - Course projects from network programming to machine learning.
+ - Participated in several developing events and got up to 2nd Prize at a national competition.
+ - Participated in NUS SoC summer workshop, designed and developed a VR Game in 21 days. 
+ - Worked as software development intern at Ericsson for 4 months. 
 
-FILLME
 
 Background Information
 ----------------------
@@ -105,31 +112,47 @@ Background Information
 similar programmes before?  If so, tell us about how it went, and any areas you
 would have liked more help with.**
 
-FILLME
+No, I have not. 
 
 **Please tell us about any previous experience you have with Xapian, or other
 systems for indexed text search.**
 
-FILLME
+From mid March, I've deployed Xapian on my machine, carefully read the design documents
+about Xapian's Matcher, studied the codes related to specific PostList classes (OrPostList,
+BoolOrPostList, MultiAndPostList) and understood their mechanism.
 
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-FILLME
+Never participated in the development of any formal open source project,
+but I have used many open source APIs in my student projects, such as ArcSoft's 
+face recognition module used in the meeting management system project, VRTK tool, etc.
+I am also used to share the outcomes on github.
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
 
-FILLME
+My most related courses at college:
+Internet Search Engine (on going this semester)
+C++,Java Programing with object-oriented.
+Data Structure
+Algorithm Analysis and Design
+Database Principle
 
 **What development platforms, tools and methods do you prefer to use?**
 
-FILLME
+Operating System: Ubuntu 18.04 LTS
+CPU: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
+IDE: Visual Studio Code
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
 about it.**
 
-FILLME
+During my internship at Ericsson, I contribute to developing a remote automated testing tool
+and modified test cases adapting to new design of their upgrading RF software.
+In this process, I strengthened my programming skills (C++,python) and became 
+familiar with the collaborative mode similar to open source software development,
+including addressing&claiming of user story&tickets, submission&reviewing of codes.
 
 **What timezone will you be in during the coding period?**
 
@@ -137,7 +160,7 @@ FILLME
 .. name so we aren't surprised by any differences around daylight savings
 .. time, which don't all line up in different parts of the world.
 
-FILLME
+GMT+8:00
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
@@ -146,7 +169,8 @@ program?**
 .. but if we don't know about them in advance we can't make sure you have
 .. the support you need.
 
-FILLME
+Currently, I am also working on my graduation project, which should be finished at late May.
+After that I can devote all my work time on GSOC project.
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
@@ -165,7 +189,7 @@ FILLME
 .. these are few, it is usually possible to get enough done across Summer of
 .. Code to make for a worthwhile project.
 
-FILLME
+Monday-Friday 4:30am-12:00pm UTC
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
@@ -174,7 +198,7 @@ organisation(s)?**
 .. we don't have a problem with that, but it's helpful if we're aware of it
 .. so that we know how many backup choices we might need.
 
-FILLME
+No, Xapian is the only project I prepared for and applied.
 
 Your Project
 ============
@@ -184,14 +208,18 @@ Motivations
 
 **Why have you chosen this particular project?**
 
-FILLME
+Because I am interested in studying searching/NLP, I aim it as the future theme 
+for my master degree. This particular idea enables me to access and learn most
+about the core algorithm and principles of searching.
+
 
 **Who will benefit from your project and in what ways?**
 
 .. For example, think about the likely user-base, what they currently have to
 .. do and how your project will improve things for them.
 
-FILLME
+Regular users of Xapian based software and developers that use Xapian API would
+glad to enjoy a bit faster search service.
 
 Project Details
 ---------------
@@ -200,7 +228,25 @@ Project Details
 
 **Describe any existing work and concepts on which your project is based.**
 
-FILLME
+The theme of this project is the optimization of Matcher, and thus based primarily
+on Matcher's existing implementation. The way Matcher works is to build a tree structure
+with PostList nodes, based on the text to be searched.
+In a most common situation:
+ - Each leaf PostList encapsulates a mapping from a term to a list of the ids of all documents containing that term,
+while virtual PostList as non-leaf nodes represents the layers of logical relationship among these terms or phrases.
+ - Through a top-to-bottom passing and allocating of matching-weight threshold,
+and a bottom-to-top filtering and passing of document ids,
+matching documents are found one by one.
+
+The basic task of this projest is to implement three of the suggested optimization ideas.
+ - Idea #215 is based on the current implementation of  BoolOrPostingList class(matcher/boolorpostlist.cc).
+It is a multi-way virual PostList node. The current docid is used as the key value to maintain the minimum heap of pointer array to the sub-PLs.
+Without using the optimazation idea, skip_to(target_id) is recursively called on each sub-PL that falls behind the target_id.
+ - Idea #378 is based on the current implementation of  MultiAndPostList class(matcher/multiandpostlist.cc), also as a multi-way PostList node.
+In the current version, the weights are not calculated until all sub-PLs have settled on a same position. If we calculate the weights along with
+going through sub-PLs, We could judge and abort the query process of a unqualified docid in advance.
+ - Idea #394 is based on phrase-settling-pond.patch(https://trac.xapian.org/attachment/ticket/394/phrase-settling-pond.patch).
+
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -210,17 +256,21 @@ FILLME
 **What other approaches have you considered, and why did you reject those in
 favour of your chosen approach?**
 
-FILLME
+None
 
 **Please note any uncertainties or aspects which depend on further research or
 investigation.**
 
-FILLME
+Without much experience with xapian, I'm not sure if implementing these three ideas will 
+appropriately fill the 3-month coding period. I would like to propose a new optimization 
+strategy, but that require further research on matcher.
 
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-FILLME
+Even if some of the optimisation ideas do not bring much positive results, still my
+efforts would help to prove its invalidation, which could prevent others from useless work.
+It may also lay basis and open new ideas for futher optimisation.
 
 Project Timeline
 ----------------
@@ -271,7 +321,53 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
+
+**Community bonding** (4 MAY-31 MAY)
+Week 1 · Learning & Experiencing
+*Consolidate concepts & knowledge about searching.
+*Experience using Xapian API, 
+*Understand the design and the process of building a PostListTree.
+*Find out when and for what those main functions of PostLists are called.
+*Keep in touch and get familier with the community.
+
+Week 2 · Catching up
+*Learn and practice the way to test and evaluate the performance of matcher
+*Track and go through the histroy and progress of targeted 3 tickets, understanding related codes.
+*Carefully review each line of key PostList.
+*Address questions and get them cleared.
+
+Week 3-4 · Dash Weeks for graduation preparation
+
+
+**Coding**(1 JUNE-2 AUG)
+Week 5-6 · Sketching
+*Draft the initial implementation plan of each optimazation idea, discuss with the community and mentor, finalize the first version of the plan.
+*Follow up with irc and participate in discussions related to matcher positively.
+*Clarify new confusions.
+
+Week 7-8 · Implementing idea #215
+Week 9-10 · Implementing idea #378
+Week 11-12 · Implementing idea #394
+Implementing Steps:
+* 1.Code as planned.
+* 2.Run and pass the test. Fix bugs and optimize the algorithm.
+* 3.Evaluate the improvment on performance.
+* 4.Adjust design if necessary, back to 1.
+* 5.Make PR for the changes, reply comments, adjusting codes and retest.
+* 6.Update documents if needed.
+
+
+**Reflection and Extension** (3 AUG-24 AUG)
+Week 13-14
+* Organizing the codes and the performance evaluation outcomes
+* Follow comments and keep refining.
+* Try promote new optimazation ideas.
+
+Week 15-16 · Buffer Weeks 
+* For unexpected stalemate with graduation project.
+* For any trouble encountered during implementing suggested 3 ideas.
+* For implementing new optimazation ideas if everything goes well.
+
 
 Previous Discussion of your Project
 -----------------------------------
@@ -285,7 +381,8 @@ Previous Discussion of your Project
 .. is that the students in question have discussed the project with us before
 .. submitting their proposal.
 
-FILLME
+I have post my envision of the implementation of the #215 idea on the irc and got 
+feedback from the community.
 
 Licensing of your contributions to Xapian
 -----------------------------------------
@@ -301,7 +398,8 @@ pages.
 .. please see the "License grant" section of our developer guide:
 .. https://xapian-developer-guide.readthedocs.io/en/latest/contributing/contributing-changes.html#license-grant
 
-FILLME
+I agree to dual-license all my contributions to Xapian under the GNU GPL version 2
+ans all later versions, and the MIT/X licence.
 
 Use of Existing Code
 --------------------
@@ -316,4 +414,4 @@ you plan to use, please give details.**
 .. to clearly identify that code (and keep existing licensing and copyright
 .. details intact), and to check with the mentors that it is OK to use.
 
-FILLME
+None

@@ -238,7 +238,7 @@ Project Details
 **Describe any existing work and concepts on which your project is based.**
 
 The project is based on adding support for extracting data from various file formats using some external filters or shared libraries.
-There was already a GSoC project which added support for multiple file formats to omega last year. I will be building my project on top of this project by adding supprt for a wide variety of additional formats other than the ones that have already been done.
+There was already a GSoC project which added support for multiple file formats to omega last year. I will be building my project on top of this project by adding support for a wide variety of additional formats other than the ones that have already been done.
 
 
 `Here is the link to the 2019 GSoC Project https://trac.xapian.org/wiki/GSoC2019/TextExtraction`
@@ -301,9 +301,9 @@ approach is possible and likely to succeed?**
 In a `2019 GSoC project <https://trac.xapian.org/wiki/GSoC2019/TextExtraction>`_, Bruno added support for multiple file formats using libraries and filters such as Poppler,Libe-book,Tesseract to omindex.
 A documentation on how to add support for external filters and shared libraries to omindex has also been written.
 
-`Here is a link to the documentation https://github.com/xapian/xapian/blob/master/xapian-applications/omega/docs/newformat.rst`
+`Here is a link to the documentation. https://github.com/xapian/xapian/blob/master/xapian-applications/omega/docs/newformat.rst`
 
-Support for various file formats have been added during this project successfully, so I believe this approach will work on adding new formats as well.
+Support for various file formats has been added during this project successfully, so I believe this approach will work on adding new formats as well.
 
 
 **What other approaches have you considered, and why did you reject those in
@@ -451,7 +451,7 @@ Project Timeline
 
     * `libpagemaker <https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker>`_ : It is a library that parses the file format of Aldus/Adobe PageMaker documents. (1 week)
 
-  * Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner
+  * Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner.
 
 
 
@@ -462,11 +462,11 @@ Project Timeline
   * The procedure to add support for these libraries is understood to be similar to each other and should follow the same method as described in detail in Phase 1 for libarchive.
   * Libraries proposed :
 
-    * `libcdr <https://wiki.documentfoundation.org/DLP/Libraries/libcdr>`_ : This is for CorelDRAW. This includes  file formats like .cdr, .cmx (8 days)
-    * `libfreehand <https://wiki.documentfoundation.org/DLP/Libraries/libfreehand>`_  : This is used for Adobe FreeHand (6 days)
-    * `libzmf <https://wiki.documentfoundation.org/DLP/Libraries/libzmf>`_ : Zoner Callisto/Draw import library.  This includes file extensions such as .zmf (6 days)
+    * `libcdr <https://wiki.documentfoundation.org/DLP/Libraries/libcdr>`_ : This is for CorelDRAW. This includes  file formats like .cdr, .cmx. (8 days)
+    * `libfreehand <https://wiki.documentfoundation.org/DLP/Libraries/libfreehand>`_  : This is used for Adobe FreeHand. (6 days)
+    * `libzmf <https://wiki.documentfoundation.org/DLP/Libraries/libzmf>`_ : Zoner Callisto/Draw import library.  This includes file extensions such as .zmf. (6 days)
 
-    * Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner
+    * Each of these will require me to create their individual handlers, update the build system, and add new workers to omindex in a similar manner.
 
 
 

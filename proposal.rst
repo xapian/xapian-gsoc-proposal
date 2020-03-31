@@ -114,7 +114,8 @@ systems for indexed text search.**
 **Tell us about any previous experience with Free Software and Open Source
 other than Xapian.**
 
-	I joined Hacktoberfest.
+	I joined Hacktoberfest. I sent 4 pull requests. Three of them was about algorithms implemented in C and Go, one of them was about http clients in Go. My usage of Git has improved with this organization. With this program, I understood the contribute open source better. It was very advantageous for more than one person to contribute to a project and see what other people are doing. It was a very nice process, I don't think it has a disadvantage.
+
 
 **What other relevant prior experience do you have (courses taken at college,
 hobbies, holiday jobs, etc)?**
@@ -215,7 +216,8 @@ FILLME
 **How useful will your results be when not everything works out exactly as
 planned?**
 
-	I think my results will be useful because I don't lose motivation in a stress situation.
+	If everything does not go as planned, I will focus on the point which forces me and I reduce the time I spend on other jobs. This situation does not scare me or stress me, on the contrary I work harder for complete the job. I believe that when I work hard enough, everything can be resolved.
+
 
 Project Timeline
 ----------------
@@ -266,7 +268,10 @@ Project Timeline
 .. any university classes or exams, vacations, etc), make sure you include them
 .. in your project timeline.
 
-FILLME
+	I will review and learn all of the resources and proof of concept until the beginning of coding time. I plan to know well all the requirements when the coding time starts. When coding starts, the first week becomes the process of getting used to and the last week is the time to complete the project. I plan to start produce a more natural Go API where SWIG doesn't on 8th June. I plan to do the tests in August.
+
+
+
 
 Previous Discussion of your Project
 -----------------------------------

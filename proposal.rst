@@ -90,9 +90,11 @@ About You
 
 I am a final-year undergraduate of Software Engineering at Southwest Jiaotong University, China.
 I will continue my Msc study in Computer Science at University of Copenhagen.
+
 I discoverd my interest of and start to learn programming when I was a junior architecture student.
-and manage to transformed my major officially at the begining of the third-year.
-I had a pretty condensed year after that:
+and manage to transformed my major officially at the begining of the third-year,and had a pretty
+condensed year after that:
+
  - Course projects from network programming to machine learning.
  - Participated in several developing events and got up to 2nd Prize at a national competition.
  - Participated in NUS SoC summer workshop, designed and developed a VR Game in 21 days. 
@@ -133,16 +135,19 @@ I am also used to share the outcomes on github.
 hobbies, holiday jobs, etc)?**
 
 My most related courses at college:
-Internet Search Engine (on going this semester)
-C++,Java Programing with object-oriented.
-Data Structure
-Algorithm Analysis and Design
-Database Principle
+
+ - Internet Search Engine (on going this semester)
+ - C++,Java Programing with object-oriented.
+ - Data Structure
+ - Algorithm Analysis and Design
+ - Database Principle
 
 **What development platforms, tools and methods do you prefer to use?**
 
 Operating System: Ubuntu 18.04 LTS
+
 CPU: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
+
 IDE: Visual Studio Code
 
 **Have you previously worked on a project of a similar scope?  If so, tell us
@@ -323,50 +328,59 @@ Project Timeline
 
 
 **Community bonding** (4 MAY-31 MAY)
+
 Week 1 · Learning & Experiencing
-*Consolidate concepts & knowledge about searching.
-*Experience using Xapian API, 
-*Understand the design and the process of building a PostListTree.
-*Find out when and for what those main functions of PostLists are called.
-*Keep in touch and get familier with the community.
+ - Consolidate concepts & knowledge about searching.
+ - Experience using Xapian API, 
+ - Understand the design and the process of building a PostListTree.
+ - Find out when and for what those main functions of PostLists are called.
+ - Keep in touch and get familier with the community.
 
 Week 2 · Catching up
-*Learn and practice the way to test and evaluate the performance of matcher
-*Track and go through the histroy and progress of targeted 3 tickets, understanding related codes.
-*Carefully review each line of key PostList.
-*Address questions and get them cleared.
+ - Learn and practice the way to test and evaluate the performance of matcher
+ - Track and go through the histroy and progress of targeted 3 tickets, understanding related codes.
+ - Carefully review each line of key PostList.
+ - Address questions and get them cleared.
 
 Week 3-4 · Dash Weeks for graduation preparation
-
+ - --
 
 **Coding**(1 JUNE-2 AUG)
+
 Week 5-6 · Sketching
-*Draft the initial implementation plan of each optimazation idea, discuss with the community and mentor, finalize the first version of the plan.
-*Follow up with irc and participate in discussions related to matcher positively.
-*Clarify new confusions.
+ - Draft the initial implementation plan of each optimazation idea, discuss with the community and mentor, finalize the first version of the plan.
+ - Follow up with irc and participate in discussions related to matcher positively.
+ - Clarify new confusions.
 
 Week 7-8 · Implementing idea #215
+
 Week 9-10 · Implementing idea #378
+
 Week 11-12 · Implementing idea #394
+
 Implementing Steps:
-* 1.Code as planned.
-* 2.Run and pass the test. Fix bugs and optimize the algorithm.
-* 3.Evaluate the improvment on performance.
-* 4.Adjust design if necessary, back to 1.
-* 5.Make PR for the changes, reply comments, adjusting codes and retest.
-* 6.Update documents if needed.
+
+ - 1.Code as planned.
+ - 2.Run and pass the test. Fix bugs and optimize the algorithm.
+ - 3.Evaluate the improvment on performance.
+ - 4.Adjust design if necessary, back to 1.
+ - 5.Make PR for the changes, reply comments, adjusting codes and retest.
+ - 6.Update documents if needed.
 
 
 **Reflection and Extension** (3 AUG-24 AUG)
+
 Week 13-14
-* Organizing the codes and the performance evaluation outcomes
-* Follow comments and keep refining.
-* Try promote new optimazation ideas.
+
+ - Organizing the codes and the performance evaluation outcomes
+ - Follow comments and keep refining.
+ - Try promote new optimazation ideas.
 
 Week 15-16 · Buffer Weeks 
-* For unexpected stalemate with graduation project.
-* For any trouble encountered during implementing suggested 3 ideas.
-* For implementing new optimazation ideas if everything goes well.
+
+ - For unexpected stalemate with graduation project.
+ - For any trouble encountered during implementing suggested 3 ideas.
+ - For implementing new optimazation ideas if everything goes well.
 
 
 Previous Discussion of your Project
